@@ -1371,4 +1371,80 @@ a > img.fh5co-align-center {
   height: 100px;
 }
 
+body, html {
+  overflow-x: hidden;
+}
+
+/* Make all images fully responsive */
+img,
+img.fh5co-align-center,
+img.fh5co-align-left,
+img.fh5co-align-right,
+.img-responsive,
+.img-fluid {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Remove fixed nav width */
+#fh5co-main-nav ul {
+  width: 100% !important;
+}
+
+/* Responsive fix for code/tables if needed */
+pre, table {
+  max-width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+.paper-title, .tldr, .paper-contents {
+  width: 95%;
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+@media (max-width: 576px) {
+  .paper-title, .tldr, .paper-contents {
+    font-size: 12px;
+    padding-right: 5px;
+    padding-left: 15px;
+    /* Optional: reduce font if needed */
+  }
+}
+
+.glass-neu {
+  width: 200px;
+  height: 60px;
+  border-radius: 7px;
+  background: rgba(229, 229, 229, 0.7);   /* semi-transparent for glass effect */
+  color: #7b7b7b;
+  font-size: 1em;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* OUTER SHADOWS (give soft floating effect) */
+  box-shadow:
+    8px 8px 24px 0 rgba(13,39,80,0.10),  /* outer shadow (bottom-right, blue) */
+    -8px -8px 24px 0 rgba(255,255,255,0.55), /* outer highlight (top-left, white) */
+    /* INNER SHADOWS (inset for glass depth) */
+    inset -30px -30px 50px 0 rgba(255,255,255,0.850),
+    inset 30px 30px 50px 0 rgba(13,39,80,0.1);
+  /* glass blur on supported browsers: */
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  transition: box-shadow 0.2s;
+}
+.glass-neu:active {
+  box-shadow:
+    2px 2px 8px 0 rgba(13,39,80,0.10),
+    -2px -2px 8px 0 rgba(255,255,255,0.55),
+    inset -8px -8px 24px 0 rgba(255,255,255,0.55),
+    inset 8px 8px 24px 0 rgba(13,39,80,0.10);
+}
 /*# sourceMappingURL=style.css.map */
