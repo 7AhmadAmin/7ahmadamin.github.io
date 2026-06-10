@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 512 512"
+     width="512"
+     height="512">
+
+  <!-- Background rounded rectangle -->
+  <rect width="512"
+        height="512"
+        rx="72"
+        fill="#FF6347"/>
+
+  <!-- ===== TOP ROW ===== -->
+  <!-- “7” – left group -->
+  <path d="M116 103 H216 L136 219"
+        fill="none"
+        stroke="#000"
+        stroke-width="20"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- “M” – right group -->
+  <path d="M296 103 V219
+           M296 103 L346 149 L396 103
+           M396 103 V219"
+        fill="none"
+        stroke="#000"
+        stroke-width="20"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- ===== BOTTOM ROW ===== -->
+  <!-- Left chevron (∧) -->
+  <path d="M116 409 L166 299 L216 409"
+        fill="none"
+        stroke="#000"
+        stroke-width="20"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- Right chevron (∧) -->
+  <path d="M296 409 L346 299 L396 409"
+        fill="none"
+        stroke="#000"
+        stroke-width="20"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+</svg>
