@@ -15,7 +15,7 @@ const storage = {
   }
 };
 
-const savedTheme = storage.get('theme', 'light');
+const savedTheme = storage.get('theme', 'dark');
 const savedLang = storage.get('lang', 'en');
 root.setAttribute('data-theme', savedTheme);
 if (savedLang === 'zh') body.classList.add('lang-zh');
