@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Exposing Deepfake Frames through Spectral Analysis — Muhammad Ahmad Amin</title>
+    <meta name="description" content="Exposing Deepfake Frames through Spectral Analysis of Color Channels in Frequency Domain. IEEE IWBF 2023." />
+
+    <!-- Custom SVG Favicon (Baked in) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='90' fill='%2300b894'/%3E%3Cpath d='M116 103 H216 L136 219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 103 V219 M296 103 L346 149 L396 103 M396 103 V219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M116 409 L166 299 L216 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 409 L346 299 L396 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/subpages.css" />
+</head>
+<body>
+
+    <!-- Side Dock — Social Links -->
+    <aside class="side-dock" id="sideDock" aria-label="Social links">
+        <div class="dock-links">
+            <a href="https://twitter.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="X / Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path></svg>
+            </a>
+            <a href="https://github.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+            </a>
+            <a href="https://scholar.google.com/citations?hl=en&user=57ouxVcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10l-10-6-10 6 10 6 10-6z"/>
+                    <path d="M6 12v5l6 3 6-3v-5"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/7ahmadamin" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"></path></svg>
+            </a>
+        </div>
+        <button class="dock-toggle" id="dockToggle" aria-label="Toggle social links" aria-expanded="false">
+            <span class="toggle-label">Socials</span>
+        </button>
+    </aside>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../../index.html#top" class="nav-name" id="navName">
+                <span class="nav-name-text">MUHAMMAD AHMAD AMIN</span>
+            </a>
+            <div class="nav-links">
+                <a href="../../index.html#about"><span class="en">ABOUT</span><span class="zh">关于</span></a>
+                <a href="../../index.html#research"><span class="en">RESEARCH</span><span class="zh">研究</span></a>
+                <a href="../../index.html#experience"><span class="en">WORK</span><span class="zh">工作</span></a>
+                <a href="../../index.html#projects"><span class="en">FUNDING</span><span class="zh">基金</span></a>
+                <a href="../../index.html#publications"><span class="en">PAPERS</span><span class="zh">论文</span></a>
+                <a href="../../index.html#talks"><span class="en">TALKS</span><span class="zh">报告</span></a>
+                <a href="../../index.html#news"><span class="en">NEWS</span><span class="zh">动态</span></a>
+                <a href="../../index.html#contact"><span class="en">CONTACT</span><span class="zh">联系</span></a>
+            </div>
+            <div class="nav-actions">
+                <a href="../CV/Resume.pdf" class="cv-btn" download>
+                    <span class="en">CV ↓</span>
+                    <span class="zh">简历 ↓</span>
+                </a>
+                <button class="lang-btn lang-btn-desktop" aria-label="Toggle language">EN / 中</button>
+                <button class="lang-btn lang-btn-mobile" aria-label="Toggle language">EN / 中</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="subpage-hero" id="top">
+        <div class="hero-bg"></div>
+        <div class="subpage-hero-content">
+            <p class="hero-label">
+                <span class="en">PUBLICATION</span><span class="zh">论文</span> · IEEE IWBF · 2023
+            </p>
+            <h1 class="hero-title">
+                <span class="en">Exposing Deepfake Frames through Spectral Analysis of Color Channels in Frequency Domain</span>
+                <span class="zh">基于频域颜色通道频谱分析的深度伪造帧检测</span>
+            </h1>
+
+            <div class="author-grid">
+                <span class="author-block"><a href="../../index.html#about">M. A. Amin</a><sup>1</sup></span>
+                <span class="author-block">Y. Hu<sup>1</sup></span>
+                <span class="author-block">H. She<sup>1</sup></span>
+                <span class="author-block">J. Li<sup>1</sup></span>
+                <span class="author-block">Y. Guan<sup>2</sup></span>
+                <span class="author-block">M. Z. Amin<sup>3</sup></span>
+            </div>
+            <div class="affiliation-list">
+                <span><sup>1</sup><span class="en">School of Electronic and Information Engineering, South China University of Technology, Guangzhou, P.R. China</span><span class="zh">华南理工大学电子与信息学院，广州，中国</span></span>
+                <span><sup>2</sup><span class="en">Department of Computer Science, University of Warwick, Coventry, UK</span><span class="zh">华威大学计算机科学系，考文垂，英国</span></span>
+                <span><sup>3</sup><span class="en">Université de Bourgogne, Le Creusot, France</span><span class="zh">勃艮第大学，勒克勒佐，法国</span></span>
+            </div>
+
+            <div class="link-buttons">
+                <a href="https://ieeexplore.ieee.org/abstract/document/10157211" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <span class="en">Paper</span><span class="zh">Paper</span>
+                </a>
+                <a href="https://doi.org/10.1109/IWBF57495.2023.10157211" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    <span class="en">DOI</span><span class="zh">DOI</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Abstract -->
+    <section class="section section-white" id="abstract">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P1</span>
+                <p class="eyebrow"><span class="en">ABSTRACT</span><span class="zh">摘要</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What is the <em>problem</em> and what did we do?</span>
+                <span class="zh">我们解决了什么<em>问题</em>？</span>
+            </h2>
+            <div class="abstract-block">
+                <p>
+                    <span class="en">Generative neural networks can create convincing synthesized results that are hard to tell apart from authentic content. With the proliferation of false news and disinformation online, developing effective techniques for detecting deepfakes has become urgent. Most recent detection algorithms rely on deep learning methods that need enormous volumes of labeled training data, making them impractical when data is scarce.</span>
+                    <span class="zh">生成神经网络可以创建令人信服的合成结果，难以与真实内容区分。随着网上虚假新闻和错误信息的泛滥，开发有效的深度伪造检测技术已变得紧迫。大多数最近的检测算法依赖需要大量标记训练数据的深度学习方法，在数据稀缺时难以实用。</span>
+                </p>
+                <p>
+                    <span class="en">We conduct a comprehensive frequency spectrum analysis on deepfake frames and their color channels to detect spectral anomalies and statistical features. We propose <strong>Frequency Spectrum Statistical Features (FSSF)</strong>, a compact 6-D feature map comprising Pearson correlation coefficients between RGB channel spectrums and descriptive statistics (Mean, Min, Max) of average spectrum differences. We employ both <strong>unsupervised GMM-EM</strong> and <strong>supervised SVM-RBF</strong> classifiers, requiring minimal training data while achieving high accuracy and strong cross-dataset generalization.</span>
+                    <span class="zh">我们对深度伪造帧及其颜色通道进行全面的频谱分析，以检测频谱异常和统计特征。我们提出了<strong>频谱统计特征（FSSF）</strong>——一种紧凑的6维特征图，包含RGB通道频谱之间的皮尔逊相关系数和平均频谱差异的描述性统计量（均值、最小值、最大值）。我们采用<strong>无监督GMM-EM</strong>和<strong>监督SVM-RBF</strong>分类器，仅需最少训练数据即可实现高准确率和强跨数据集泛化。</span>
+                </p>
+                <p>
+                    <span class="en">Evaluations on FaceForensics++, DeepFakeTIMIT, DFD, Celeb-DF, DFDC, and DeeperForensics demonstrate that FSSF effectively exposes spectral discrepancies originating from generator upsampling operations. Our unsupervised approach achieves <strong>99.8% AUC</strong> on DFDC, and our supervised multi-dataset strategy achieves an average <strong>87.8% AUC</strong> across unseen domains, surpassing Xception and SPSL by significant margins.</span>
+                    <span class="zh">在FaceForensics++、DeepFakeTIMIT、DFD、Celeb-DF、DFDC和DeeperForensics上的评估表明，FSSF有效暴露了源自生成器上采样操作的频谱差异。我们的无监督方法在DFDC上达到<strong>99.8% AUC</strong>，监督多数据集策略在未见域上达到平均<strong>87.8% AUC</strong>，大幅超越Xception和SPSL。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaser -->
+    <section class="section section-black" id="teaser">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P2</span>
+                <p class="eyebrow"><span class="en">FRAMEWORK OVERVIEW</span><span class="zh">框架概览</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">From color channels to spectral <em>evidence</em>: a lightweight pipeline.</span>
+                <span class="zh">从颜色通道到频谱<em>证据</em>：一个轻量级流程。</span>
+            </h2>
+            <div class="figure-grid single">
+                <div class="figure-item">
+                    <img src="IEEE_IWBF/1.gif" alt="Fig. 1 — Overview of proposed FSSF pipeline" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 1 — Overview of the proposed deepfake detection pipeline. Input frames are decomposed into RGB channels; 2D DFT amplitude spectra are computed; cross-channel spectrum differences are analyzed; and statistical features (Mean, Min, Max, Corr_RG, Corr_RB, Corr_GB) are fed into GMM-EM or SVM classifiers.</span>
+                        <span class="zh">图1 — 所提出的深度伪造检测流程概览。输入帧被分解为RGB通道；计算二维DFT幅度频谱；分析跨通道频谱差异；并将统计特征（均值、最小值、最大值、Corr_RG、Corr_RB、Corr_GB）输入GMM-EM或SVM分类器。</span>
+                    </span>
+                </div>
+            </div>
+            <p style="margin-top:24px; font-size:12px; color:var(--gray); text-align:center; line-height:1.6;">
+                <span class="en">© 2023 IEEE. Figure reproduced with permission from 2023 11th International Workshop on Biometrics and Forensics (IWBF). Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses.</span>
+                <span class="zh">© 2023 IEEE。经2023第11届生物识别与取证国际研讨会（IWBF）许可转载。允许个人使用此材料。所有其他用途必须获得IEEE许可。</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Method -->
+    <section class="section section-white" id="method">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P3</span>
+                <p class="eyebrow"><span class="en">METHOD</span><span class="zh">方法</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Spectral anomalies are the <em>fingerprints</em> of generative upsampling.</span>
+                <span class="zh">频谱异常是生成式上采样的<em>指纹</em>。</span>
+            </h2>
+            <div class="method-steps">
+                <div class="method-step">
+                    <span class="step-num">01</span>
+                    <div class="step-content">
+                        <h4><span class="en">FSSF Extraction: From RGB to Statistical Feature Map</span><span class="zh">FSSF提取：从RGB到统计特征图</span></h4>
+                        <p>
+                            <span class="en">We decompose the input frame into R, G, B channels and compute the 2D Discrete Fourier Transform (DFT) for each channel independently. The amplitude spectrum Spec<sub>R/G/B</sub> is obtained via the modulus of the complex DFT output. We then calculate cross-channel spectrum differences D<sub>RG</sub>, D<sub>RB</sub>, D<sub>GB</sub> and extract a compact 6-D <strong>Frequency Spectrum Statistical Feature (FSSF)</strong> map: <strong>Mean, Min, Max</strong> of the average spectrum differences, plus three <strong>Pearson correlation coefficients</strong> (Corr<sub>RG</sub>, Corr<sub>RB</sub>, Corr<sub>GB</sub>) between the channel spectrums. No deep network is required for feature extraction.</span>
+                            <span class="zh">我们将输入帧分解为R、G、B通道，并独立计算每个通道的二维离散傅里叶变换（DFT）。通过复数DFT输出的模获得幅度频谱Spec<sub>R/G/B</sub>。然后计算跨通道频谱差异D<sub>RG</sub>、D<sub>RB</sub>、D<sub>GB</sub>，并提取紧凑的6维<strong>频谱统计特征（FSSF）</strong>图：平均频谱差异的<strong>均值、最小值、最大值</strong>，加上三个通道频谱之间的<strong>皮尔逊相关系数</strong>（Corr<sub>RG</sub>、Corr<sub>RB</sub>、Corr<sub>GB</sub>）。特征提取不需要深度网络。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">02</span>
+                    <div class="step-content">
+                        <h4><span class="en">Unsupervised Detection: GMM with Expectation-Maximization</span><span class="zh">无监督检测：期望最大化高斯混合模型</span></h4>
+                        <p>
+                            <span class="en">We model the distribution of FSSF as a mixture of two Gaussian distributions — one for real frames and one for deepfakes. The <strong>Expectation-Maximization (EM)</strong> algorithm iteratively estimates the likelihood of each sample belonging to each distribution (E-step) and updates the means and variances (M-step). Real frames exhibit lower expectation values due to strong spectral agreement between color channels, while deepfakes show higher values caused by spectral anomalies from unconstrained channel generation. No labeled data is required.</span>
+                            <span class="zh">我们将FSSF的分布建模为两个高斯分布的混合——一个用于真实帧，一个用于深度伪造。<strong>期望最大化（EM）</strong>算法迭代估计每个样本属于每个分布的可能性（E步）并更新均值和方差（M步）。真实帧由于颜色通道之间强烈的频谱一致性而表现出较低的期望值，而深度伪造由于无约束通道生成导致的频谱异常而显示出较高值。不需要标记数据。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">03</span>
+                    <div class="step-content">
+                        <h4><span class="en">Supervised Detection: SVM with RBF Kernel</span><span class="zh">监督检测：RBF核支持向量机</span></h4>
+                        <p>
+                            <span class="en">For supervised learning, we employ a <strong>Support Vector Machine (SVM)</strong> with a radial basis function (RBF) kernel to locate the maximum-margin separating hyperplane between real and deepfake FSSF distributions. We first normalize the two Gaussian expectation values of source training features to [0,1]. During cross-dataset testing, target features are scaled using the known source expectation values before being fed into the pre-trained SVM. This normalization bridges the domain gap between datasets with different generation pipelines.</span>
+                            <span class="zh">对于监督学习，我们采用具有径向基函数（RBF）核的<strong>支持向量机（SVM）</strong>来定位真实和深度伪造FSSF分布之间的最大间隔分离超平面。我们首先将源训练特征的两个高斯期望值归一化到[0,1]。在跨数据集测试期间，目标特征使用已知的源期望值进行缩放，然后输入预训练的SVM。这种归一化弥合了具有不同生成流程的数据集之间的域差距。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">04</span>
+                    <div class="step-content">
+                        <h4><span class="en">Multi-Dataset Training for Generalization</span><span class="zh">多数据集训练以实现泛化</span></h4>
+                        <p>
+                            <span class="en">To improve real-world applicability, we combine four diverse source datasets (DFD, DFDC, Celeb-DF, Deeper) with FF++ to form a mixed training set, then test on the remaining unseen dataset. The diversity of training samples enables the model to learn general spectral anomalies rather than dataset-specific artifacts. This strategy boosts cross-dataset AUC by up to <strong>14%</strong> compared to single-dataset training, proving that FSSF captures intrinsic generator fingerprints rather than superficial dataset biases.</span>
+                            <span class="zh">为了提高现实世界的适用性，我们将四个不同的源数据集（DFD、DFDC、Celeb-DF、Deeper）与FF++组合形成混合训练集，然后在剩余的未见数据集上进行测试。训练样本的多样性使模型能够学习通用频谱异常，而非数据集特定的伪影。与单数据集训练相比，该策略将跨数据集AUC提升了高达<strong>14%</strong>，证明FSSF捕捉的是内在生成器指纹而非表面数据集偏置。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Method figure -->
+            <div class="figure-grid single" style="margin-top:64px;">
+                <div class="figure-item">
+                    <img src="IEEE_IWBF/2.gif" alt="Fig. 2 — Frequency spectrum analysis and statistical feature histograms" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 2 — Frequency spectrum analysis of real (1st row) and deepfake (2nd row) frames, and histogram distributions of the proposed statistical features (Mean, Min, Max, Corr_RG, Corr_RB, Corr_GB) on DFDC samples. Real face and background frames (blue/orange) show high correlation; deepfake frames (green/red) exhibit independent spectral distributions. © 2023 IEEE.</span>
+                        <span class="zh">图2 — 真实（第一行）和深度伪造（第二行）帧的频谱分析，以及在DFDC样本上提出的统计特征（均值、最小值、最大值、Corr_RG、Corr_RB、Corr_GB）的直方图分布。真实人脸和背景帧（蓝/橙）显示出高相关性；深度伪造帧（绿/红）表现出独立的频谱分布。© 2023 IEEE。</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="section section-black" id="results">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P4</span>
+                <p class="eyebrow"><span class="en">RESULTS</span><span class="zh">结果</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">High accuracy with minimal data and strong <em>generalization</em>.</span>
+                <span class="zh">以最少数据实现高准确率和强<em>泛化</em>。</span>
+            </h2>
+
+            <div class="statement-strip" style="margin-top:0; border-top:none; padding-top:0;">
+                <h3><span class="en">Unsupervised Learning (Table I)</span><span class="zh">无监督学习（表I）</span></h3>
+                <p>
+                    <span class="en">The GMM-EM classifier achieves <strong>99.8% AUC</strong> on DFDC — one of the largest and highest-quality deepfake datasets — with 99.3% recall and 100% precision. On Celeb-DF and TIMIT, it achieves <strong>99.5%</strong> and <strong>97.3%</strong> AUC respectively. Performance remains strong on FF++ (86.2%), DFD (84.5%), and Deeper (81.3%), confirming that spectral anomalies are consistent across diverse generation pipelines even without any labeled training data.</span>
+                    <span class="zh">GMM-EM分类器在DFDC（最大且最高质量的深度伪造数据集之一）上达到<strong>99.8% AUC</strong>，召回率99.3%，精确率100%。在Celeb-DF和TIMIT上分别达到<strong>99.5%</strong>和<strong>97.3%</strong> AUC。在FF++（86.2%）、DFD（84.5%）和Deeper（81.3%）上仍保持强劲性能，证实即使在没有任何标记训练数据的情况下，频谱异常在不同生成流程中也是一致的。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Supervised Intra-Testing (Table II)</span><span class="zh">监督数据集内测试（表II）</span></h3>
+                <p>
+                    <span class="en">Using SVM-RBF, our method achieves intra-dataset AUCs of <strong>99.6%</strong> on DFDC, <strong>99.1%</strong> on TIMIT, <strong>99.3%</strong> on Celeb-DF, <strong>97.0%</strong> on Deeper, <strong>95.3%</strong> on FF++, and <strong>90.5%</strong> on DFD. The lowest performance on DFD (c23 compressed) is attributed to lossy compression discarding high-frequency forensic cues. These results demonstrate that FSSF provides highly discriminative features when training and testing distributions align.</span>
+                    <span class="zh">使用SVM-RBF，我们的方法在数据集内达到<strong>99.6%</strong>（DFDC）、<strong>99.1%</strong>（TIMIT）、<strong>99.3%</strong>（Celeb-DF）、<strong>97.0%</strong>（Deeper）、<strong>95.3%</strong>（FF++）和<strong>90.5%</strong>（DFD）的AUC。DFD（c23压缩）上的最低性能归因于有损压缩丢弃了高频取证线索。这些结果表明，当训练和测试分布一致时，FSSF提供了高度可区分的特征。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Cross-Dataset Generalization (Table II)</span><span class="zh">跨数据集泛化（表II）</span></h3>
+                <p>
+                    <span class="en">Models trained on DFDC generalize well to unseen datasets, achieving strong cross-AUC on DFD (74.4%), FF++ (79.3%), and TIMIT (79.1%). DeeperForensics presents a greater challenge (38.5% from DFDC) because it employs an improved generation pipeline that leaves different spectral traces. Conversely, models trained on Deeper achieve 88.6% on TIMIT and 97.0% intra, confirming that datasets sharing generation lineages (FF++ → Deeper) exhibit transferable spectral fingerprints.</span>
+                    <span class="zh">在DFDC上训练的模型很好地泛化到未见数据集，在DFD（74.4%）、FF++（79.3%）和TIMIT（79.1%）上实现强劲的跨AUC。DeeperForensics带来更大挑战（来自DFDC的38.5%），因为它采用改进的生成流程，留下不同的频谱痕迹。相反，在Deeper上训练的模型在TIMIT上达到88.6%、数据集内97.0%，证实共享生成谱系的数据集（FF++ → Deeper）表现出可迁移的频谱指纹。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Multi-Dataset vs. State-of-the-Art (Table III)</span><span class="zh">多数据集与SOTA对比（表III）</span></h3>
+                <p>
+                    <span class="en">Training on a mixed dataset (DFD + DFDC + Celeb-DF + Deeper + FF++), our FSSF-SVM achieves an average cross-dataset AUC of <strong>87.8%</strong>, outperforming Xception (78.4%) and SPSL (81.9%). Specifically, we achieve <strong>99.8%</strong> on DFDC (+24.7% over Xception), <strong>85.9%</strong> on Deeper (+2.9% over SPSL), <strong>79.0%</strong> on Celeb-DF, and <strong>86.8%</strong> on DFD (+2.2% over SPSL). This proves that classical frequency statistics, when carefully designed, can surpass deep learning baselines in generalization.</span>
+                    <span class="zh">在混合数据集（DFD + DFDC + Celeb-DF + Deeper + FF++）上训练，我们的FSSF-SVM实现平均跨数据集AUC <strong>87.8%</strong>，超越Xception（78.4%）和SPSL（81.9%）。具体而言，我们在DFDC上达到<strong>99.8%</strong>（比Xception高24.7%），Deeper上<strong>85.9%</strong>（比SPSL高2.9%），Celeb-DF上<strong>79.0%</strong>，DFD上<strong>86.8%</strong>（比SPSL高2.2%）。这证明经过精心设计的经典频域统计可以在泛化上超越深度学习基线。</span>
+                </p>
+            </div>
+
+            <div class="figure-grid single" style="margin-top:64px;">
+                <div class="figure-item">
+                    <img src="IEEE_IWBF/3.gif" alt="Fig. 3 — Precision-Recall plots" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 3 — Precision-Recall plots. Left: Unsupervised GMM-EM evaluation on individual datasets. Right: Supervised generalization performance of FSSF-SVM trained on mixed dataset and tested on DFDC, Deeper, Celeb-DF, and DFD. © 2023 IEEE.</span>
+                        <span class="zh">图3 — 精确率-召回率曲线。左：无监督GMM-EM在单个数据集上的评估。右：在混合数据集上训练并在DFDC、Deeper、Celeb-DF和DFD上测试的FSSF-SVM监督泛化性能。© 2023 IEEE。</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Limitations -->
+    <section class="section section-white" id="limitations">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P5</span>
+                <p class="eyebrow"><span class="en">LIMITATIONS & FUTURE WORK</span><span class="zh">局限性与未来工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What we <em>could not</em> solve yet.</span>
+                <span class="zh">我们<em>尚未</em>解决的问题。</span>
+            </h2>
+            <div class="limitations-box">
+                <p>
+                    <span class="en"><strong>Unknown next-generation generators.</strong> As deepfake synthesis evolves (e.g., StyleGAN2, diffusion models), generators may employ better upsampling or spectral regularization that diminishes the color-channel correlation discrepancies we rely on. The DeeperForensics dataset already indicates this trend with its improved pipeline leaving different spectral traces.</span>
+                    <span class="zh"><strong>未知下一代生成器。</strong>随着深度伪造合成技术的发展（如StyleGAN2、扩散模型），生成器可能采用更好的上采样或频谱正则化，减少我们依赖的颜色通道相关性差异。DeeperForensics数据集已经通过其改进的流程留下不同频谱痕迹表明了这种趋势。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Compression artifacts.</strong> The DFD (c23) compressed version shows lower detection rates because lossy JPEG compression discards high-frequency details that carry our forensic cues. Future work should explore compression-robust spectral features or pre-processing to recover high-frequency components.</span>
+                    <span class="zh"><strong>压缩伪影。</strong>DFD（c23）压缩版本显示出较低的检测率，因为有损JPEG压缩丢弃了承载我们取证线索的高频细节。未来工作应探索压缩鲁棒的频谱特征或预处理以恢复高频成分。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Video temporal coherence.</strong> This work focuses on single-frame spectral analysis. Temporal inconsistencies across video frames — such as flickering spectral signatures between frames — are not explicitly modeled but could provide complementary evidence for video-level detection.</span>
+                    <span class="zh"><strong>视频时序一致性。</strong>本工作专注于单帧频谱分析。视频帧之间的时序不一致性——如帧间闪烁的频谱特征——未被显式建模，但可为视频级检测提供补充证据。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Ethical considerations.</strong> Like all forensic tools, FSSF carries dual-use risk. Responsible deployment requires transparency about confidence scores and human-in-the-loop verification, especially given that false positives in identity-sensitive contexts can cause asymmetric harm.</span>
+                    <span class="zh"><strong>伦理考量。</strong>与所有取证工具一样，FSSF具有双重用途风险。负责任的部署需要关于置信度分数的透明度和人在回路验证，特别是在身份敏感环境中假阳性可能导致不对称危害的情况下。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BibTeX -->
+    <section class="section section-black" id="bibtex">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P6</span>
+                <p class="eyebrow"><span class="en">BIBTEX</span><span class="zh">引用</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Cite this <em>paper</em>.</span>
+                <span class="zh">引用此<em>论文</em>。</span>
+            </h2>
+            <div class="bibtex-block" id="bibtexBlock">
+                <pre><code id="bibtexCode">@INPROCEEDINGS{10157211,
+  author={Amin, Muhammad Ahmad and Hu, Yongjian and She, Huimin and Li, Jicheng and Guan, Yu and Amin, Muhammad Zain},
+  booktitle={2023 11th International Workshop on Biometrics and Forensics (IWBF)}, 
+  title={Exposing Deepfake Frames through Spectral Analysis of Color Channels in Frequency Domain}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1-6},
+  keywords={Deepfakes;Image forensics;Image color analysis;Biometrics (access control);Frequency-domain analysis;Conferences;Supervised learning;Deepfakes;Statistical Features;Spectrum Analysis;Image Forensics;Generalization Capability},
+  doi={10.1109/IWBF57495.2023.10157211}
+}</code></pre>
+                <button class="btn bibtex-copy" id="bibtexCopy" aria-label="Copy BibTeX citation">
+                    <span class="en">COPY CITATION</span><span class="zh">复制引用</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- IEEE Copyright Disclaimer -->
+    <section class="section section-white" id="copyright">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P7</span>
+                <p class="eyebrow"><span class="en">COPYRIGHT NOTICE</span><span class="zh">版权声明</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">IEEE <em>Copyright</em> & Usage.</span>
+                <span class="zh">IEEE <em>版权</em>与使用。</span>
+            </h2>
+            <div class="abstract-block">
+                <p style="font-size:14px; color:var(--gray-dark);">
+                    <span class="en">© 2023 IEEE. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses, in any current or future media, including reprinting/republishing this material for advertising or promotional purposes, creating new collective works, for resale or redistribution to servers or lists, or reuse of any copyrighted component of this work in other works.</span>
+                    <span class="zh">© 2023 IEEE。允许个人使用此材料。所有其他用途必须获得IEEE许可，包括在任何当前或未来媒体中重印/再版此材料用于广告或促销目的、创建新的集体作品、转售或重新分发到服务器或列表，或在其他作品中重用此作品的任何受版权保护的组件。</span>
+                </p>
+                <p style="font-size:14px; color:var(--gray-dark); margin-top:12px;">
+                    <span class="en">This page is a personal academic landing page. The full paper is available via IEEE Xplore. Figures are reproduced with permission from 2023 11th International Workshop on Biometrics and Forensics (IWBF).</span>
+                    <span class="zh">本页面为个人学术着陆页。完整论文可通过IEEE Xplore获取。图表经2023第11届生物识别与取证国际研讨会（IWBF）许可转载。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related -->
+    <section class="section section-black" id="related">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P8</span>
+                <p class="eyebrow"><span class="en">RELATED WORK</span><span class="zh">相关工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">More from our <em>group</em>.</span>
+                <span class="zh">来自我们<em>团队</em>的更多工作。</span>
+            </h2>
+            <div class="related-grid">
+                <a href="dsp.html" class="related-item">
+                    <span class="related-venue">Digital Signal Processing · 2024</span>
+                    <h4><span class="en">Exploring Varying Color Spaces through Representative Forgery Learning</span><span class="zh">通过代表性伪造学习探索多色彩空间</span></h4>
+                    <p><span class="en">Multi-color-space framework for deepfake detection.</span><span class="zh">面向深度伪造检测的多色彩空间框架。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="aej.html" class="related-item">
+                    <span class="related-venue">Alexandria Engineering Journal · 2024</span>
+                    <h4><span class="en">Cross-Domain Local Characteristic Analysis with Multi-domain Transformer</span><span class="zh">基于多域Transformer的跨域局部特征分析</span></h4>
+                    <p><span class="en">SVFT: spatial + frequency transformer for deepfake detection.</span><span class="zh">SVFT：空间与频域Transformer融合的深度伪造检测。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="era.html" class="related-item">
+                    <span class="related-venue">Electronic Research Archive · 2024</span>
+                    <h4><span class="en">Analyzing Temporal Coherence for Deepfake Video Detection</span><span class="zh">基于时序一致性的深度伪造视频检测</span></h4>
+                    <p><span class="en">Bi-level temporal modeling for video forensics.</span><span class="zh">面向视频取证的双层时序建模。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer section-white">
+        <div class="container">
+            <p>
+                <span class="en">© 2026 Muhammad Ahmad Amin. All rights reserved.</span>
+                <span class="zh">© 2026 Muhammad Ahmad Amin. 保留所有权利。</span>
+            </p>
+            <div class="footer-links">
+                <a href="#top" class="back-to-top">
+                    <span class="en">BACK TO TOP ↑</span>
+                    <span class="zh">回到顶部 ↑</span>
+                </a>
+                <a href="../../index.html#top" class="back-to-top">
+                    <span class="en">BACK TO HOME ↑</span>
+                    <span class="zh">返回首页 ↑</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="../js/main.js"></script>
+    <script>
+      // BibTeX copy handler (self-contained for template portability)
+      (function() {
+        const bibtexCopy = document.getElementById('bibtexCopy');
+        const bibtexCode = document.getElementById('bibtexCode');
+        const toast = document.getElementById('toast');
+        if (!bibtexCopy || !bibtexCode) return;
+
+        function showToast(msg) {
+          toast.textContent = msg;
+          toast.classList.add('show');
+          setTimeout(() => { toast.classList.remove('show'); }, 2500);
+        }
+
+        bibtexCopy.addEventListener('click', () => {
+          const text = bibtexCode.textContent;
+          navigator.clipboard.writeText(text).then(() => {
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          });
+        });
+      })();
+    </script>
+</body>
+</html>

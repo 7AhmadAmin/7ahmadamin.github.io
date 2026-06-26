@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quality of Experience (QoE) in Cloud Gaming — Muhammad Ahmad Amin</title>
+    <meta name="description" content="Quality of Experience (QoE) in Cloud Gaming: A Comparative Analysis of Deep Learning Techniques via Facial Emotions in a Virtual Reality Environment. Sensors 2025." />
+
+    <!-- Custom SVG Favicon (Baked in) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='90' fill='%2300b894'/%3E%3Cpath d='M116 103 H216 L136 219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 103 V219 M296 103 L346 149 L396 103 M396 103 V219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M116 409 L166 299 L216 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 409 L346 299 L396 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/subpages.css" />
+</head>
+<body>
+
+    <!-- Side Dock — Social Links -->
+    <aside class="side-dock" id="sideDock" aria-label="Social links">
+        <div class="dock-links">
+            <a href="https://twitter.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="X / Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path></svg>
+            </a>
+            <a href="https://github.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+            </a>
+            <a href="https://scholar.google.com/citations?hl=en&user=57ouxVcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10l-10-6-10 6 10 6 10-6z"/>
+                    <path d="M6 12v5l6 3 6-3v-5"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/7ahmadamin" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"></path></svg>
+            </a>
+        </div>
+        <button class="dock-toggle" id="dockToggle" aria-label="Toggle social links" aria-expanded="false">
+            <span class="toggle-label">Socials</span>
+        </button>
+    </aside>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../../index.html#top" class="nav-name" id="navName">
+                <span class="nav-name-text">MUHAMMAD AHMAD AMIN</span>
+            </a>
+            <div class="nav-links">
+                <a href="../../index.html#about"><span class="en">ABOUT</span><span class="zh">关于</span></a>
+                <a href="../../index.html#research"><span class="en">RESEARCH</span><span class="zh">研究</span></a>
+                <a href="../../index.html#experience"><span class="en">WORK</span><span class="zh">工作</span></a>
+                <a href="../../index.html#projects"><span class="en">FUNDING</span><span class="zh">基金</span></a>
+                <a href="../../index.html#publications"><span class="en">PAPERS</span><span class="zh">论文</span></a>
+                <a href="../../index.html#talks"><span class="en">TALKS</span><span class="zh">报告</span></a>
+                <a href="../../index.html#news"><span class="en">NEWS</span><span class="zh">动态</span></a>
+                <a href="../../index.html#contact"><span class="en">CONTACT</span><span class="zh">联系</span></a>
+            </div>
+            <div class="nav-actions">
+                <a href="../CV/Resume.pdf" class="cv-btn" download>
+                    <span class="en">CV ↓</span>
+                    <span class="zh">简历 ↓</span>
+                </a>
+                <button class="lang-btn lang-btn-desktop" aria-label="Toggle language">EN / 中</button>
+                <button class="lang-btn lang-btn-mobile" aria-label="Toggle language">EN / 中</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="subpage-hero" id="top">
+        <div class="hero-bg"></div>
+        <div class="subpage-hero-content">
+            <p class="hero-label">
+                <span class="en">PUBLICATION</span><span class="zh">论文</span> · Sensors · 2025
+            </p>
+            <h1 class="hero-title">
+                <span class="en">Quality of Experience (QoE) in Cloud Gaming: A Comparative Analysis of Deep Learning Techniques via Facial Emotions in a Virtual Reality Environment</span>
+                <span class="zh">云游戏中体验质量（QoE）的研究：基于虚拟现实环境中面部表情的深度学习技术对比分析</span>
+            </h1>
+
+            <div class="author-grid">
+                <span class="author-block">A. K. Jumani<sup>1</sup></span>
+                <span class="author-block">J. Shi<sup>1,*</sup></span>
+                <span class="author-block">A. A. Laghari<sup>2</sup></span>
+                <span class="author-block"><a href="../../index.html#about">M. A. Amin</a><sup>1</sup></span>
+                <span class="author-block">A. ul Nabi<sup>1</sup></span>
+                <span class="author-block">K. Narwani<sup>1</sup></span>
+                <span class="author-block">Y. Zhang<sup>1</sup></span>
+            </div>
+            <div class="affiliation-list">
+                <span><sup>1</sup><span class="en">School of Electronic and Information Engineering, South China University of Technology, Guangzhou 510641, China</span><span class="zh">华南理工大学电子与信息工程学院</span></span>
+                <span><sup>2</sup><span class="en">Software College, Shenyang Normal University, Shenyang 110136, China</span><span class="zh">沈阳师范大学软件学院</span></span>
+            </div>
+
+            <div class="link-buttons">
+                <a href="https://www.mdpi.com/1424-8220/25/5/1594" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <span class="en">Paper</span><span class="zh">Paper</span>
+                </a>
+                <!--a href="https://www.mdpi.com/2076-3417/15/5/1594" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    <span class="en">MDPI</span><span class="zh">MDPI</span>
+                </a-->
+            </div>
+        </div>
+    </header>
+
+    <!-- Abstract -->
+    <section class="section section-white" id="abstract">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P1</span>
+                <p class="eyebrow"><span class="en">ABSTRACT</span><span class="zh">摘要</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What is the <em>problem</em> and what did we do?</span>
+                <span class="zh">我们解决了什么<em>问题</em>？</span>
+            </h2>
+            <div class="abstract-block">
+                <p>
+                    <span class="en">Cloud gaming has rapidly transformed the gaming industry, allowing users to play games on demand from anywhere without the need for powerful hardware. However, traditional Quality of Experience (QoE) assessment methods that rely on post-session surveys often fail to capture actual user experience. Many players skip feedback forms or provide dishonest responses, and Service Level Agreement (SLA) compliance does not guarantee perceived quality. This creates a critical challenge for cloud service providers in accurately identifying QoE and improving actual services.</span>
+                    <span class="zh">云游戏迅速改变了游戏行业，使用户无需强大硬件即可随时随地按需玩游戏。然而，依赖会后调查的传统体验质量（QoE）评估方法往往无法捕捉实际用户体验。许多玩家跳过反馈表或提供不诚实的回复，且服务级别协议（SLA）的合规性并不能保证感知质量。这为云服务提供商准确识别QoE和改进实际服务带来了严峻挑战。</span>
+                </p>
+                <p>
+                    <span class="en">We propose a novel deep learning-based QoE assessment framework called <strong>EmotionNET</strong>, which evaluates user experience through real-time facial emotion recognition during cloud gaming sessions in a virtual reality (VR) environment. EmotionNET is based on a convolutional neural network (CNN) architecture with custom enhancements including CosineAnnealingLR scheduling, multiple dropout layers, gradient clipping, and AdamW optimization. We compare EmotionNET against three state-of-the-art deep learning techniques, <strong>ConvoNEXT</strong>, <strong>EfficientNET-B0</strong>, and <strong>Vision Transformer (ViT)</strong>, all trained on an identical custom-developed dataset to ensure a fair evaluation of emotion-based QoE prediction.</span>
+                    <span class="zh">我们提出了一个名为<strong>EmotionNET</strong>的新型基于深度学习的QoE评估框架，通过在虚拟现实（VR）环境中的云游戏会话期间进行实时面部表情识别来评估用户体验。EmotionNET基于卷积神经网络（CNN）架构，并进行了定制增强，包括余弦退火学习率调度、多层dropout、梯度裁剪和AdamW优化。我们将EmotionNET与三种最先进的深度学习技术、<strong>ConvoNEXT</strong>、<strong>EfficientNET-B0</strong>和<strong>Vision Transformer (ViT)</strong>、进行比较，所有模型均在相同的自定义开发数据集上训练，以确保对基于情感的QoE预测进行公平评估。</span>
+                </p>
+                <p>
+                    <span class="en">All models are trained and evaluated on a custom dataset collected from <strong>30 participants</strong> playing Fortnite under two network conditions, WiFi and 5G mobile data, across two cloud platforms (NVIDIA GeForce NOW and Boosteroid). EmotionNET achieves <strong>98.9% training accuracy</strong> and <strong>87.8% validation accuracy</strong>, outperforming ConvoNEXT (94.9%), EfficientNET (92%), and ViT (91%). On stable WiFi networks, EmotionNET maintains near-perfect AUC scores (<strong>0.99</strong>), while performance degrades under mobile data conditions. These findings demonstrate that facial expressions are strongly correlated with network QoE and that EmotionNET provides a robust, scalable alternative to subjective surveys.</span>
+                    <span class="zh">所有模型均在从<strong>30名参与者</strong>收集的自定义数据集上进行训练和评估，这些参与者在两种网络条件（WiFi和5G移动数据）下玩Fortnite，跨越两个云平台（NVIDIA GeForce NOW和Boosteroid）。EmotionNET实现了<strong>98.9%的训练准确率</strong>和<strong>87.8%的验证准确率</strong>，超越了ConvoNEXT（94.9%）、EfficientNET（92%）和ViT（91%）。在稳定的WiFi网络上，EmotionNET保持接近完美的AUC分数（<strong>0.99</strong>），而在移动数据条件下性能下降。这些发现表明面部表情与网络QoE密切相关，且EmotionNET为传统主观调查提供了一种稳健、可扩展的替代方案。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaser -->
+    <section class="section section-black" id="teaser">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P2</span>
+                <p class="eyebrow"><span class="en">DATASET & PIPELINE</span><span class="zh">数据集与流程</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Two networks, two platforms, seven <em>emotions</em>.</span>
+                <span class="zh">两种网络、两个平台、七种<em>情感</em>。</span>
+            </h2>
+            <div class="figure-grid single">
+                <div class="figure-item">
+                    <img src="Sensors/QOA2.png" alt="Fig. 2 — Custom facial emotion dataset overview" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 2 — Custom facial emotion dataset collected across two cloud platforms (NVIDIA and Boosteroid) and two network types (WiFi and 5G mobile data). Seven emotion categories: Angry, Disgusted, Fearful, Happy, Neutral, Sad, and Surprised. © 2025 MDPI.</span>
+                        <span class="zh">图2 — 跨两个云平台（NVIDIA和Boosteroid）及两种网络类型（WiFi和5G移动数据）收集的自定义面部表情数据集。七种情感类别：愤怒、厌恶、恐惧、快乐、中性、悲伤和惊讶。© 2025 MDPI。</span>
+                    </span>
+                </div>
+            </div>
+            <p style="margin-top:24px; font-size:12px; color:var(--gray); text-align:center; line-height:1.6;">
+                <span class="en">© 2025 by the authors. Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) license.</span>
+                <span class="zh">© 2025 作者。许可方 MDPI，瑞士巴塞尔。本文是根据知识共享署名（CC BY）许可条款分发的开放获取文章。</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Method -->
+    <section class="section section-white" id="method">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P3</span>
+                <p class="eyebrow"><span class="en">METHOD</span><span class="zh">方法</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Experimental design, model architectures, and <em>evaluation</em> protocol.</span>
+                <span class="zh">实验设计、模型架构与<em>评估</em>协议。</span>
+            </h2>
+            <div class="method-steps">
+                <div class="method-step">
+                    <span class="step-num">01</span>
+                    <div class="step-content">
+                        <h4><span class="en">Experimental Setup & Custom Dataset</span><span class="zh">实验设置与自定义数据集</span></h4>
+                        <p>
+                            <span class="en">Thirty participants (age 18–35, mean 26.4) with at least one year of gaming experience played <strong>Fortnite</strong> for 20-minute sessions. We used two cameras: a front camera capturing facial expressions at 25 FPS and a back camera recording the gaming screen. Data was collected under two network conditions: <strong>WiFi</strong> (33.96 Mbps down / 38.17 Mbps up) and <strong>5G mobile data</strong> (21.33 Mbps down / 12.33 Mbps up), across <strong>NVIDIA</strong> and <strong>Boosteroid</strong> cloud platforms. Seven emotion categories were annotated: Angry, Disgusted, Fearful, Happy, Neutral, Sad, and Surprised.</span>
+                            <span class="zh">30名参与者（年龄18-35岁，平均26.4岁），至少一年游戏经验，进行20分钟的<strong>Fortnite</strong>游戏会话。我们使用两个摄像头：前置摄像头以25 FPS捕捉面部表情，后置摄像头记录游戏屏幕。数据在两种网络条件下收集：<strong>WiFi</strong>（33.96 Mbps下载/38.17 Mbps上传）和<strong>5G移动数据</strong>（21.33 Mbps下载/12.33 Mbps上传），跨越<strong>NVIDIA</strong>和<strong>Boosteroid</strong>云平台。标注了七种情感类别：愤怒、厌恶、恐惧、快乐、中性、悲伤和惊讶。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">02</span>
+                    <div class="step-content">
+                        <h4><span class="en">EmotionNET Architecture</span><span class="zh">EmotionNET架构</span></h4>
+                        <p>
+                            <span class="en">EmotionNET is a custom <strong>CNN-based model</strong> for facial emotion recognition during gameplay. It incorporates a CosineAnnealingLR scheduler, multiple dropout layers to prevent overfitting, gradient clipping for training stability, custom data transformations, and the <strong>AdamW optimizer</strong>. The model processes 48×48 grayscale input images and classifies them into seven emotion categories. These architectural choices enable EmotionNET to achieve superior generalization compared to standard CNN baselines, reaching <strong>98.9% training accuracy</strong> and <strong>87.8% validation accuracy</strong>.</span>
+                            <span class="zh">EmotionNET是一个定制的基于<strong>CNN的模型</strong>，用于游戏过程中的面部表情识别。它采用余弦退火学习率调度器、多层dropout防止过拟合、梯度裁剪保证训练稳定性、自定义数据变换和<strong>AdamW优化器</strong>。该模型处理48×48灰度输入图像，并将其分类为七种情感类别。这些架构选择使EmotionNET相比标准CNN基线实现了卓越的泛化能力，达到<strong>98.9%的训练准确率</strong>和<strong>87.8%的验证准确率</strong>。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">03</span>
+                    <div class="step-content">
+                        <h4><span class="en">Comparative Deep Learning Models</span><span class="zh">对比深度学习模型</span></h4>
+                        <p>
+                            <span class="en">To validate EmotionNET's robustness, we implemented three well-known deep learning techniques: <strong>ConvoNEXT</strong> (ResNet-based, 94.9% accuracy, moderate complexity with overfitting issues), <strong>EfficientNET-B0</strong> (92% accuracy, moderate complexity), and <strong>Vision Transformer (ViT)</strong> (Transformer Encoder, 91% accuracy, moderate complexity). All models were trained on identical custom datasets to ensure a fair comparison of their ability to predict emotion-based QoE in cloud gaming.</span>
+                            <span class="zh">为验证EmotionNET的鲁棒性，我们实现了三种著名的深度学习技术：<strong>ConvoNEXT</strong>（基于ResNet，94.9%准确率，中等复杂度，存在过拟合问题）、<strong>EfficientNET-B0</strong>（92%准确率，中等复杂度）和<strong>Vision Transformer (ViT)</strong>（Transformer编码器，91%准确率，中等复杂度）。所有模型均在相同的自定义数据集上训练，以确保对其预测云游戏中基于情感的QoE的能力进行公平比较。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">04</span>
+                    <div class="step-content">
+                        <h4><span class="en">Cross-Network QoE Evaluation</span><span class="zh">跨网络QoE评估</span></h4>
+                        <p>
+                            <span class="en">We evaluated model performance using <strong>accuracy, precision, recall, F1-score, and ROC-AUC curves</strong> across four dataset splits: WiFi-NVIDIA, WiFi-Boosteroid, Mobile-NVIDIA, and Mobile-Boosteroid. This cross-network evaluation reveals how latency and bandwidth fluctuations impact facial emotion recognition accuracy, providing critical insights into network-aware QoE assessment for consumer cloud gaming applications.</span>
+                            <span class="zh">我们使用<strong>准确率、精确率、召回率、F1分数和ROC-AUC曲线</strong>在四个数据集分割上评估模型性能：WiFi-NVIDIA、WiFi-Boosteroid、移动数据-NVIDIA和移动数据-Boosteroid。这种跨网络评估揭示了延迟和带宽波动如何影响面部表情识别准确率，为消费者云游戏应用的感知网络QoE评估提供了关键见解。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Method figure -->
+            <div class="figure-grid single" style="margin-top:64px;">
+                <div class="figure-item">
+                    <img src="Sensors/QOA3.png" alt="Fig. 3 — Training and validation curves" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 3 — Training and validation accuracy/loss curves for EmotionNET, ConvoNEXT, EfficientNET, and ViT across 50 epochs. EmotionNET demonstrates superior convergence and minimal overfitting. © 2025 MDPI.</span>
+                        <span class="zh">图3 — EmotionNET、ConvoNEXT、EfficientNET和ViT在50个epoch内的训练和验证准确率/损失曲线。EmotionNET展示了卓越的收敛性和最小的过拟合。© 2025 MDPI。</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="section section-black" id="results">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P4</span>
+                <p class="eyebrow"><span class="en">RESULTS</span><span class="zh">结果</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">EmotionNET outperforms SOTA models across all <em>metrics</em>.</span>
+                <span class="zh">EmotionNET在所有<em>指标</em>上超越SOTA模型。</span>
+            </h2>
+
+            <div class="statement-strip" style="margin-top:0; border-top:none; padding-top:0;">
+                <h3><span class="en">Overall Model Performance (Table 1)</span><span class="zh">整体模型性能（表1）</span></h3>
+                <p>
+                    <span class="en">EmotionNET achieves <strong>98.9% training accuracy</strong> and <strong>87.8% validation accuracy</strong>, demonstrating excellent generalization with minimal overfitting. In comparison, ConvoNEXT reaches 94.9% training accuracy but suffers from overfitting. EfficientNET-B0 achieves 92% accuracy, while ViT achieves 91% accuracy. EmotionNET's balanced performance across precision and recall makes it the most reliable model for deployment in real-time cloud gaming QoE assessment.</span>
+                    <span class="zh">EmotionNET实现了<strong>98.9%的训练准确率</strong>和<strong>87.8%的验证准确率</strong>，展示了卓越泛化能力和最小过拟合。相比之下，ConvoNEXT达到94.9%的训练准确率但存在过拟合问题。EfficientNET-B0达到92%准确率，而ViT达到91%准确率。EmotionNET在精确率和召回率方面的平衡性能使其成为实时云游戏QoE评估中最可靠的部署模型。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">WiFi vs. Mobile Data Generalization</span><span class="zh">WiFi与移动数据泛化</span></h3>
+                <p>
+                    <span class="en">On stable WiFi networks, EmotionNET maintains near-perfect <strong>AUC scores (0.99)</strong> across most emotion categories. However, under 5G mobile data conditions, performance degrades significantly—particularly on the NVIDIA dataset, where AUC drops to <strong>0.70</strong> for Fearful and <strong>0.76</strong> for Happy. The Boosteroid mobile dataset shows more resilience, but overall accuracy still declines compared to WiFi. These results confirm that network latency and instability directly impact facial emotion recognition quality and perceived QoE.</span>
+                    <span class="zh">在稳定的WiFi网络上，EmotionNET在大多数情感类别上保持接近完美的<strong>AUC分数（0.99）</strong>。然而，在5G移动数据条件下，性能显著下降——特别是在NVIDIA数据集上，恐惧情感的AUC降至<strong>0.70</strong>，快乐情感降至<strong>0.76</strong>。Boosteroid移动数据集表现出更强的韧性，但整体准确率仍低于WiFi。这些结果证实网络延迟和不稳定性直接影响面部表情识别质量和感知QoE。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">ROC and Precision–Recall Analysis</span><span class="zh">ROC与精确率-召回率分析</span></h3>
+                <p>
+                    <span class="en">ROC-AUC analysis shows EmotionNET consistently outperforms comparative models across all seven emotion categories. While all models achieve high performance on Happy and Neutral emotions, they universally struggle with <strong>Disgusted</strong> (AUC as low as 0.43 for EfficientNET). EmotionNET maintains strong precision and recall for Angry, Fearful, Sad, and Surprised categories, whereas ConvoNEXT, EfficientNET, and ViT exhibit significant variability and pronounced performance drops under mobile data conditions.</span>
+                    <span class="zh">ROC-AUC分析显示，EmotionNET在所有七种情感类别上始终优于对比模型。虽然所有模型在快乐和 neutral 情感上表现良好，但它们在<strong>厌恶</strong>情感上普遍表现不佳（EfficientNET的AUC低至0.43）。EmotionNET在愤怒、恐惧、悲伤和惊讶类别上保持较高的精确率和召回率，而ConvoNEXT、EfficientNET和ViT在移动数据条件下表现出显著的变异性和明显的性能下降。</span>
+                </p>
+            </div>
+
+            <div class="figure-grid" style="margin-top:64px;">
+                <div class="figure-item">
+                    <img src="Sensors/QOA4.png" alt="Fig. 7 — ViT ROC curves across seven emotions" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 7 — ViT ROC curves across seven emotion categories. Performance degrades noticeably on mobile data (red curve), especially for Fearful and Disgusted emotions. © 2025 MDPI.</span>
+                        <span class="zh">图7 — ViT在七种情感类别上的ROC曲线。移动数据（红色曲线）上性能明显下降，尤其是恐惧和厌恶情感。© 2025 MDPI。</span>
+                    </span>
+                </div>
+                <div class="figure-item">
+                    <img src="Sensors/QOA5.png" alt="Fig. 9 — ConvoNEXT precision and recall comparison" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 9 — Precision and recall comparison across datasets for ConvoNEXT. Mobile data NVIDIA dataset (red) shows severe degradation in Disgusted and Neutral categories. © 2025 MDPI.</span>
+                        <span class="zh">图9 — ConvoNEXT跨数据集的精确率和召回率比较。移动数据NVIDIA数据集（红色）在厌恶和中性类别上表现出严重退化。© 2025 MDPI。</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Limitations -->
+    <section class="section section-white" id="limitations">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P5</span>
+                <p class="eyebrow"><span class="en">LIMITATIONS & FUTURE WORK</span><span class="zh">局限性与未来工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What we <em>could not</em> solve yet.</span>
+                <span class="zh">我们<em>尚未</em>解决的问题。</span>
+            </h2>
+            <div class="limitations-box">
+                <p>
+                    <span class="en"><strong>Network variability impact.</strong> Mobile data latency fluctuations significantly degrade facial emotion recognition accuracy. Future models should incorporate latency-aware adaptation mechanisms to maintain robustness under dynamic network conditions and varying bandwidth constraints.</span>
+                    <span class="zh"><strong>网络变异性影响。</strong>移动数据延迟波动显著降低了面部表情识别准确率。未来模型应纳入延迟感知自适应机制，以在动态网络条件和变化带宽约束下保持鲁棒性。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Dataset scope.</strong> The current dataset focuses exclusively on Fortnite. Other game genres (turn-based, puzzle, horror) may evoke different emotional response patterns that require additional training data and domain-specific augmentation strategies.</span>
+                    <span class="zh"><strong>数据集范围。</strong>当前数据集仅专注于Fortnite。其他游戏类型（回合制、益智、恐怖）可能引发不同的情感反应模式，需要额外的训练数据和领域特定的增强策略。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Single-modality constraint.</strong> The framework relies solely on facial expressions. Integrating physiological signals such as heart rate and gaze tracking could enhance QoE assessment reliability, particularly under challenging network conditions where facial cues alone may be insufficient.</span>
+                    <span class="zh"><strong>单模态约束。</strong>该框架仅依赖面部表情。整合心率、眼动追踪等生理信号可增强QoE评估可靠性，特别是在面部表情线索可能不足的挑战性网络条件下。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Edge deployment.</strong> Current implementation requires cloud-server processing for frame extraction and inference. Deploying EmotionNET as an edge AI model would reduce transmission delays and improve real-time applicability for consumer cloud gaming platforms.</span>
+                    <span class="zh"><strong>边缘部署。</strong>当前实现需要云服务器进行帧提取和推理。将EmotionNET部署为边缘AI模型可减少传输延迟，提高消费者云游戏平台的实时适用性。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BibTeX -->
+    <section class="section section-black" id="bibtex">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P6</span>
+                <p class="eyebrow"><span class="en">BIBTEX</span><span class="zh">引用</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Cite this <em>paper</em>.</span>
+                <span class="zh">引用此<em>论文</em>。</span>
+            </h2>
+            <div class="bibtex-block" id="bibtexBlock">
+                <pre><code id="bibtexCode">@article{jumani2025qoe,
+  author    = {Jumani, Awais Khan and Shi, Jinglun and Laghari, Asif Ali and Amin, Muhammad Ahmad and Nabi, Aftab ul and Narwani, Kamlesh and Zhang, Yi},
+  title     = {Quality of Experience (QoE) in Cloud Gaming: A Comparative Analysis of Deep Learning Techniques via Facial Emotions in a Virtual Reality Environment},
+  journal   = {Sensors},
+  year      = {2025},
+  volume    = {25},
+  number    = {5},
+  pages     = {1594},
+  publisher = {MDPI},
+  doi       = {10.3390/s25051594}
+}</code></pre>
+                <button class="btn bibtex-copy" id="bibtexCopy" aria-label="Copy BibTeX citation">
+                    <span class="en">COPY CITATION</span><span class="zh">复制引用</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MDPI Copyright Disclaimer -->
+    <section class="section section-white" id="copyright">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P7</span>
+                <p class="eyebrow"><span class="en">COPYRIGHT NOTICE</span><span class="zh">版权声明</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">MDPI <em>Open Access</em> & Usage.</span>
+                <span class="zh">MDPI <em>开放获取</em>与使用。</span>
+            </h2>
+            <div class="abstract-block">
+                <p style="font-size:14px; color:var(--gray-dark);">
+                    <span class="en">© 2025 by the authors. Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) license. You may use, distribute, and reproduce in any medium, provided the original work is properly cited.</span>
+                    <span class="zh">© 2025 作者。许可方 MDPI，瑞士巴塞尔。本文是根据知识共享署名（CC BY）许可条款分发的开放获取文章。只要正确引用原始作品，您可以在任何媒介上使用、分发和复制。</span>
+                </p>
+                <p style="font-size:14px; color:var(--gray-dark); margin-top:12px;">
+                    <span class="en">This page is a personal academic landing page. The full paper is available via MDPI Sensors. All figures are reproduced under the Creative Commons Attribution License.</span>
+                    <span class="zh">本页面为个人学术着陆页。完整论文可通过MDPI Sensors获取。所有图表均在知识共享署名许可下转载。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related -->
+    <section class="section section-black" id="related">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P8</span>
+                <p class="eyebrow"><span class="en">RELATED WORK</span><span class="zh">相关工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">More from our <em>group</em>.</span>
+                <span class="zh">来自我们<em>团队</em>的更多工作。</span>
+            </h2>
+            <div class="related-grid">
+                <a href="ieee_tce.html" class="related-item">
+                    <span class="related-venue">IEEE Transactions on Consumer Electronics · 2026</span>
+                    <h4><span class="en">Trustworthy Deepfake Defense for Consumer Applications via Frequency‑Preserving Resizing and Dual‑Branch Forensics</span><span class="zh">基于频域保持缩放与双分支取证的面向消费级应用的可信深度伪造防御</span></h4>
+                    <p><span class="en">Proactive two-stage forensic defense framework with FA-IPNet and AFE-FDNet.</span><span class="zh">具有FA-IPNet和AFE-FDNet的主动式两阶段取证防御框架。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="dsp.html" class="related-item">
+                    <span class="related-venue">Digital Signal Processing · 2024</span>
+                    <h4><span class="en">Exploring Varying Color Spaces through Representative Forgery Learning</span><span class="zh">通过代表性伪造学习探索多色彩空间</span></h4>
+                    <p><span class="en">Multi-color-space framework for deepfake detection.</span><span class="zh">面向深度伪造检测的多色彩空间框架。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="era.html" class="related-item">
+                    <span class="related-venue">Electronic Research Archive · 2024</span>
+                    <h4><span class="en">Analyzing Temporal Coherence for Deepfake Video Detection</span><span class="zh">基于时序一致性的深度伪造视频检测</span></h4>
+                    <p><span class="en">Bi-level temporal modeling for video forensics.</span><span class="zh">面向视频取证的双层时序建模。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer section-white">
+        <div class="container">
+            <p>
+                <span class="en">© 2026 Muhammad Ahmad Amin. All rights reserved.</span>
+                <span class="zh">© 2026 Muhammad Ahmad Amin. 保留所有权利。</span>
+            </p>
+            <div class="footer-links">
+                <a href="#top" class="back-to-top">
+                    <span class="en">BACK TO TOP ↑</span>
+                    <span class="zh">回到顶部 ↑</span>
+                </a>
+                <a href="../../index.html#top" class="back-to-top">
+                    <span class="en">BACK TO HOME ↑</span>
+                    <span class="zh">返回首页 ↑</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="../js/main.js"></script>
+    <script>
+      // BibTeX copy handler (self-contained for template portability)
+      (function() {
+        const bibtexCopy = document.getElementById('bibtexCopy');
+        const bibtexCode = document.getElementById('bibtexCode');
+        const toast = document.getElementById('toast');
+        if (!bibtexCopy || !bibtexCode) return;
+
+        function showToast(msg) {
+          toast.textContent = msg;
+          toast.classList.add('show');
+          setTimeout(() => { toast.classList.remove('show'); }, 2500);
+        }
+
+        bibtexCopy.addEventListener('click', () => {
+          const text = bibtexCode.textContent;
+          navigator.clipboard.writeText(text).then(() => {
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          });
+        });
+      })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Analyzing Temporal Coherence for Deepfake Video Detection — Muhammad Ahmad Amin</title>
+    <meta name="description" content="Analyzing Temporal Coherence for Deepfake Video Detection. Electronic Research Archive 2024." />
+
+    <!-- Custom SVG Favicon (Baked in) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='90' fill='%2300b894'/%3E%3Cpath d='M116 103 H216 L136 219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 103 V219 M296 103 L346 149 L396 103 M396 103 V219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M116 409 L166 299 L216 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 409 L346 299 L396 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/subpages.css" />
+</head>
+<body>
+
+    <!-- Side Dock — Social Links -->
+    <aside class="side-dock" id="sideDock" aria-label="Social links">
+        <div class="dock-links">
+            <a href="https://twitter.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="X / Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path></svg>
+            </a>
+            <a href="https://github.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+            </a>
+            <a href="https://scholar.google.com/citations?hl=en&user=57ouxVcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10l-10-6-10 6 10 6 10-6z"/>
+                    <path d="M6 12v5l6 3 6-3v-5"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/7ahmadamin" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"></path></svg>
+            </a>
+        </div>
+        <button class="dock-toggle" id="dockToggle" aria-label="Toggle social links" aria-expanded="false">
+            <span class="toggle-label">Socials</span>
+        </button>
+    </aside>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../../index.html#top" class="nav-name" id="navName">
+                <span class="nav-name-text">MUHAMMAD AHMAD AMIN</span>
+            </a>
+            <div class="nav-links">
+                <a href="../../index.html#about"><span class="en">ABOUT</span><span class="zh">关于</span></a>
+                <a href="../../index.html#research"><span class="en">RESEARCH</span><span class="zh">研究</span></a>
+                <a href="../../index.html#experience"><span class="en">WORK</span><span class="zh">工作</span></a>
+                <a href="../../index.html#projects"><span class="en">FUNDING</span><span class="zh">基金</span></a>
+                <a href="../../index.html#publications"><span class="en">PAPERS</span><span class="zh">论文</span></a>
+                <a href="../../index.html#talks"><span class="en">TALKS</span><span class="zh">报告</span></a>
+                <a href="../../index.html#news"><span class="en">NEWS</span><span class="zh">动态</span></a>
+                <a href="../../index.html#contact"><span class="en">CONTACT</span><span class="zh">联系</span></a>
+            </div>
+            <div class="nav-actions">
+                <a href="../CV/Resume.pdf" class="cv-btn" download>
+                    <span class="en">CV ↓</span>
+                    <span class="zh">简历 ↓</span>
+                </a>
+                <button class="lang-btn lang-btn-desktop" aria-label="Toggle language">EN / 中</button>
+                <button class="lang-btn lang-btn-mobile" aria-label="Toggle language">EN / 中</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="subpage-hero" id="top">
+        <div class="hero-bg"></div>
+        <div class="subpage-hero-content">
+            <p class="hero-label">
+                <span class="en">PUBLICATION</span><span class="zh">论文</span> · Electronic Research Archive · 2024
+            </p>
+            <h1 class="hero-title">
+                <span class="en">Analyzing Temporal Coherence for Deepfake Video Detection</span>
+                <span class="zh">基于时序一致性的深度伪造视频检测</span>
+            </h1>
+
+            <div class="author-grid">
+                <span class="author-block"><a href="../../index.html#about">M. A. Amin</a><sup>1</sup></span>
+                <span class="author-block">Y. Hu<sup>1,*</sup></span>
+                <span class="author-block">J. Hu<sup>2</sup></span>
+            </div>
+            <div class="affiliation-list">
+                <span><sup>1</sup><span class="en">School of Electronic and Information Engineering, South China University of Technology, Guangzhou 510641, China</span><span class="zh">华南理工大学电子与信息学院，广州 510641</span></span>
+                <span><sup>2</sup><span class="en">School of Engineering and Information Technology, The University of New South Wales, Australian Defence Force Academy Canberra, ACT 2610, Australia</span><span class="zh">新南威尔士大学工程与信息技术学院，澳大利亚国防军学院，堪培拉 ACT 2610</span></span>
+            </div>
+
+            <div class="link-buttons">
+                <a href="https://www.aimspress.com/article/doi/10.3934/era.2024119" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <span class="en">Paper</span><span class="zh">Paper</span>
+                </a>
+                <a href="https://doi.org/10.3934/era.2024119" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    <span class="en">DOI</span><span class="zh">DOI</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Abstract -->
+    <section class="section section-white" id="abstract">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P1</span>
+                <p class="eyebrow"><span class="en">ABSTRACT</span><span class="zh">摘要</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What is the <em>problem</em> and what did we do?</span>
+                <span class="zh">我们解决了什么<em>问题</em>？</span>
+            </h2>
+            <div class="abstract-block">
+                <p>
+                    <span class="en">Current facial image manipulation techniques have caused public concerns while achieving impressive quality. However, these techniques are mostly bound to a single frame for synthesized videos and pay little attention to the most discriminatory temporal frequency artifacts between various frames. Detecting deepfake videos using temporal modeling still poses a challenge.</span>
+                    <span class="zh">当前的人脸图像操纵技术在取得令人印象深刻质量的同时，也引发了公众担忧。然而，这些技术大多局限于合成视频的单帧处理，很少关注各帧之间最具判别性的时序频率伪影。使用时序建模检测深度伪造视频仍然是一个挑战。</span>
+                </p>
+                <p>
+                    <span class="en">We present a novel deepfake video detection framework that consists of two levels: <strong>temporal modeling</strong> and <strong>coherence analysis</strong>. At the first level, we devise an efficient <strong>temporal facial pattern (TFP)</strong> mechanism that explores the color variations of forgery-sensitive facial areas by providing global and local-successive temporal views. The second level presents a <strong>temporal coherence analyzing network (TCAN)</strong>, which consists of novel global temporal self-attention characteristics, high-resolution fine and low-resolution coarse feature extraction, and aggregation mechanisms, with the aims of long-range relationship modeling from a local-successive temporal perspective within a TFP and capturing the vital dynamic incoherence for robust detection.</span>
+                    <span class="zh">我们提出了一个新颖的深度伪造视频检测框架，包含两个层次：<strong>时序建模</strong>和<strong>一致性分析</strong>。第一层次，我们设计了一个高效的<strong>时序面部模式（TFP）</strong>机制，通过提供全局和局部连续时序视图来探索伪造敏感面部区域的颜色变化。第二层次提出了<strong>时序一致性分析网络（TCAN）</strong>，包含新颖的全局时序自注意力特征、高分辨率精细和低分辨率粗糙特征提取与聚合机制，旨在从TFP内的局部连续时序视角进行长程关系建模，并捕捉关键动态不一致性以实现鲁棒检测。</span>
+                </p>
+                <p>
+                    <span class="en">Thorough experiments on large-scale datasets, including FaceForensics++, DeepFakeDetection, DeepFake Detection Challenge, CelebDF-V2, and DeeperForensics, reveal that our paradigm surpasses current approaches and stays effective when detecting unseen sorts of deepfake.</span>
+                    <span class="zh">在FaceForensics++、DeepFakeDetection、DeepFake Detection Challenge、CelebDF-V2和DeeperForensics等大规模数据集上的全面实验表明，我们的范式超越了当前方法，在检测未见过的深度伪造类型时仍然有效。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaser -->
+    <section class="section section-black" id="teaser">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P2</span>
+                <p class="eyebrow"><span class="en">FRAMEWORK OVERVIEW</span><span class="zh">框架概览</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Two levels, one <em>pipeline</em>: model then analyze.</span>
+                <span class="zh">两个层次，一个<em>流程</em>：先建模再分析。</span>
+            </h2>
+            <div class="figure-grid single">
+                <div class="figure-item">
+                    <img src="ERA/1.jpg" alt="Fig. 1 — Framework overview" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 1 — An illustration of the proposed deepfake video detection framework based on temporal facial pattern (TFP) and temporal coherence analyzing network (TCAN). TCAN has two main components: a hierarchical transformer encoder for feature extraction and a classification head for feature fusion and output.</span>
+                        <span class="zh">图1 — 所提出的基于时序面部模式（TFP）和时序一致性分析网络（TCAN）的深度伪造视频检测框架示意图。TCAN有两个主要组件：用于特征提取的分层Transformer编码器和用于特征融合与输出的分类头。</span>
+                    </span>
+                </div>
+            </div>
+            <p style="margin-top:24px; font-size:12px; color:var(--gray); text-align:center; line-height:1.6;">
+                <span class="en">© 2024 AIMS Press. Figure reproduced with permission from Electronic Research Archive. This is an open access article distributed under the terms of the Creative Commons Attribution License.</span>
+                <span class="zh">© 2024 AIMS Press。经Electronic Research Archive许可转载。本文根据知识共享署名许可条款以开放获取方式分发。</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Method -->
+    <section class="section section-white" id="method">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P3</span>
+                <p class="eyebrow"><span class="en">METHOD</span><span class="zh">方法</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Level I models temporal patterns; Level II <em>analyzes</em> coherence.</span>
+                <span class="zh">层次I建模时序模式；层次II<em>分析</em>一致性。</span>
+            </h2>
+            <div class="method-steps">
+                <div class="method-step">
+                    <span class="step-num">01</span>
+                    <div class="step-content">
+                        <h4><span class="en">Temporal Facial Pattern (TFP) Generation</span><span class="zh">时序面部模式（TFP）生成</span></h4>
+                        <p>
+                            <span class="en">We employ an 81-point Dlib face detector to catch facial landmarks and determine six forgery-sensitive regions: forehead (landmarks 68–77), left eye (36–39), right eye (42–45), nose (27–35), mouth (48–67), and chin (4–12). For each region block, three temporal sequences are generated based on RGB color channel variations. A min-max normalization per sequence is applied, and the n temporal signals for each color dimension are arranged in rows to create a TFP of size T × n × c. This placement is designed with the patch embedding mechanism in mind, as used in conventional transformer models.</span>
+                            <span class="zh">我们使用81点Dlib人脸检测器捕捉面部关键点，并确定六个伪造敏感区域：额头（关键点68-77）、左眼（36-39）、右眼（42-45）、鼻子（27-35）、嘴巴（48-67）和下巴（4-12）。对于每个区域块，基于RGB颜色通道变化生成三个时序序列。对每个序列应用最小-最大归一化，并将每个颜色维度的n个时序信号排列成行，创建大小为T × n × c的TFP。这种排列设计考虑了传统Transformer模型中使用的补丁嵌入机制。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">02</span>
+                    <div class="step-content">
+                        <h4><span class="en">Temporal Hierarchical Transformer Encoder (THTE)</span><span class="zh">时序分层Transformer编码器（THTE）</span></h4>
+                        <p>
+                            <span class="en">The THTE generates multi-level features at {1/4, 1/8, 1/16, 1/32} resolutions that preserve the actual TFP resolution. Unlike ViT, which produces a uni-resolution cue map, our hierarchical representation extracts high-resolution fine-grained and low-resolution coarse features. We use <strong>overlapped patch merging</strong> (P=3, K=7, S=4) to maintain local continuity information crucial for temporal analysis, rather than the non-overlapping strategy that destroys time information hidden in each row.</span>
+                            <span class="zh">THTE在{1/4, 1/8, 1/16, 1/32}分辨率下生成多级特征，保留实际TFP分辨率。与产生单一分辨率线索图的ViT不同，我们的分层表示提取高分辨率细粒度和低分辨率粗粒度特征。我们使用<strong>重叠补丁合并</strong>（P=3, K=7, S=4）来保持对时序分析至关重要的局部连续性信息，而非会破坏每行中隐藏时间信息的非重叠策略。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">03</span>
+                    <div class="step-content">
+                        <h4><span class="en">Efficient Self-Attention & Mixed Feed-Forward Network</span><span class="zh">高效自注意力与混合前馈网络</span></h4>
+                        <p>
+                            <span class="en">To reduce computational complexity from O(N²) to O(N²/R), we employ a sequence reduction technique with reduction ratio R = [64, 16, 4, 1] from block 1 to 4. The <strong>mixed feed-forward network (mixed-FFN)</strong> replaces traditional positional encoding with a 3×3 depthwise convolution directly in the FFN to incorporate location information, avoiding the fixed-resolution limitation of ViT's PE. This allows the model to adapt to arbitrary resolutions without performance drops.</span>
+                            <span class="zh">为了将计算复杂度从O(N²)降低到O(N²/R)，我们采用序列缩减技术，从块1到4的缩减比R = [64, 16, 4, 1]。<strong>混合前馈网络（mixed-FFN）</strong>在FFN中直接使用3×3深度卷积替代传统位置编码来融入位置信息，避免了ViT位置编码的固定分辨率限制。这使模型能够适应任意分辨率而不会出现性能下降。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">04</span>
+                    <div class="step-content">
+                        <h4><span class="en">Classification Head & Feature Aggregation</span><span class="zh">分类头与特征聚合</span></h4>
+                        <p>
+                            <span class="en">The classification head fuses multi-level features from all four encoder blocks in the channel dimension, then predicts the output class via a single linear layer. This aggregation combines global and local attention, yielding explicit yet decisive representations for real and deepfake video classification. The entire TCAN model has only <strong>3.3 million parameters</strong> and <strong>8.4 GFLOPs</strong>, trained with AdamW (lr=5e⁻⁵), cosine annealing, and bfloat-16 mixed precision on an NVIDIA RTX 3090Ti.</span>
+                            <span class="zh">分类头在通道维度上融合来自所有四个编码器块的多级特征，然后通过单个线性层预测输出类别。这种聚合结合了全局和局部注意力，为真实和深度伪造视频分类产生明确而决定性的表示。整个TCAN模型仅有<strong>330万参数</strong>和<strong>8.4 GFLOPs</strong>，使用AdamW（lr=5e⁻⁵）、余弦退火和bfloat-16混合精度在NVIDIA RTX 3090Ti上训练。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Method figure -->
+            <div class="figure-grid" style="margin-top:64px;">
+                <div class="figure-item">
+                    <img src="ERA/2.jpg" alt="Fig. 2 — TFP generation from facial video" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 2 — An illustration of TFP generation from a facial video. Facial forgery-sensitive regions are extracted, per-region sequential signals of RGB color channels are computed, and arranged into the Temporal Facial Pattern. © 2024 AIMS Press.</span>
+                        <span class="zh">图2 — 从面部视频生成TFP的示意图。提取面部伪造敏感区域，计算每个区域的RGB颜色通道时序信号，并排列成时序面部模式。© 2024 AIMS Press。</span>
+                    </span>
+                </div>
+                <div class="figure-item">
+                    <img src="ERA/4.jpg" alt="Fig. 4 — THTE design illustration" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 4 — THTE design illustration. The encoder processes TFP through transformer blocks with efficient self-attention, mixed feed-forward networks, and overlapped patch merging to produce hierarchical feature representations. © 2024 AIMS Press.</span>
+                        <span class="zh">图4 — THTE设计示意图。编码器通过具有高效自注意力、混合前馈网络和重叠补丁合并的Transformer块处理TFP，以产生分层特征表示。© 2024 AIMS Press。</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="section section-black" id="results">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P4</span>
+                <p class="eyebrow"><span class="en">RESULTS</span><span class="zh">结果</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Best-in-class generalization with the <em>fewest</em> parameters.</span>
+                <span class="zh">以最<em>少</em>的参数实现最佳泛化。</span>
+            </h2>
+
+            <div class="statement-strip" style="margin-top:0; border-top:none; padding-top:0;">
+                <h3><span class="en">Intra-Dataset Cross-Manipulation (Table 3)</span><span class="zh">数据集内跨操作泛化（表3）</span></h3>
+                <p>
+                    <span class="en">Using leave-one-out evaluation on FF++ (c0), TCAN achieves a <strong>98.82% average AUC</strong> across all four manipulation types (DF, FS, F2F, NT). This surpasses MSVT (97.34%), FTCN (96.26%), SeqFakeFormer (95.73%), and LipForensics (95.82%) — all while using only <strong>3.3M parameters</strong>, compared to 26.5M–104M for competitors. TCAN achieves 99.16% on DF, 98.93% on FS, 99.03% on F2F, and 98.15% on NT.</span>
+                    <span class="zh">在FF++ (c0)上使用留一法评估，TCAN在所有四种操作类型（DF、FS、F2F、NT）上达到<strong>98.82%平均AUC</strong>。这超越了MSVT（97.34%）、FTCN（96.26%）、SeqFakeFormer（95.73%）和LipForensics（95.82%）——同时仅使用<strong>330万参数</strong>，而竞争对手为2650万–1.04亿。TCAN在DF上达到99.16%，FS上98.93%，F2F上99.03%，NT上98.15%。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Cross-Dataset Generalization (Table 4)</span><span class="zh">跨数据集泛化（表4）</span></h3>
+                <p>
+                    <span class="en">Trained on FF++ (c0) and tested on unseen datasets: TCAN achieves <strong>91.09% AUC</strong> on DFD, <strong>86.94%</strong> on DFDC, <strong>88.99%</strong> on CDF-V2, and <strong>98.80%</strong> on Deeper — with an average of <strong>91.46%</strong>. On challenging DFDC, TCAN outperforms MSVT (76.79%), VDF (85.10%), and Audio-DF (82.31%). On Deeper, it achieves near-perfect detection (98.80%), surpassing all compared methods. This demonstrates that temporal information is crucial for cross-domain generalization.</span>
+                    <span class="zh">在FF++ (c0)上训练并在未见数据集上测试：TCAN在DFD上达到<strong>91.09% AUC</strong>，DFDC上<strong>86.94%</strong>，CDF-V2上<strong>88.99%</strong>，Deeper上<strong>98.80%</strong>——平均<strong>91.46%</strong>。在具有挑战性的DFDC上，TCAN超越MSVT（76.79%）、VDF（85.10%）和Audio-DF（82.31%）。在Deeper上，它达到近乎完美的检测（98.80%），超越所有对比方法。这证明时序信息对跨域泛化至关重要。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Robustness to Compression (Table 5)</span><span class="zh">压缩鲁棒性（表5）</span></h3>
+                <p>
+                    <span class="en">At c23 (high-quality compression), TCAN maintains strong performance with an average AUC of <strong>78.97%</strong>. At c40 (low-quality compression), performance drops to <strong>70.81%</strong> average, which is expected due to lossy compression discarding high-frequency forgery artifacts. However, the temporal self-attention and feature fusion mechanisms positively influence robustness, maintaining usable detection even under heavy compression.</span>
+                    <span class="zh">在c23（高质量压缩）下，TCAN保持强劲性能，平均AUC为<strong>78.97%</strong>。在c40（低质量压缩）下，性能下降至平均<strong>70.81%</strong>，这是由于有损压缩丢弃高频伪造伪影所致。然而，时序自注意力和特征融合机制对鲁棒性产生积极影响，即使在重度压缩下仍保持可用检测。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Cross-Backbone Adaptability (Table 6)</span><span class="zh">跨骨干适应性（表6）</span></h3>
+                <p>
+                    <span class="en">The TFP mechanism adapts to various backbones: ViT (93.46% avg AUC), RegNet (92.74%), SwinV2 (90.67%), BEiT (92.88%), and PoolFormer (94.55%). TCAN (95.71%) outperforms all, confirming that the TFP representation is backbone-agnostic and the dedicated TCAN design optimally exploits temporal coherence cues.</span>
+                    <span class="zh">TFP机制可适应各种骨干网络：ViT（平均93.46% AUC）、RegNet（92.74%）、SwinV2（90.67%）、BEiT（92.88%）和PoolFormer（94.55%）。TCAN（95.71%）超越所有方法，证实TFP表示是与骨干网络无关的，且专门的TCAN设计最优地利用了时序一致性线索。</span>
+                </p>
+            </div>
+
+            <div class="figure-grid" style="margin-top:64px;">
+                <div class="figure-item">
+                    <img src="ERA/3.jpg" alt="Fig. 3 — TFP comparison across compression levels" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 3 — A comparison of TFPs of real and deepfake videos with three compression levels (c0, c23, c40) from FF++. Deepfake videos generated with four manipulation methods show distinct temporal artifacts. © 2024 AIMS Press.</span>
+                        <span class="zh">图3 — 真实和深度伪造视频在三种压缩级别（c0、c23、c40）下TFP的比较。使用四种操作方法生成的深度伪造视频显示出不同的时序伪影。© 2024 AIMS Press。</span>
+                    </span>
+                </div>
+                <div class="figure-item">
+                    <img src="ERA/5.jpg" alt="Fig. 5 — t-SNE visualization of learned features" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 5 — The t-SNE visualization depicts the learned feature space of classes predicted by our framework on cross-manipulation evaluation across three compression levels. Golden dots indicate real class; purple dots signify manipulated class. © 2024 AIMS Press.</span>
+                        <span class="zh">图5 — t-SNE可视化展示了我们框架在三种压缩级别下跨操作评估中预测的类别学习特征空间。金色点表示真实类别；紫色点表示操纵类别。© 2024 AIMS Press。</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="figure-grid single" style="margin-top:48px;">
+                <div class="figure-item">
+                    <img src="ERA/6.jpg" alt="Fig. 6 — t-SNE cross-dataset visualization" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 6 — The t-SNE visualization shows the learned feature space on cross-dataset evaluation (DFD, DFDC, CDF-V2, Deeper). The golden dots represent the real class, and the purple dots indicate the altered class. © 2024 AIMS Press.</span>
+                        <span class="zh">图6 — t-SNE可视化展示了跨数据集评估（DFD、DFDC、CDF-V2、Deeper）上的学习特征空间。金色点代表真实类别，紫色点表示操纵类别。© 2024 AIMS Press。</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Limitations -->
+    <section class="section section-white" id="limitations">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P5</span>
+                <p class="eyebrow"><span class="en">LIMITATIONS & FUTURE WORK</span><span class="zh">局限性与未来工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What we <em>could not</em> solve yet.</span>
+                <span class="zh">我们<em>尚未</em>解决的问题。</span>
+            </h2>
+            <div class="limitations-box">
+                <p>
+                    <span class="en"><strong>Compression sensitivity.</strong> Lossy JPEG compression at low quality (c40) discards high-frequency image details and textures that contain forgery artifacts. Our TFP mechanism relies on spatial information of facial videos, but compression makes it unable to extract features as sensitively as from uncompressed data. Future work could explore compression-robust feature extraction.</span>
+                    <span class="zh"><strong>压缩敏感性。</strong>低质量（c40）有损JPEG压缩丢弃包含伪造伪影的高频图像细节和纹理。我们的TFP机制依赖面部视频的空间信息，但压缩使其无法像从未压缩数据那样敏感地提取特征。未来工作可探索压缩鲁棒特征提取。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Audio-visual integration.</strong> This work focuses solely on visual temporal clues. Multi-modal approaches that incorporate audio modality (e.g., lip-audio synchronization) could enhance detection robustness, particularly for videos with strong audio-visual correlations.</span>
+                    <span class="zh"><strong>音视频整合。</strong>本工作仅专注于视觉时序线索。融入音频模态（如唇音同步）的多模态方法可增强检测鲁棒性，特别是对于具有强音视频相关性的视频。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Color space exploration.</strong> The current TFP uses RGB color space. Other color spaces (HSV, YCbCr, Lab) may capture different forgery-sensitive characteristics and could be explored to refine the temporal modeling design.</span>
+                    <span class="zh"><strong>色彩空间探索。</strong>当前TFP使用RGB色彩空间。其他色彩空间（HSV、YCbCr、Lab）可能捕捉不同的伪造敏感特征，可探索以优化时序建模设计。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Visualization and interpretability.</strong> While t-SNE provides feature space visualization, a more direct visualization strategy that can help comprehend the mechanics behind deepfake video detection by transformer attention would be valuable for forensic practitioners.</span>
+                    <span class="zh"><strong>可视化与可解释性。</strong>虽然t-SNE提供了特征空间可视化，但一种更直接的可视化策略——能够帮助理解Transformer注意力在深度伪造视频检测背后的机制——对取证从业者将很有价值。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BibTeX -->
+    <section class="section section-black" id="bibtex">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P6</span>
+                <p class="eyebrow"><span class="en">BIBTEX</span><span class="zh">引用</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Cite this <em>paper</em>.</span>
+                <span class="zh">引用此<em>论文</em>。</span>
+            </h2>
+            <div class="bibtex-block" id="bibtexBlock">
+                <pre><code id="bibtexCode">@article{amin2024analyzing,
+  author    = {Amin, Muhammad Ahmad and Hu, Yongjian and Hu, Jiankun},
+  title     = {Analyzing temporal coherence for deepfake video detection},
+  journal   = {Electronic Research Archive},
+  year      = {2024},
+  volume    = {32},
+  number    = {4},
+  pages     = {2621--2641},
+  publisher = {AIMS Press},
+  doi       = {10.3934/era.2024119}
+}</code></pre>
+                <button class="btn bibtex-copy" id="bibtexCopy" aria-label="Copy BibTeX citation">
+                    <span class="en">COPY CITATION</span><span class="zh">复制引用</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Copyright Notice -->
+    <section class="section section-white" id="copyright">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P7</span>
+                <p class="eyebrow"><span class="en">COPYRIGHT NOTICE</span><span class="zh">版权声明</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Open Access <em>License</em> & Usage.</span>
+                <span class="zh">开放获取<em>许可</em>与使用。</span>
+            </h2>
+            <div class="abstract-block">
+                <p style="font-size:14px; color:var(--gray-dark);">
+                    <span class="en">© 2024 the Author(s), licensee AIMS Press. This is an open access article distributed under the terms of the Creative Commons Attribution License. Permitting unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited.</span>
+                    <span class="zh">© 2024 作者，AIMS Press被许可方。本文根据知识共享署名许可条款以开放获取方式分发。允许在任何媒介中不受限制地使用、分发和复制，前提是正确引用原始作品。</span>
+                </p>
+                <p style="font-size:14px; color:var(--gray-dark); margin-top:12px;">
+                    <span class="en">This page is a personal academic landing page. The full paper is available via AIMS Press Electronic Research Archive. Figures are reproduced under the Creative Commons Attribution License.</span>
+                    <span class="zh">本页面为个人学术着陆页。完整论文可通过AIMS Press Electronic Research Archive获取。图表根据知识共享署名许可转载。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related -->
+    <section class="section section-black" id="related">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P8</span>
+                <p class="eyebrow"><span class="en">RELATED WORK</span><span class="zh">相关工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">More from our <em>group</em>.</span>
+                <span class="zh">来自我们<em>团队</em>的更多工作。</span>
+            </h2>
+            <div class="related-grid">
+                <a href="dsp.html" class="related-item">
+                    <span class="related-venue">Digital Signal Processing · 2024</span>
+                    <h4><span class="en">Exploring Varying Color Spaces through Representative Forgery Learning</span><span class="zh">通过代表性伪造学习探索多色彩空间</span></h4>
+                    <p><span class="en">Multi-color-space framework for deepfake detection.</span><span class="zh">面向深度伪造检测的多色彩空间框架。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="aej.html" class="related-item">
+                    <span class="related-venue">Alexandria Engineering Journal · 2024</span>
+                    <h4><span class="en">Cross-Domain Local Characteristic Analysis with Multi-domain Transformer</span><span class="zh">基于多域Transformer的跨域局部特征分析</span></h4>
+                    <p><span class="en">SVFT: spatial + frequency transformer for deepfake detection.</span><span class="zh">SVFT：空间与频域Transformer融合的深度伪造检测。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="ieee_tce.html" class="related-item">
+                    <span class="related-venue">IEEE Transactions on Consumer Electronics · 2026</span>
+                    <h4><span class="en">Trustworthy Deepfake Defense for Consumer Applications</span><span class="zh">面向消费级应用的可信深度伪造防御</span></h4>
+                    <p><span class="en">Frequency-preserving resizing and dual-branch forensics.</span><span class="zh">频域保持缩放与双分支取证。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer section-white">
+        <div class="container">
+            <p>
+                <span class="en">© 2026 Muhammad Ahmad Amin. All rights reserved.</span>
+                <span class="zh">© 2026 Muhammad Ahmad Amin. 保留所有权利。</span>
+            </p>
+            <div class="footer-links">
+                <a href="#top" class="back-to-top">
+                    <span class="en">BACK TO TOP ↑</span>
+                    <span class="zh">回到顶部 ↑</span>
+                </a>
+                <a href="../../index.html#top" class="back-to-top">
+                    <span class="en">BACK TO HOME ↑</span>
+                    <span class="zh">返回首页 ↑</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="../js/main.js"></script>
+    <script>
+      // BibTeX copy handler (self-contained for template portability)
+      (function() {
+        const bibtexCopy = document.getElementById('bibtexCopy');
+        const bibtexCode = document.getElementById('bibtexCode');
+        const toast = document.getElementById('toast');
+        if (!bibtexCopy || !bibtexCode) return;
+
+        function showToast(msg) {
+          toast.textContent = msg;
+          toast.classList.add('show');
+          setTimeout(() => { toast.classList.remove('show'); }, 2500);
+        }
+
+        bibtexCopy.addEventListener('click', () => {
+          const text = bibtexCode.textContent;
+          navigator.clipboard.writeText(text).then(() => {
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          });
+        });
+      })();
+    </script>
+</body>
+</html>

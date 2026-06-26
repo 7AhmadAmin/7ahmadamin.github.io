@@ -1,0 +1,776 @@
+/* ============================================
+   SUBPAGES — Academic Detail Pages
+   Compatible with existing style.css
+   ============================================ */
+
+/* ============================================
+   SECTION BACKGROUND CONSISTENCY
+   Force alternating section backgrounds so
+   section-black / section-white never bleed
+   into each other on publication pages.
+   ============================================ */
+.section.section-black {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.section.section-white {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+/* ---------- Subpage Hero ---------- */
+.subpage-hero {
+  position: relative;
+  min-height: auto;
+  padding: 160px 40px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--black);
+  overflow: hidden;
+  text-align: center;
+}
+
+.subpage-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(0,212,160,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(0,212,160,0.03) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.subpage-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+}
+
+.subpage-hero .hero-label {
+  margin-bottom: 20px;
+}
+
+.subpage-hero .hero-title {
+  font-size: clamp(22px, 3.5vw, 48px);
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.subpage-hero .hero-title .zh {
+  font-size: clamp(20px, 3vw, 40px);
+}
+
+.subpage-venue {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+.section-white .subpage-venue {
+  color: var(--teal-dark);
+}
+
+.subpage-year {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--gray);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.section-white .subpage-year {
+  color: var(--gray-dark);
+}
+
+/* ---------- Author Grid ---------- */
+.author-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 28px;
+  margin: 24px auto 12px;
+  max-width: 900px;
+}
+
+.author-block {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--gray-light);
+}
+
+.author-block a {
+  color: var(--white);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all var(--transition);
+}
+
+.section-white .author-block a {
+  color: var(--black);
+}
+
+.author-block a:hover {
+  border-bottom-color: var(--teal);
+  color: var(--teal);
+}
+
+.section-white .author-block a:hover {
+  color: var(--teal-dark);
+  border-bottom-color: var(--teal-dark);
+}
+
+.author-block sup {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--teal);
+  margin-left: 2px;
+}
+
+.section-white .author-block sup {
+  color: var(--teal-dark);
+}
+
+/* ---------- Affiliation List ---------- */
+.affiliation-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 28px;
+  margin-bottom: 40px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.section-white .affiliation-list {
+  color: var(--gray-dark);
+}
+
+.affiliation-list sup {
+  color: var(--teal);
+  margin-right: 4px;
+}
+
+.section-white .affiliation-list sup {
+  color: var(--teal-dark);
+}
+
+/* ---------- Link Buttons ---------- */
+.link-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.link-btn {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--white);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+
+.section-white .link-btn {
+  color: var(--black);
+  border-color: var(--border-dark);
+}
+
+.link-btn:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+  background: rgba(0,212,160,0.05);
+}
+
+.section-white .link-btn:hover {
+  border-color: var(--teal-dark);
+  color: var(--teal-dark);
+  background: rgba(0,212,160,0.06);
+}
+
+.link-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+/* ---------- Abstract Block ---------- */
+.abstract-block {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: justify;
+}
+
+.abstract-block p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--gray-dark);
+  margin-bottom: 16px;
+}
+
+/* ---------- Video Embed ---------- */
+.video-embed {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: var(--black);
+  border: 1px solid var(--border);
+  margin-top: 32px;
+}
+
+.video-embed iframe,
+.video-embed video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+/* ---------- Figure Grid ---------- */
+.figure-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 32px;
+}
+
+.figure-grid.single {
+  grid-template-columns: 1fr;
+  /* Keep single figures from stretching too wide */
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-white .figure-grid {
+  background: var(--border-dark);
+  border-color: var(--border-dark);
+}
+
+.figure-grid.three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.figure-item {
+  background: var(--black);
+  padding: 24px;
+  text-align: center;
+  transition: background var(--transition);
+}
+
+.section-white .figure-item {
+  background: var(--white);
+}
+
+.figure-item:hover {
+  background: rgba(0,212,160,0.03);
+}
+
+.section-white .figure-item:hover {
+  background: rgba(0,212,160,0.04);
+}
+
+.figure-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 12px;
+  filter: grayscale(20%);
+  transition: filter 0.4s ease;
+}
+
+/* Constrain single-column figure images so they don't dominate the viewport */
+.figure-grid.single .figure-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.figure-grid.single .figure-item img {
+  max-height: 70vh;
+  width: auto;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.figure-item:hover img {
+  filter: grayscale(0%);
+}
+
+.figure-caption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+}
+
+.section-white .figure-caption {
+  color: var(--gray-dark);
+}
+
+/* ---------- Statement Strip (Results / Key Claims) ---------- */
+.statement-strip {
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  transition: background 0.3s ease;
+}
+
+.section-white .statement-strip {
+  border-top-color: var(--border-dark);
+}
+
+.statement-strip:hover {
+  background: rgba(0,212,160,0.03);
+}
+
+.section-white .statement-strip:hover {
+  background: rgba(0,212,160,0.04);
+}
+
+.statement-strip h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.statement-strip p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gray);
+}
+
+.section-white .statement-strip p {
+  color: var(--gray-dark);
+}
+
+/* ---------- Method Steps ---------- */
+.method-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 32px;
+}
+
+.method-step {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  align-items: start;
+  transition: background 0.3s ease;
+}
+
+.section-white .method-step {
+  border-top-color: var(--border-dark);
+}
+
+.method-step:hover {
+  background: rgba(0,212,160,0.03);
+}
+
+.section-white .method-step:hover {
+  background: rgba(0,212,160,0.04);
+}
+
+.step-num {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+}
+
+.section-white .step-num {
+  color: var(--teal-dark);
+}
+
+.step-content h4 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.step-content p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gray);
+}
+
+.section-white .step-content p {
+  color: var(--gray-dark);
+}
+
+/* ---------- BibTeX Block ---------- */
+.bibtex-block {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  padding: 32px;
+  overflow-x: auto;
+  margin-top: 24px;
+  transition: background 0.3s ease;
+  /* Match single-figure grid width for visual consistency */
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bibtex-block:hover {
+  background: rgba(0,212,160,0.03);
+}
+
+.section-white .bibtex-block {
+  background: rgba(0,0,0,0.02);
+  border-color: var(--border-dark);
+}
+
+.section-white .bibtex-block:hover {
+  background: rgba(0,212,160,0.04);
+}
+
+.bibtex-block pre {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--gray-light);
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.section-white .bibtex-block pre {
+  color: var(--gray-dark);
+}
+
+/* ---------- Limitations Box ---------- */
+.limitations-box {
+  border-left: 2px solid var(--teal);
+  padding-left: 24px;
+  margin-top: 24px;
+  /* Match single-figure grid width for visual consistency */
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-white .limitations-box {
+  border-left-color: var(--teal-dark);
+}
+
+.limitations-box p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gray-light);
+  margin-bottom: 12px;
+}
+
+.section-white .limitations-box p {
+  color: var(--gray-dark);
+}
+
+/* ---------- Related Items Grid ---------- */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 32px;
+}
+
+.section-white .related-grid {
+  background: var(--border-dark);
+  border-color: var(--border-dark);
+}
+
+.related-item {
+  background: var(--black);
+  padding: 32px 24px;
+  transition: background var(--transition);
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+
+.section-white .related-item {
+  background: var(--white);
+}
+
+.related-item:hover {
+  background: rgba(0,212,160,0.03);
+}
+
+.section-white .related-item:hover {
+  background: rgba(0,212,160,0.04);
+}
+
+.related-item .related-venue {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+
+.section-white .related-item .related-venue {
+  color: var(--teal-dark);
+}
+
+.related-item h4 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.related-item p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--gray);
+}
+
+.section-white .related-item p {
+  color: var(--gray-dark);
+}
+
+.related-arrow {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 18px;
+  color: var(--gray);
+  transition: color 0.2s ease;
+}
+
+.related-item:hover .related-arrow {
+  color: var(--teal);
+}
+
+.section-white .related-item:hover .related-arrow {
+  color: var(--teal-dark);
+}
+
+/* ---------- Talk Specific ---------- */
+.talk-meta-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.talk-meta-row .sep {
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.section-white .talk-meta-row .sep {
+  color: var(--teal-dark);
+}
+
+.talk-slides-embed {
+  position: relative;
+  padding-bottom: 60%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: var(--black);
+  border: 1px solid var(--border);
+  margin-top: 32px;
+}
+
+.talk-slides-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---------- Key Topics / Takeaways ---------- */
+.topic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 32px;
+}
+
+.topic-item {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 20px;
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+  align-items: start;
+}
+
+.section-white .topic-item {
+  border-top-color: var(--border-dark);
+}
+
+.topic-bullet {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--teal);
+  color: var(--teal);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.section-white .topic-bullet {
+  border-color: var(--teal-dark);
+  color: var(--teal-dark);
+}
+
+.topic-content h4 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.topic-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gray);
+}
+
+.section-white .topic-content p {
+  color: var(--gray-dark);
+}
+
+/* ---------- Footer Links ---------- */
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .footer-links {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-links {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .figure-grid.three {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .related-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .subpage-hero {
+    padding: 120px 20px 60px;
+  }
+  .figure-grid,
+  .figure-grid.three {
+    grid-template-columns: 1fr;
+  }
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+  .method-step {
+    grid-template-columns: 50px 1fr;
+    gap: 16px;
+    padding: 24px 0;
+  }
+  .author-grid {
+    gap: 6px 16px;
+  }
+  .author-block {
+    font-size: 14px;
+  }
+  .link-buttons {
+    gap: 8px;
+  }
+  .link-btn {
+    padding: 8px 16px;
+    font-size: 10px;
+  }
+  .talk-meta-row {
+    gap: 12px;
+    font-size: 11px;
+  }
+  .topic-item {
+    grid-template-columns: 45px 1fr;
+    gap: 12px;
+  }
+  .bibtex-block {
+    padding: 20px;
+  }
+  .bibtex-block pre {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .subpage-hero .hero-title {
+    font-size: 26px;
+  }
+  .step-num {
+    font-size: 22px;
+  }
+  .affiliation-list {
+    font-size: 11px;
+  }
+}

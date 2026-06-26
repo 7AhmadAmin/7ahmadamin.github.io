@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Protecting Yourself in Cyberspace — A Cybersecurity Awareness Session</title>
+    <meta name="description" content="Invited webinar on cybersecurity awareness at the Consulate General of Pakistan, Guangzhou. March 31, 2026." />
+
+    <!-- Custom SVG Favicon (Baked in) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='90' fill='%2300b894'/%3E%3Cpath d='M116 103 H216 L136 219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 103 V219 M296 103 L346 149 L396 103 M396 103 V219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M116 409 L166 299 L216 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 409 L346 299 L396 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/subpages.css" />
+    <!-- Slideshow styles - isolated, won't affect other pages -->
+    <link rel="stylesheet" href="../css/slideshow.css" />
+</head>
+<body>
+
+    <!-- Side Dock — Social Links -->
+    <aside class="side-dock" id="sideDock" aria-label="Social links">
+        <div class="dock-links">
+            <a href="https://twitter.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="X / Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path></svg>
+            </a>
+            <a href="https://github.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+            </a>
+            <a href="https://scholar.google.com/citations?hl=en&user=57ouxVcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10l-10-6-10 6 10 6 10-6z"/>
+                    <path d="M6 12v5l6 3 6-3v-5"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/7ahmadamin" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"></path></svg>
+            </a>
+        </div>
+        <button class="dock-toggle" id="dockToggle" aria-label="Toggle social links" aria-expanded="false">
+            <span class="toggle-label">Socials</span>
+        </button>
+    </aside>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../../index.html#top" class="nav-name" id="navName">
+                <span class="nav-name-text">MUHAMMAD AHMAD AMIN</span>
+            </a>
+            <div class="nav-links">
+                <a href="../../index.html#about"><span class="en">ABOUT</span><span class="zh">关于</span></a>
+                <a href="../../index.html#research"><span class="en">RESEARCH</span><span class="zh">研究</span></a>
+                <a href="../../index.html#experience"><span class="en">WORK</span><span class="zh">工作</span></a>
+                <a href="../../index.html#projects"><span class="en">FUNDING</span><span class="zh">基金</span></a>
+                <a href="../../index.html#publications"><span class="en">PAPERS</span><span class="zh">论文</span></a>
+                <a href="../../index.html#talks"><span class="en">TALKS</span><span class="zh">报告</span></a>
+                <a href="../../index.html#news"><span class="en">NEWS</span><span class="zh">动态</span></a>
+                <a href="../../index.html#contact"><span class="en">CONTACT</span><span class="zh">联系</span></a>
+            </div>
+            <div class="nav-actions">
+                <a href="../CV/Resume.pdf" class="cv-btn" download>
+                    <span class="en">CV ↓</span>
+                    <span class="zh">简历 ↓</span>
+                </a>
+                <button class="lang-btn lang-btn-desktop" aria-label="Toggle language">EN / 中</button>
+                <button class="lang-btn lang-btn-mobile" aria-label="Toggle language">EN / 中</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="subpage-hero" id="top">
+        <div class="hero-bg"></div>
+        <div class="subpage-hero-content">
+            <p class="hero-label">
+                <span class="en">INVITED WEBINAR</span><span class="zh">特邀网络研讨会</span> · 03.2026
+            </p>
+            <h1 class="hero-title">
+                <span class="en">Protecting Yourself in Cyberspace — A Cybersecurity Awareness Session</span>
+                <span class="zh">保护自己在网络空间——网络安全意识讲座</span>
+            </h1>
+            <div class="talk-meta-row">
+                <span><span class="en">Consulate General of Pakistan</span><span class="zh">巴基斯坦驻广州总领事馆</span></span>
+                <span class="sep">·</span>
+                <span><span class="en">Guangzhou, China</span><span class="zh">中国·广州</span></span>
+                <span class="sep">·</span>
+                <span><span class="en">March 31, 2026</span><span class="zh">2026年3月31日</span></span>
+                <span class="sep">·</span>
+                <span><span class="en">2:00–3:00 PM CST</span><span class="zh">下午2:00–3:00（中国标准时间）</span></span>
+            </div>
+            <div class="link-buttons">
+                <a href="#slides" class="link-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    <span class="en">Slides</span><span class="zh">幻灯片</span>
+                </a>
+                <a href="#poster" class="link-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                    <span class="en">Poster</span><span class="zh">海报</span>
+                </a>
+                <a href="#topics" class="link-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <span class="en">Topics</span><span class="zh">话题</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overview -->
+    <section class="section section-white" id="overview">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ T1</span>
+                <p class="eyebrow"><span class="en">OVERVIEW</span><span class="zh">概述</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Why this <em>session</em> matters.</span>
+                <span class="zh">为什么这场<em>讲座</em>重要。</span>
+            </h2>
+            <div class="abstract-block">
+                <p>
+                    <span class="en">The Pakistani community in southern China faces unique cybersecurity challenges: cross-border communication apps, multilingual phishing campaigns, and increasing exposure to AI-generated disinformation targeting diaspora groups. Most awareness materials are either too generic or not available in accessible formats for this community.</span>
+                    <span class="zh">华南巴基斯坦社区面临独特的网络安全挑战：跨境通信应用、多语言钓鱼活动，以及针对侨民群体日益增多的AI生成虚假信息。大多数安全意识材料要么过于笼统，要么没有以该社区可接触的形式提供。</span>
+                </p>
+                <p>
+                    <span class="en">This invited webinar was organized by the Consulate General of Pakistan, Guangzhou, to bridge that gap. We covered practical threat models relevant to everyday users—phishing, identity theft, online scams, data bleed, and safe practices for digital life. The session was delivered in English with live demonstrations of threat detection and interactive Q&A.</span>
+                    <span class="zh">本次特邀网络研讨会由巴基斯坦驻广州总领事馆组织，旨在弥合这一差距。我们涵盖了与日常用户相关的实用威胁模型——钓鱼攻击、身份盗窃、网络诈骗、数据泄露和数字生活的安全实践。讲座以英语进行，包含威胁检测的现场演示和互动问答。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Poster Showcase -->
+    <section class="section section-black" id="poster">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ T2</span>
+                <p class="eyebrow"><span class="en">EVENT POSTER</span><span class="zh">活动海报</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Official <em>invitation</em> poster.</span>
+                <span class="zh">官方<em>邀请</em>海报。</span>
+            </h2>
+            <div class="figure-grid single">
+                <div class="figure-item">
+                    <img src="../../assets/talks/PPT/poster_cybersecurity_awareness.jpg" alt="Cybersecurity Awareness Session Poster — Protecting Yourself in Cyberspace, organized by Consulate General of Pakistan, Guangzhou, March 31, 2026" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 1 — Official event poster. Topics: Phishing, Identity Safety, Data Bleed, Online Scams. Organized by Consulate General of Pakistan, Guangzhou, China. Tuesday, March 31, 2026, 2:00–3:00 PM CST.</span>
+                        <span class="zh">图1 — 官方活动海报。主题：钓鱼攻击、身份安全、数据泄露、网络诈骗。由巴基斯坦驻广州总领事馆组织。2026年3月31日（星期二）下午2:00–3:00（中国标准时间）。</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slides / Slideshow -->
+    <section class="section section-white" id="slides">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ T3</span>
+                <p class="eyebrow"><span class="en">SLIDES</span><span class="zh">幻灯片</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Browse the <em>presentation</em>.</span>
+                <span class="zh">浏览<em>演示文稿</em>。</span>
+            </h2>
+
+            <!-- Slideshow Container -->
+            <div class="slideshow-container" id="slideshowContainer">
+                <div class="slideshow-wrapper">
+                    <!-- Slide 1: Title -->
+                    <div class="slide active" data-slide="1">
+                        <div class="slide-content title-slide">
+                            <div class="slide-header-badge">
+                                <span class="en">CYBERSECURITY AWARENESS SESSION</span>
+                                <span class="zh">网络安全意识讲座</span>
+                            </div>
+                            <h2 class="slide-title">
+                                <span class="en">Protecting Yourself in CYBERSPACE</span>
+                                <span class="zh">保护自己在网络空间</span>
+                            </h2>
+                            <div class="slide-divider"></div>
+                            <p class="slide-speaker">MUHAMMAD AHMAD AMIN, Ph.D.</p>
+                            <p class="slide-affiliation">
+                                <span class="en">School of Cyber Science and Technology, Sun Yat-sen University, Shenzhen, China</span>
+                                <span class="zh">中山大学网络空间安全学院，深圳，中国</span>
+                            </p>
+                            <p class="slide-date">March 31, 2026</p>
+                            <div class="slide-org-badge">
+                                <span class="en">Organized by Consulate General of Pakistan, Guangzhou, China</span>
+                                <span class="zh">由巴基斯坦驻广州总领事馆组织</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: About Me -->
+                    <div class="slide" data-slide="2">
+                        <div class="slide-content">
+                            <h3 class="slide-section-title">
+                                <span class="en">About Me</span>
+                                <span class="zh">关于我</span>
+                            </h3>
+                            <div class="slide-two-col">
+                                <div class="slide-col">
+                                    <p class="slide-highlight">MUHAMMAD AHMAD AMIN, Ph.D.</p>
+                                    <p class="slide-body">
+                                        <span class="en">Postdoctoral Fellow at School of Cyber Science and Technology, Sun Yat-sen University, Shenzhen, China.</span>
+                                        <span class="zh">中山大学网络空间安全学院博士后研究员，深圳，中国。</span>
+                                    </p>
+                                    <p class="slide-body">
+                                        <span class="en">Born and raised in Faisalabad, Pakistan; living in Guangzhou/Shenzhen, China since 2016.</span>
+                                        <span class="zh">在巴基斯坦费萨拉巴德出生并长大；自2016年起居住在中国广州/深圳。</span>
+                                    </p>
+                                </div>
+                                <div class="slide-col">
+                                    <ul class="slide-list">
+                                        <li>
+                                            <span class="en">Published peer-reviewed papers and patents</span>
+                                            <span class="zh">发表同行评审论文和专利</span>
+                                        </li>
+                                        <li>
+                                            <span class="en">Contributed to provincial and national-level projects in China</span>
+                                            <span class="zh">参与中国省级和国家级项目</span>
+                                        </li>
+                                        <li>
+                                            <span class="en">Expertise in ML for multimedia forensics, deepfake detection, biometric security</span>
+                                            <span class="zh">机器学习多媒体取证、深度伪造检测、生物特征安全方面的专业知识</span>
+                                        </li>
+                                        <li>
+                                            <span class="en">Recipient of Excellent Graduate Student Award (M.Sc. & Ph.D.)</span>
+                                            <span class="zh">获得优秀研究生奖（硕士和博士）</span>
+                                        </li>
+                                        <li>
+                                            <span class="en">Chinese Government & Guangdong Government Outstanding International Student Scholarship</span>
+                                            <span class="zh">中国政府和广东省政府优秀国际学生奖学金</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Agenda -->
+                    <div class="slide" data-slide="3">
+                        <div class="slide-content">
+                            <h3 class="slide-section-title">
+                                <span class="en">Agenda</span>
+                                <span class="zh">议程</span>
+                            </h3>
+                            <div class="slide-agenda">
+                                <div class="agenda-item">
+                                    <span class="agenda-num">01</span>
+                                    <span class="agenda-text">
+                                        <span class="en">Cyberspace & Cybersecurity</span>
+                                        <span class="zh">网络空间与网络安全</span>
+                                    </span>
+                                </div>
+                                <div class="agenda-item">
+                                    <span class="agenda-num">02</span>
+                                    <span class="agenda-text">
+                                        <span class="en">Common Threats</span>
+                                        <span class="zh">常见威胁</span>
+                                    </span>
+                                </div>
+                                <div class="agenda-item">
+                                    <span class="agenda-num">03</span>
+                                    <span class="agenda-text">
+                                        <span class="en">Digital Footprint & Protection</span>
+                                        <span class="zh">数字足迹与保护</span>
+                                    </span>
+                                </div>
+                                <div class="agenda-item">
+                                    <span class="agenda-num">04</span>
+                                    <span class="agenda-text">
+                                        <span class="en">Best Practices for Users</span>
+                                        <span class="zh">用户最佳实践</span>
+                                    </span>
+                                </div>
+                                <div class="agenda-item">
+                                    <span class="agenda-num">05</span>
+                                    <span class="agenda-text">
+                                        <span class="en">Key Takeaways</span>
+                                        <span class="zh">关键要点</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4: What is Cyberspace -->
+                    <div class="slide" data-slide="4">
+                        <div class="slide-content">
+                            <h3 class="slide-section-title">
+                                <span class="en">What is Cyberspace?</span>
+                                <span class="zh">什么是网络空间？</span>
+                            </h3>
+                            <p class="slide-body">
+                                <span class="en">The virtual environment created by interconnected digital devices, networks, and the internet. A global domain where information is stored, shared, and processed electronically.</span>
+                                <span class="zh">由互联数字设备、网络和互联网创建的虚拟环境。一个信息被电子存储、共享和处理的全球领域。</span>
+                            </p>
+                            <div class="slide-domains">
+                                <div class="domain-card">
+                                    <span class="domain-icon">🔧</span>
+                                    <h4>
+                                        <span class="en">Physical</span>
+                                        <span class="zh">物理</span>
+                                    </h4>
+                                    <p>Hardware, servers, cables, routers, data centers</p>
+                                </div>
+                                <div class="domain-card">
+                                    <span class="domain-icon">💻</span>
+                                    <h4>
+                                        <span class="en">Software</span>
+                                        <span class="zh">软件</span>
+                                    </h4>
+                                    <p>Operating systems, applications, cloud services</p>
+                                </div>
+                                <div class="domain-card">
+                                    <span class="domain-icon">🌐</span>
+                                    <h4>
+                                        <span class="en">Network</span>
+                                        <span class="zh">网络</span>
+                                    </h4>
+                                    <p>TCP/IP, LANs, WANs, wireless networks</p>
+                                </div>
+                                <div class="domain-card">
+                                    <span class="domain-icon">🧠</span>
+                                    <h4>
+                                        <span class="en">Cognitive</span>
+                                        <span class="zh">认知</span>
+                                    </h4>
+                                    <p>Users, human decision-making, social engineering targets</p>
+                                </div>
+                                <div class="domain-card">
+                                    <span class="domain-icon">📊</span>
+                                    <h4>
+                                        <span class="en">Information</span>
+                                        <span class="zh">信息</span>
+                                    </h4>
+                                    <p>Data, digital assets, intellectual property</p>
+                                </div>
+                            </div>
+                            <p class="slide-source">— U.S. Department of Defense</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5: What is Cybersecurity -->
+                    <div class="slide" data-slide="5">
+                        <div class="slide-content">
+                            <h3 class="slide-section-title">
+                                <span class="en">What is Cybersecurity?</span>
+                                <span class="zh">什么是网络安全？</span>
+                            </h3>
+                            <p class="slide-body">
+                                <span class="en">The practice of protecting systems, networks, programs, and data from digital attacks. Measures taken to defend against unauthorized access, cyber threats, and data breaches.</span>
+                                <span class="zh">保护系统、网络、程序和数据免受数字攻击的实践。为防御未经授权的访问、网络威胁和数据泄露而采取的措施。</span>
+                            </p>
+                            <div class="slide-why-matters">
+                                <h4>
+                                    <span class="en">Why It Matters</span>
+                                    <span class="zh">为什么重要</span>
+                                </h4>
+                                <div class="why-grid">
+                                    <div class="why-item">
+                                        <strong>
+                                            <span class="en">Data Breaches</span>
+                                            <span class="zh">数据泄露</span>
+                                        </strong>
+                                        <p>Sensitive information compromised</p>
+                                    </div>
+                                    <div class="why-item">
+                                        <strong>
+                                            <span class="en">Info Leaks</span>
+                                            <span class="zh">信息泄露</span>
+                                        </strong>
+                                        <p>Intellectual property exposed</p>
+                                    </div>
+                                    <div class="why-item">
+                                        <strong>
+                                            <span class="en">Reputational Damage</span>
+                                            <span class="zh">声誉损害</span>
+                                        </strong>
+                                        <p>Loss of client trust</p>
+                                    </div>
+                                    <div class="why-item">
+                                        <strong>
+                                            <span class="en">Legal Consequences</span>
+                                            <span class="zh">法律后果</span>
+                                        </strong>
+                                        <p>NDA violations, penalties</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-cia">
+                                <h4>The CIA Triad</h4>
+                                <div class="cia-grid">
+                                    <div class="cia-item">
+                                        <span class="cia-letter">C</span>
+                                        <span>Confidentiality</span>
+                                    </div>
+                                    <div class="cia-item">
+                                        <span class="cia-letter">I</span>
+                                        <span>Integrity</span>
+                                    </div>
+                                    <div class="cia-item">
+                                        <span class="cia-letter">A</span>
+                                        <span>Availability</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="slide-source">— NIST, Fortinet, IBM</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 6: Common Threats -->
+                    <div class="slide" data-slide="6">
+                        <div class="slide-content">
+                            <h3 class="slide-section-title">
+                                <span class="en">Common Threats</span>
+                                <span class="zh">常见威胁</span>
+                            </h3>
+                            <div class="slide-threats">
+                                <div class="threat-card threat-critical">
+                                    <h4>Phishing</h4>
+                                    <p>Social engineering via fake trusted sources. 90% of breaches in 2026.</p>
+                                </div>
+                                <div class="threat-card">
+                                    <h4>Malware</h4>
+                                    <p>Viruses, trojans, ransomware, rootkits, worms, bootkits.</p>
+                                </div>
+                                <div class="threat-card">
+                                    <h4>Data Breaches</h4>
+                                    <p>Unauthorized access or exposure of sensitive information.</p>
+                                </div>
+                                <div class="threat-card threat-critical">
+                                    <h4>Deepfakes</h4>
+                                    <p>AI-generated fake audio/video. 3,000% increase in fraud attempts.</p>
+                                </div>
+                                <div class="threat-card">
+                                    <h4>Botnets</h4>
+                                    <p>Compromised devices controlled for malicious tasks.</p>
+                                </div>
+                                <div class="threat-card">
+                                    <h4>Ransomware</h4>
+                                    <p>Payment demanded to regain access. Average cost $5.08M.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 7: Global Statistics -->
+                    <div class="slide" data-slide="7">
+                        <div class="slide-content">
+                            <h3 class="slide-section-title">
+                                <span class="en">Global Cybersecurity Statistics</span>
+                                <span class="zh">全球网络安全统计</span>
+                            </h3>
+                            <div class="slide-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">39s</span>
+                                    <span class="stat-label">Cyberattacks every 39 seconds</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">95%</span>
+                                    <span class="stat-label">Breaches caused by human error</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">$4.45M</span>
+                                    <span class="stat-label">Average data breach cost</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">3.4B</span>
+                                    <span class="stat-label">Phishing emails sent daily</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">94%</span>
+                                    <span class="stat-label">Organizations fell victim to phishing</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">150%</span>
+                                    <span class="stat-label">Ransomware increase (recent years)</span>
+                                </div>
+                            </div>
+                            <p class="slide-source">— University of Maryland, IBM, Cybersecurity Ventures</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 8: Deepfake Technology -->
+                    <div class="slide" data-slide="8">
+                        <div class="slide-content">
+                            <h3 class="slide-section-title">
+                                <span class="en">Deepfake Technology</span>
+                                <span class="zh">深度伪造技术</span>
+                            </h3>
+                            <p class="slide-body">
+                                <span class="en">AI techniques enabling creation of convincing fake texts, emails, voice clones, facial images, and videos—indistinguishable from real ones to human eyes and ears.</span>
+                                <span class="zh">人工智能技术能够创建令人信服的虚假文本、电子邮件、语音克隆、面部图像和视频——对人类眼睛和耳朵来说与真实内容无法区分。</span>
+                            </p>
+                            <div class="slide-deepfake-impact">
+                                <div class="df-stat">
+                                    <span class="df-number">3.2B</span>
+                                    <span class="df-label">Images shared online daily</span>
+                                </div>
+                                <div class="df-stat">
+                                    <span class="df-number">50%</span>
+                                    <span class="df-label">Estimated altered or AI-generated</span>
+                                </div>
+                                <div class="df-stat">
+                                    <span class="df-number">179</span>
+                                    <span class="df-label">Deepfake incidents Q1 2025</span>
+                                </div>
+                                <div class="df-stat">
+                                    <span class="df-number">77%</span>
+                                    <span class="df-label">Victims who lost money</span>
+                                </div>
+                            </div>
+                            <div class="slide-case-study">
+                                <h4>
+                                    <span class="en">Real-World Case</span>
+                                    <span class="zh">真实案例</span>
+                                </h4>
+                                <p><strong>Hong Kong, February 2024:</strong> A finance worker at Arup was tricked into wiring <strong>$25 million</strong> due to a deepfake video conference call.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 9: Digital Footprint -->
+                    <div class="slide" data-slide="9">
+                        <div class="slide-content">
+                            <h3 class="slide-section-title">
+                                <span class="en">Your Digital Footprint</span>
+                                <span class="zh">您的数字足迹</span>
+                            </h3>
+                            <p class="slide-body">
+                                <span class="en">Everything you do online leaves a trace. Two types: Active (intentional posts) and Passive (tracked data). Digital footprints are permanent and searchable.</span>
+                                <span class="zh">您在网上做的每件事都会留下痕迹。两种类型：主动（有意发布）和被动（被追踪的数据）。数字足迹是永久且可搜索的。</span>
+                            </p>
+                            <div class="slide-minimize">
+                                <h4>
+                                    <span class="en">Minimizing Your Digital Footprint</span>
+                                    <span class="zh">最小化您的数字足迹</span>
+                                </h4>
+                                <div class="minimize-grid">
+                                    <div class="min-item">
+                                        <span class="min-icon">🤔</span>
+                                        <p>Think before you post — assume it's permanent</p>
+                                    </div>
+                                    <div class="min-item">
+                                        <span class="min-icon">🔒</span>
+                                        <p>Limit personal information (address, phone, DOB)</p>
+                                    </div>
+                                    <div class="min-item">
+                                        <span class="min-icon">📍</span>
+                                        <p>Avoid sharing location in real-time</p>
+                                    </div>
+                                    <div class="min-item">
+                                        <span class="min-icon">🔍</span>
+                                        <p>Google yourself regularly</p>
+                                    </div>
+                                    <div class="min-item">
+                                        <span class="min-icon">🍪</span>
+                                        <p>Clear cookies and cache regularly</p>
+                                    </div>
+                                    <div class="min-item">
+                                        <span class="min-icon">🛡️</span>
+                                        <p>Use VPN for sensitive activities</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 10: Social Media Protection -->
+                    <div class="slide" data-slide="10">
+                        <div class="slide-content">
+                            <h3 class="slide-section-title">
+                                <span class="en">Social Media Protection</span>
+                                <span class="zh">社交媒体保护</span>
+                            </h3>
+                            <div class="slide-sm-grid">
+                                <div class="sm-card">
+                                    <h4>Privacy Settings</h4>
+                                    <ul>
+                                        <li>Set profiles to private</li>
+                                        <li>Limit who can see posts</li>
+                                        <li>Disable location tagging</li>
+                                        <li>Review tagged photos before appearing</li>
+                                        <li>Limit friend lists visibility</li>
+                                        <li>Turn off "read receipts" and "last seen"</li>
+                                    </ul>
+                                </div>
+                                <div class="sm-card">
+                                    <h4>Account Management</h4>
+                                    <ul>
+                                        <li>Don't accept requests from strangers</li>
+                                        <li>Verify accounts before connecting</li>
+                                        <li>Be wary of quizzes and third-party apps</li>
+                                        <li>Don't share vacation plans in real-time</li>
+                                        <li>Avoid oversharing about children</li>
+                                        <li>Delete unused accounts</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 11: Best Practices -->
+                    <div class="slide" data-slide="11">
+                        <div class="slide-content">
+                            <h3 class="slide-section-title">
+                                <span class="en">Best Practices for Users</span>
+                                <span class="zh">用户最佳实践</span>
+                            </h3>
+                            <div class="slide-bp-grid">
+                                <div class="bp-card">
+                                    <span class="bp-num">01</span>
+                                    <h4>Password Management</h4>
+                                    <p>12+ characters. Use password managers (LastPass, 1Password). Check <a href="https://haveibeenpwned.com" target="_blank">haveibeenpwned.com</a>. Never reuse passwords.</p>
+                                </div>
+                                <div class="bp-card">
+                                    <span class="bp-num">02</span>
+                                    <h4>Multi-Factor Authentication</h4>
+                                    <p>Something you know + have + are. MFA for all users. Options: OTP, SSO, geofiltering, CAPTCHA.</p>
+                                </div>
+                                <div class="bp-card">
+                                    <span class="bp-num">03</span>
+                                    <h4>WiFi Security</h4>
+                                    <p>Use WPA2 or WPA3 for home Wi-Fi. Avoid public Wi-Fi for sensitive transactions. Verify HTTPS (green lock).</p>
+                                </div>
+                                <div class="bp-card">
+                                    <span class="bp-num">04</span>
+                                    <h4>Software Updates</h4>
+                                    <p>Update and patch software regularly. Outdated software is the #1 vulnerability. Enable auto-updates.</p>
+                                </div>
+                                <div class="bp-card">
+                                    <span class="bp-num">05</span>
+                                    <h4>Human Firewall</h4>
+                                    <p>Annual cybersecurity training. Simulated phishing tests. Report suspicious activity immediately.</p>
+                                </div>
+                                <div class="bp-card">
+                                    <span class="bp-num">06</span>
+                                    <h4>Quick Thinking</h4>
+                                    <p>Hover over links before clicking. Verify sender identity. When in doubt, ask IT or an expert.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 12: Password Hygiene -->
+                    <div class="slide" data-slide="12">
+                        <div class="slide-content">
+                            <h3 class="slide-section-title">
+                                <span class="en">Password Hygiene</span>
+                                <span class="zh">密码卫生</span>
+                            </h3>
+                            <div class="slide-pw-examples">
+                                <div class="pw-bad">
+                                    <span class="pw-label">❌ POOR</span>
+                                    <code>elephant</code>
+                                    <code>elephant1</code>
+                                    <code>elephant1!</code>
+                                    <code>Elephant1!</code>
+                                    <p>Never use your name. Simple substitutions are easily cracked.</p>
+                                </div>
+                                <div class="pw-arrow">→</div>
+                                <div class="pw-good">
+                                    <span class="pw-label">✅ STRONG</span>
+                                    <code>Correct-Horse-Battery-Staple!47</code>
+                                    <p>Long, unique, random. Use a password manager.</p>
+                                </div>
+                            </div>
+                            <div class="slide-pw-check">
+                                <h4>Check Your Exposure</h4>
+                                <p>Visit <a href="https://haveibeenpwned.com" target="_blank">haveibeenpwned.com</a> — 2.6 billion compromised accounts tracked. Treat it like a credit check.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 13: Key Takeaways -->
+                    <div class="slide" data-slide="13">
+                        <div class="slide-content">
+                            <h3 class="slide-section-title">
+                                <span class="en">Key Takeaways</span>
+                                <span class="zh">关键要点</span>
+                            </h3>
+                            <div class="slide-takeaways">
+                                <div class="tk-item">
+                                    <span class="tk-icon">🧠</span>
+                                    <p>Think before you click and share your info, pictures, and videos.</p>
+                                </div>
+                                <div class="tk-item">
+                                    <span class="tk-icon">🌐</span>
+                                    <p>Cyberspace is real, and threats are evolving.</p>
+                                </div>
+                                <div class="tk-item">
+                                    <span class="tk-icon">📢</span>
+                                    <p>Always report suspicious activity and use antivirus.</p>
+                                </div>
+                                <div class="tk-item">
+                                    <span class="tk-icon">🏠</span>
+                                    <p>Implement an organization-wide remote work security plan.</p>
+                                </div>
+                                <div class="tk-item">
+                                    <span class="tk-icon">🚫</span>
+                                    <p>Never install unauthorized programs.</p>
+                                </div>
+                                <div class="tk-item">
+                                    <span class="tk-icon">🔐</span>
+                                    <p>Use WPA2 or WPA3 security for your home Wi-Fi.</p>
+                                </div>
+                                <div class="tk-item">
+                                    <span class="tk-icon">🔑</span>
+                                    <p>Ensure each password is unique. Use a password manager.</p>
+                                </div>
+                                <div class="tk-item">
+                                    <span class="tk-icon">🛡️</span>
+                                    <p>Enforce MFA everywhere possible.</p>
+                                </div>
+                                <div class="tk-item">
+                                    <span class="tk-icon">⚡</span>
+                                    <p>Keep software and devices up to date.</p>
+                                </div>
+                                <div class="tk-item">
+                                    <span class="tk-icon">❓</span>
+                                    <p>When in doubt, ask an expert.</p>
+                                </div>
+                                <div class="tk-item tk-highlight">
+                                    <span class="tk-icon">💡</span>
+                                    <p><strong>Prevention is easier than recovery.</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 14: Resources -->
+                    <div class="slide" data-slide="14">
+                        <div class="slide-content">
+                            <h3 class="slide-section-title">
+                                <span class="en">Helpful Resources</span>
+                                <span class="zh">有用资源</span>
+                            </h3>
+                            <div class="slide-resources">
+                                <div class="res-item">
+                                    <a href="https://www.ncsc.gov.uk" target="_blank">National Cyber Security Centre (NCSC)</a>
+                                </div>
+                                <div class="res-item">
+                                    <a href="https://staysafeonline.org" target="_blank">Stay Safe Online</a>
+                                </div>
+                                <div class="res-item">
+                                    <a href="https://www.eff.org" target="_blank">Electronic Frontier Foundation (EFF)</a>
+                                </div>
+                                <div class="res-item">
+                                    <a href="https://haveibeenpwned.com" target="_blank">Have I Been Pwned</a>
+                                </div>
+                                <div class="res-item">
+                                    <a href="https://www.cisa.gov" target="_blank">CISA</a>
+                                </div>
+                                <div class="res-item">
+                                    <a href="https://www.ic3.gov" target="_blank">FBI IC3</a>
+                                </div>
+                                <div class="res-item">
+                                    <a href="https://www.nist.gov" target="_blank">NIST</a>
+                                </div>
+                                <div class="res-item">
+                                    <a href="https://www.ibm.com/security" target="_blank">IBM Security</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 15: Q&A / Contact -->
+                    <div class="slide" data-slide="15">
+                        <div class="slide-content title-slide">
+                            <h2 class="slide-title">
+                                <span class="en">Q & A</span>
+                                <span class="zh">问答环节</span>
+                            </h2>
+                            <div class="slide-divider"></div>
+                            <p class="slide-speaker">MUHAMMAD AHMAD AMIN, Ph.D.</p>
+                            <p class="slide-affiliation">
+                                <span class="en">School of Cyber Science and Technology, Sun Yat-sen University</span>
+                                <span class="zh">中山大学网络空间安全学院</span>
+                            </p>
+                            <p class="slide-contact">muhammad8@mail.sysu.edu.cn</p>
+                            <div class="slide-socials">
+                                <span>@7ahmadamin</span>
+                            </div>
+                            <div class="slide-org-badge">
+                                <span class="en">Thank you for joining!</span>
+                                <span class="zh">感谢您的参与！</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slideshow Controls -->
+                <div class="slideshow-controls">
+                    <button class="ss-btn ss-prev" id="ssPrev" aria-label="Previous slide">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <div class="ss-counter">
+                        <span id="ssCurrent">1</span> / <span id="ssTotal">15</span>
+                    </div>
+                    <button class="ss-btn ss-next" id="ssNext" aria-label="Next slide">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                    <button class="ss-btn ss-fullscreen" id="ssFullscreen" aria-label="Toggle fullscreen">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                    </button>
+                </div>
+
+                <!-- Slide Thumbnails -->
+                <div class="slideshow-thumbs">
+                    <button class="thumb active" data-thumb="1" aria-label="Slide 1">1</button>
+                    <button class="thumb" data-thumb="2" aria-label="Slide 2">2</button>
+                    <button class="thumb" data-thumb="3" aria-label="Slide 3">3</button>
+                    <button class="thumb" data-thumb="4" aria-label="Slide 4">4</button>
+                    <button class="thumb" data-thumb="5" aria-label="Slide 5">5</button>
+                    <button class="thumb" data-thumb="6" aria-label="Slide 6">6</button>
+                    <button class="thumb" data-thumb="7" aria-label="Slide 7">7</button>
+                    <button class="thumb" data-thumb="8" aria-label="Slide 8">8</button>
+                    <button class="thumb" data-thumb="9" aria-label="Slide 9">9</button>
+                    <button class="thumb" data-thumb="10" aria-label="Slide 10">10</button>
+                    <button class="thumb" data-thumb="11" aria-label="Slide 11">11</button>
+                    <button class="thumb" data-thumb="12" aria-label="Slide 12">12</button>
+                    <button class="thumb" data-thumb="13" aria-label="Slide 13">13</button>
+                    <button class="thumb" data-thumb="14" aria-label="Slide 14">14</button>
+                    <button class="thumb" data-thumb="15" aria-label="Slide 15">15</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Topics -->
+    <section class="section section-black" id="topics">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ T4</span>
+                <p class="eyebrow"><span class="en">KEY TOPICS</span><span class="zh">核心话题</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What we <em>covered</em>.</span>
+                <span class="zh">我们<em>涵盖</em>的内容。</span>
+            </h2>
+            <div class="topic-list">
+                <div class="topic-item">
+                    <span class="topic-bullet">01</span>
+                    <div class="topic-content">
+                        <h4><span class="en">Cyberspace & Cybersecurity Fundamentals</span><span class="zh">网络空间与网络安全基础</span></h4>
+                        <p>
+                            <span class="en">The five domains of cyberspace (Physical, Software, Network, Cognitive, Information) and the CIA Triad as foundational security principles. Understanding why cybersecurity matters for individuals and organizations.</span>
+                            <span class="zh">网络空间的五个域（物理、软件、网络、认知、信息）以及作为基础安全原则的CIA三元组。理解为什么网络安全对个人和组织很重要。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="topic-item">
+                    <span class="topic-bullet">02</span>
+                    <div class="topic-content">
+                        <h4><span class="en">Common Threats & Attack Vectors</span><span class="zh">常见威胁与攻击向量</span></h4>
+                        <p>
+                            <span class="en">Phishing (90% of breaches), malware families, deepfake technology with 3,000% fraud increase, botnets, and ransomware. Global statistics: attacks every 39 seconds, $4.45M average breach cost, 95% human error factor.</span>
+                            <span class="zh">钓鱼攻击（90%的泄露事件）、恶意软件家族、诈骗增加3000%的深度伪造技术、僵尸网络和勒索软件。全球统计：每39秒一次攻击，平均泄露成本445万美元，95%人为错误因素。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="topic-item">
+                    <span class="topic-bullet">03</span>
+                    <div class="topic-content">
+                        <h4><span class="en">Digital Footprint & Protection Strategies</span><span class="zh">数字足迹与保护策略</span></h4>
+                        <p>
+                            <span class="en">Active vs passive digital footprints. Minimization strategies: limit personal info, clear cookies, use VPN, manage search presence. Social media protection: private profiles, disable location tagging, verify accounts, avoid oversharing.</span>
+                            <span class="zh">主动与被动数字足迹。最小化策略：限制个人信息、清除Cookie、使用VPN、管理搜索呈现。社交媒体保护：私密档案、禁用位置标签、验证账户、避免过度分享。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="topic-item">
+                    <span class="topic-bullet">04</span>
+                    <div class="topic-content">
+                        <h4><span class="en">Best Practices for Users</span><span class="zh">用户最佳实践</span></h4>
+                        <p>
+                            <span class="en">Password management with 12+ character rules and managers like LastPass/1Password. MFA implementation. WiFi security with WPA2/WPA3. Software updates and patching. Building the human firewall through training and simulated testing.</span>
+                            <span class="zh">密码管理，12位以上字符规则和使用LastPass/1Password等管理器。MFA实施。使用WPA2/WPA3的WiFi安全。软件更新和补丁。通过培训和模拟测试建立人为防火墙。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="topic-item">
+                    <span class="topic-bullet">05</span>
+                    <div class="topic-content">
+                        <h4><span class="en">Key Takeaways & Resources</span><span class="zh">关键要点与资源</span></h4>
+                        <p>
+                            <span class="en">Think before clicking. Report suspicious activity. Use antivirus. Enforce MFA. Keep software updated. Prevention is easier than recovery. Curated resources: NCSC, Stay Safe Online, EFF, Have I Been Pwned, CISA, FBI IC3, NIST.</span>
+                            <span class="zh">点击前三思。举报可疑活动。使用杀毒软件。强制执行MFA。保持软件更新。预防胜于恢复。精选资源：NCSC、Stay Safe Online、EFF、Have I Been Pwned、CISA、FBI IC3、NIST。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Talks -->
+    <section class="section section-white" id="related-talks">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ T5</span>
+                <p class="eyebrow"><span class="en">MORE TALKS</span><span class="zh">更多报告</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Other <em>invited</em> sessions.</span>
+                <span class="zh">其他<em>特邀</em>讲座。</span>
+            </h2>
+            <div class="related-grid">
+                <a href="#" class="related-item">
+                    <span class="related-venue"><span class="en">UPCOMING · TBD</span><span class="zh">即将公布 · 待定</span></span>
+                    <h4><span class="en">Deepfake Forensics for Law Enforcement</span><span class="zh">面向执法部门的深度伪造取证</span></h4>
+                    <p><span class="en">Planned workshop on multimedia forensics tools for investigators.</span><span class="zh">面向调查人员的多媒体取证工具研讨会计划。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="#" class="related-item">
+                    <span class="related-venue"><span class="en">UPCOMING · TBD</span><span class="zh">即将公布 · 待定</span></span>
+                    <h4><span class="en">Trustworthy ML in Biometric Security</span><span class="zh">生物特征安全中的可信机器学习</span></h4>
+                    <p><span class="en">Academic seminar on fair and robust biometric systems.</span><span class="zh">关于公平鲁棒生物特征系统的学术研讨会。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="#" class="related-item">
+                    <span class="related-venue"><span class="en">UPCOMING · TBD</span><span class="zh">即将公布 · 待定</span></span>
+                    <h4><span class="en">Privacy-Preserving AI for Healthcare</span><span class="zh">面向医疗健康的隐私保护AI</span></h4>
+                    <p><span class="en">Cross-disciplinary talk on federated learning and medical data privacy.</span><span class="zh">关于联邦学习与医疗数据隐私的跨学科讲座。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>
+                <span class="en">© 2026 Muhammad Ahmad Amin. All rights reserved.</span>
+                <span class="zh">© 2026 Muhammad Ahmad Amin. 保留所有权利。</span>
+            </p>
+            <div class="footer-links">
+                <a href="#top" class="back-to-top">
+                    <span class="en">BACK TO TOP ↑</span>
+                    <span class="zh">回到顶部 ↑</span>
+                </a>
+                <a href="../../index.html#top" class="back-to-top">
+                    <span class="en">BACK TO HOME ↑</span>
+                    <span class="zh">返回首页 ↑</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="../js/main.js"></script>
+    <!-- Slideshow script - isolated, won't affect other pages -->
+    <script src="../js/slideshow.js"></script>
+</body>
+</html>

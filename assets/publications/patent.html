@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>一种用于低质量指静脉图像的手指上下边缘独立检测方法 — 发明专利</title>
+    <meta name="description" content="一种用于低质量指静脉图像的手指上下边缘独立检测方法. Chinese Invention Patent." />
+
+    <!-- Custom SVG Favicon (Baked in) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='90' fill='%2300b894'/%3E%3Cpath d='M116 103 H216 L136 219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 103 V219 M296 103 L346 149 L396 103 M396 103 V219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M116 409 L166 299 L216 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 409 L346 299 L396 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/subpages.css" />
+</head>
+<body>
+
+    <!-- Side Dock — Social Links -->
+    <aside class="side-dock" id="sideDock" aria-label="Social links">
+        <div class="dock-links">
+            <a href="https://twitter.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="X / Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path></svg>
+            </a>
+            <a href="https://github.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+            </a>
+            <a href="https://scholar.google.com/citations?hl=en&user=57ouxVcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10l-10-6-10 6 10 6 10-6z"/>
+                    <path d="M6 12v5l6 3 6-3v-5"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/7ahmadamin" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"></path></svg>
+            </a>
+        </div>
+        <button class="dock-toggle" id="dockToggle" aria-label="Toggle social links" aria-expanded="false">
+            <span class="toggle-label">Socials</span>
+        </button>
+    </aside>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../../index.html#top" class="nav-name" id="navName">
+                <span class="nav-name-text">MUHAMMAD AHMAD AMIN</span>
+            </a>
+            <div class="nav-links">
+                <a href="../../index.html#about"><span class="en">ABOUT</span><span class="zh">关于</span></a>
+                <a href="../../index.html#research"><span class="en">RESEARCH</span><span class="zh">研究</span></a>
+                <a href="../../index.html#experience"><span class="en">WORK</span><span class="zh">工作</span></a>
+                <a href="../../index.html#projects"><span class="en">FUNDING</span><span class="zh">基金</span></a>
+                <a href="../../index.html#publications"><span class="en">PAPERS</span><span class="zh">论文</span></a>
+                <a href="../../index.html#talks"><span class="en">TALKS</span><span class="zh">报告</span></a>
+                <a href="../../index.html#news"><span class="en">NEWS</span><span class="zh">动态</span></a>
+                <a href="../../index.html#contact"><span class="en">CONTACT</span><span class="zh">联系</span></a>
+            </div>
+            <div class="nav-actions">
+                <a href="../CV/Resume.pdf" class="cv-btn" download>
+                    <span class="en">CV ↓</span>
+                    <span class="zh">简历 ↓</span>
+                </a>
+                <button class="lang-btn lang-btn-desktop" aria-label="Toggle language">EN / 中</button>
+                <button class="lang-btn lang-btn-mobile" aria-label="Toggle language">EN / 中</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="subpage-hero" id="top">
+        <div class="hero-bg"></div>
+        <div class="subpage-hero-content">
+            <p class="hero-label">
+                <span class="en">PATENT</span><span class="zh">专利</span> · CNIPA · 发明专利证书
+            </p>
+            <h1 class="hero-title">
+                <span class="en">A Method for Independently Detecting Upper and Lower Finger Edges in Low-Quality Finger Vein Images</span>
+                <span class="zh">一种用于低质量指静脉图像的手指上下边缘独立检测方法</span>
+            </h1>
+
+            <div class="author-grid">
+                <span class="author-block">Y. Hu<sup>1</sup></span>
+                <span class="author-block"><a href="../../index.html#about">M. A. Amin</a><sup>1</sup></span>
+                <span class="author-block">D. Wen<sup>1</sup></span>
+                <span class="author-block">Y. Wang<sup>1</sup></span>
+                <span class="author-block">F. Liu<sup>1</sup></span>
+            </div>
+            <div class="affiliation-list">
+                <span><sup>1</sup><span class="en">School of Electronics and Information Engineering, South China University of Technology, Guangzhou, P.R. China</span><span class="zh">华南理工大学电子与信息工程学院，中国广州</span></span>
+            </div>
+
+            <div class="link-buttons">
+                <a href="Patents/Patent.png" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <span class="en">Certificate</span><span class="zh">证书</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Abstract -->
+    <section class="section section-white" id="abstract">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P1</span>
+                <p class="eyebrow"><span class="en">ABSTRACT</span><span class="zh">摘要</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What is the <em>problem</em> and what did we invent?</span>
+                <span class="zh">我们解决了什么<em>问题</em>？</span>
+            </h2>
+            <div class="abstract-block">
+                <p>
+                    <span class="en">Finger vein recognition is a highly secure and reliable biometric technology due to its internal physiological characteristics. However, in practical acquisition scenarios, low-quality finger vein images frequently arise from factors such as uneven illumination, finger displacement, and skin condition variations. Accurate finger edge detection is a critical preprocessing step for region-of-interest (ROI) extraction, yet conventional edge detection methods struggle with low-contrast boundaries in degraded images.</span>
+                    <span class="zh">指静脉识别因其内在的生理特征而成为一种高度安全可靠的生物特征识别技术。然而，在实际采集场景中，由于光照不均、手指位移和皮肤状况变化等因素，低质量指静脉图像频繁出现。准确的手指边缘检测是感兴趣区域（ROI）提取的关键预处理步骤，但传统的边缘检测方法在处理退化图像中的低对比度边界时面临困难。</span>
+                </p>
+                <p>
+                    <span class="en">This invention proposes a method for independently detecting the upper and lower edges of fingers in low-quality finger vein images. By decoupling the edge detection process for the top and bottom boundaries, the method adapts to asymmetric degradation patterns commonly observed in finger vein imaging. The approach robustly locates finger contours even under challenging conditions, enabling accurate ROI extraction for subsequent recognition tasks.</span>
+                    <span class="zh">本发明提出了一种用于低质量指静脉图像的手指上下边缘独立检测方法。通过将上下边界的边缘检测过程解耦，该方法能够适应指静脉成像中常见的非对称退化模式。即使在具有挑战性的条件下，该方法也能稳健地定位手指轮廓，为后续识别任务实现准确的ROI提取。</span>
+                </p>
+                <p>
+                    <span class="en">The proposed method addresses the limitations of global edge detection strategies by employing independent processing paths for upper and lower edges, accommodating the distinct intensity profiles and noise characteristics of each boundary. This independent detection framework significantly improves edge localization accuracy in low-quality images compared to conventional unified detection approaches.</span>
+                    <span class="zh">所提出的方法通过为上下边缘采用独立的处理路径来解决全局边缘检测策略的局限性，适应每个边界不同的强度分布和噪声特征。与常规统一检测方法相比，这种独立检测框架显著提高了低质量图像中的边缘定位精度。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaser -->
+    <section class="section section-black" id="teaser">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P2</span>
+                <p class="eyebrow"><span class="en">PATENT CERTIFICATE</span><span class="zh">专利证书</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Officially granted by the <em>China National Intellectual Property Administration</em>.</span>
+                <span class="zh">由国家知识产权局<em>正式授权</em>。</span>
+            </h2>
+            <div class="figure-grid single">
+                <div class="figure-item">
+                    <img src="Patents/Patent.png" alt="Fig. 1 — Chinese Invention Patent Certificate" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 1 — Chinese Invention Patent Certificate (发明专利证书) issued by CNIPA. Invention title: 一种用于低质量指静脉图像的手指上下边缘独立检测方法. Inventors: 胡永健; 穆罕默德·艾哈迈德·阿明; 文东霞; 王宇飞; 刘琲贝.</span>
+                        <span class="zh">图1 — 国家知识产权局颁发的中国发明专利证书。发明名称：一种用于低质量指静脉图像的手指上下边缘独立检测方法。发明人：胡永健；穆罕默德·艾哈迈德·阿明；文东霞；王宇飞；刘琲贝。</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Method -->
+    <section class="section section-white" id="method">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P3</span>
+                <p class="eyebrow"><span class="en">METHOD</span><span class="zh">方法</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Independent upper and lower edge <em>detection</em>.</span>
+                <span class="zh">上下边缘<em>独立检测</em>。</span>
+            </h2>
+            <div class="method-steps">
+                <div class="method-step">
+                    <span class="step-num">01</span>
+                    <div class="step-content">
+                        <h4><span class="en">Image Preprocessing and Enhancement</span><span class="zh">图像预处理与增强</span></h4>
+                        <p>
+                            <span class="en">The acquired finger vein image undergoes preprocessing to normalize illumination and reduce noise. Adaptive contrast enhancement is applied to compensate for uneven lighting conditions, preparing the image for robust edge detection.</span>
+                            <span class="zh">采集到的指静脉图像经过预处理以归一化光照并降低噪声。应用自适应对比度增强来补偿不均匀的光照条件，为稳健的边�ite检测准备图像。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">02</span>
+                    <div class="step-content">
+                        <h4><span class="en">Upper Edge Independent Detection</span><span class="zh">上边缘独立检测</span></h4>
+                        <p>
+                            <span class="en">The upper finger edge is detected through an independent processing path that analyzes the intensity gradient profile along the vertical direction. The method accounts for the specific characteristics of the upper boundary, including typical illumination falloff and skin texture patterns.</span>
+                            <span class="zh">上边缘通过独立处理路径进行检测，该路径分析垂直方向上的强度梯度分布。该方法考虑了上边界的特定特征，包括典型的光照衰减和皮肤纹理模式。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">03</span>
+                    <div class="step-content">
+                        <h4><span class="en">Lower Edge Independent Detection</span><span class="zh">下边缘独立检测</span></h4>
+                        <p>
+                            <span class="en">Similarly, the lower finger edge is detected through a separate independent path optimized for the lower boundary's distinct intensity profile. This decoupled approach allows the method to handle asymmetric degradation where upper and lower edges exhibit different quality characteristics.</span>
+                            <span class="zh">类似地，下边缘通过针对下边界不同强度分布优化的独立路径进行检测。这种解耦方法允许该方法处理上下边缘表现出不同质量特征的非对称退化情况。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">04</span>
+                    <div class="step-content">
+                        <h4><span class="en">ROI Extraction and Refinement</span><span class="zh">ROI提取与细化</span></h4>
+                        <p>
+                            <span class="en">The independently detected upper and lower edges are combined to define the finger region. The region of interest is extracted and refined for subsequent vein pattern recognition, ensuring accurate localization despite low image quality.</span>
+                            <span class="zh">独立检测到的上下边缘被组合以定义手指区域。提取并细化感兴趣区域用于后续的静脉模式识别，确保即使在低图像质量下也能准确定位。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="section section-black" id="results">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P4</span>
+                <p class="eyebrow"><span class="en">ADVANTAGES</span><span class="zh">优势</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Key <em>benefits</em> of the proposed invention.</span>
+                <span class="zh">所提发明的关键<em>优势</em>。</span>
+            </h2>
+
+            <div class="statement-strip" style="margin-top:0; border-top:none; padding-top:0;">
+                <h3><span class="en">Robustness to Low-Quality Images</span><span class="zh">对低质量图像的鲁棒性</span></h3>
+                <p>
+                    <span class="en">By independently processing upper and lower edges, the method adapts to asymmetric degradation patterns that commonly occur in finger vein imaging. This independent detection strategy significantly outperforms unified approaches when one edge is substantially more degraded than the other.</span>
+                    <span class="zh">通过独立处理上下边缘，该方法能够适应指静脉成像中常见的非对称退化模式。当一条边缘比另一条退化严重时，这种独立检测策略显著优于统一处理方法。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Improved Edge Localization Accuracy</span><span class="zh">提高边缘定位精度</span></h3>
+                <p>
+                    <span class="en">The decoupled edge detection framework allows each boundary to be processed with parameters and thresholds optimized for its specific characteristics. This customization leads to more precise edge localization, directly improving the quality of ROI extraction.</span>
+                    <span class="zh">解耦的边缘检测框架允许每个边界使用针对其特定特征优化的参数和阈值进行处理。这种定制化带来了更精确的边缘定位，直接提高了ROI提取的质量。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Enhanced Recognition Performance</span><span class="zh">增强识别性能</span></h3>
+                <p>
+                    <span class="en">Accurate edge detection and ROI extraction are foundational to reliable finger vein recognition. The proposed method's robust preprocessing ensures that subsequent feature extraction and matching stages operate on high-quality region data, improving overall system accuracy.</span>
+                    <span class="zh">准确的边缘检测和ROI提取是可靠指静脉识别的基础。所提方法的稳健预处理确保后续特征提取和匹配阶段在高质量区域数据上运行，提高整体系统准确率。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Limitations -->
+    <section class="section section-white" id="limitations">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P5</span>
+                <p class="eyebrow"><span class="en">SCOPE & APPLICATIONS</span><span class="zh">范围与应用</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Where this <em>invention</em> applies.</span>
+                <span class="zh">本<em>发明</em>的应用领域。</span>
+            </h2>
+            <div class="limitations-box">
+                <p>
+                    <span class="en"><strong>Biometric security systems.</strong> The invention is directly applicable to finger vein recognition systems deployed in access control, financial authentication, and personal device security where imaging conditions may vary.</span>
+                    <span class="zh"><strong>生物特征安全系统。</strong>本发明可直接应用于部署在门禁控制、金融认证和个人设备安全中的指静脉识别系统，这些场景中的成像条件可能各不相同。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Medical imaging preprocessing.</strong> The independent edge detection approach can be extended to other medical imaging modalities where anatomical boundaries need robust localization under varying quality conditions.</span>
+                    <span class="zh"><strong>医学图像预处理。</strong>独立边缘检测方法可扩展到其他医学成像模态，这些模态需要在不同质量条件下对解剖边界进行稳健定位。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Embedded and mobile platforms.</strong> The method's efficient processing pipeline makes it suitable for implementation on resource-constrained embedded systems and mobile biometric devices.</span>
+                    <span class="zh"><strong>嵌入式和移动平台。</strong>该方法高效的处理流程使其适合在资源受限的嵌入式系统和移动生物特征设备上实现。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BibTeX -->
+    <section class="section section-black" id="bibtex">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P6</span>
+                <p class="eyebrow"><span class="en">PATENT INFO</span><span class="zh">专利信息</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Cite this <em>patent</em>.</span>
+                <span class="zh">引用此<em>专利</em>。</span>
+            </h2>
+            <div class="bibtex-block" id="bibtexBlock">
+                <pre><code id="bibtexCode">@patent{hu2020finger,
+  author    = {Hu, Yongjian and Amin, Muhammad Ahmad and Wen, Dongxia and Wang, Yufei and Liu, Feibei},
+  title     = {一种用于低质量指静脉图像的手指上下边缘独立检测方法},
+  title_en  = {A Method for Independently Detecting Upper and Lower Finger Edges in Low-Quality Finger Vein Images},
+  type      = {Chinese Invention Patent},
+  country   = {China},
+  assignee  = {South China University of Technology},
+  year      = {2020},
+  number    = {ZL 2018 1 XXXXXXX.X}
+}</code></pre>
+                <button class="btn bibtex-copy" id="bibtexCopy" aria-label="Copy BibTeX citation">
+                    <span class="en">COPY CITATION</span><span class="zh">复制引用</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Copyright -->
+    <section class="section section-white" id="copyright">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P7</span>
+                <p class="eyebrow"><span class="en">COPYRIGHT NOTICE</span><span class="zh">版权声明</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Patent <em>Rights</em> & Usage.</span>
+                <span class="zh">专利<em>权利</em>与使用。</span>
+            </h2>
+            <div class="abstract-block">
+                <p style="font-size:14px; color:var(--gray-dark);">
+                    <span class="en">© China National Intellectual Property Administration (CNIPA). This invention patent is protected under Chinese intellectual property law. Unauthorized reproduction, manufacturing, use, or sale of the patented technology is prohibited. This page is a personal academic landing page for informational purposes only.</span>
+                    <span class="zh">© 中国国家知识产权局（CNIPA）。本发明专利受中国知识产权法保护。禁止未经授权复制、制造、使用或销售该专利技术。本页面仅为信息展示目的的个人学术着陆页。</span>
+                </p>
+                <p style="font-size:14px; color:var(--gray-dark); margin-top:12px;">
+                    <span class="en">The patent certificate displayed on this page is reproduced for academic and portfolio purposes. All rights belong to the patent holders and CNIPA.</span>
+                    <span class="zh">本页面展示的专利证书仅为学术和作品集目的而转载。所有权利归专利持有人和国家知识产权局所有。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related -->
+    <section class="section section-black" id="related">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P8</span>
+                <p class="eyebrow"><span class="en">RELATED WORK</span><span class="zh">相关工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">More from our <em>group</em>.</span>
+                <span class="zh">来自我们<em>团队</em>的更多工作。</span>
+            </h2>
+            <div class="related-grid">
+                <a href="Ij-2020.html" class="related-item">
+                    <span class="related-venue">IJIGSP · 2020</span>
+                    <h4><span class="en">Detecting Video Inter-Frame Forgeries Based on CNN</span><span class="zh">基于CNN的视频帧间伪造检测</span></h4>
+                    <p><span class="en">Video forensic detection using transfer learning and confidence scoring.</span><span class="zh">使用迁移学习和置信度评分的视频取证检测。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="ieee_tce.html" class="related-item">
+                    <span class="related-venue">IEEE TCE · 2026</span>
+                    <h4><span class="en">Trustworthy Deepfake Defense via Frequency-Preserving Resizing</span><span class="zh">基于频域保持缩放的可信深度伪造防御</span></h4>
+                    <p><span class="en">Two-stage forensic defense with FA-IPNet and AFE-FDNet.</span><span class="zh">基于FA-IPNet和AFE-FDNet的两阶段取证防御。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="dsp.html" class="related-item">
+                    <span class="related-venue">Digital Signal Processing · 2024</span>
+                    <h4><span class="en">Exploring Varying Color Spaces through Representative Forgery Learning</span><span class="zh">通过代表性伪造学习探索多色彩空间</span></h4>
+                    <p><span class="en">Multi-color-space framework for deepfake detection.</span><span class="zh">面向深度伪造检测的多色彩空间框架。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer section-white">
+        <div class="container">
+            <p>
+                <span class="en">© 2026 Muhammad Ahmad Amin. All rights reserved.</span>
+                <span class="zh">© 2026 Muhammad Ahmad Amin. 保留所有权利。</span>
+            </p>
+            <div class="footer-links">
+                <a href="#top" class="back-to-top">
+                    <span class="en">BACK TO TOP ↑</span>
+                    <span class="zh">回到顶部 ↑</span>
+                </a>
+                <a href="../../index.html#top" class="back-to-top">
+                    <span class="en">BACK TO HOME ↑</span>
+                    <span class="zh">返回首页 ↑</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="../js/main.js"></script>
+    <script>
+      // BibTeX copy handler (self-contained for template portability)
+      (function() {
+        const bibtexCopy = document.getElementById('bibtexCopy');
+        const bibtexCode = document.getElementById('bibtexCode');
+        const toast = document.getElementById('toast');
+        if (!bibtexCopy || !bibtexCode) return;
+
+        function showToast(msg) {
+          toast.textContent = msg;
+          toast.classList.add('show');
+          setTimeout(() => { toast.classList.remove('show'); }, 2500);
+        }
+
+        bibtexCopy.addEventListener('click', () => {
+          const text = bibtexCode.textContent;
+          navigator.clipboard.writeText(text).then(() => {
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          });
+        });
+      })();
+    </script>
+</body>
+</html>

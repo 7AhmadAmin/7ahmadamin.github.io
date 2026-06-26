@@ -1,247 +1,920 @@
-<!doctype html>
-<html lang="en" data-theme="dark">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Muhammad Ahmad Amin — Trustworthy ML & Multimedia Forensics</title>
-  <meta name="description" content="Muhammad Ahmad Amin — Postdoctoral Fellow in Cybersecurity, Trustworthy Machine Learning, and Multimedia Forensics at Sun Yat-sen University." />
-  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Mea+Culpa&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Muhammad Ahmad Amin — PostDoctoral Fellow Cybersecurity</title>
+    <meta name="description" content="Postdoctoral Fellow in Cybersecurity, Trustworthy Machine Learning, and Multimedia Forensics at Sun Yat-sen University." />
+
+    <!-- Custom SVG Favicon (Baked in) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='90' fill='%2300b894'/%3E%3Cpath d='M116 103 H216 L136 219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 103 V219 M296 103 L346 149 L396 103 M396 103 V219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M116 409 L166 299 L216 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 409 L346 299 L396 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  <div class="grain"></div>
-  <aside class="side-rail left">AI · FORENSICS · SECURITY · ML</aside>
-  <aside class="side-rail right">SKILLS · SYSTEMS · AGENTS · MEDIA</aside>
 
-  <header class="site-header" id="top">
-    <div class="ticker">
-      <span>MAA / 2026</span><span>VOL. 01 / ISSUE № 26</span><span>FILED UNDER <b>CYBERSECURITY · TRUSTWORTHY ML · MULTIMEDIA FORENSICS</b></span><span class="live-dot">● LIVE</span>
-    </div>
-    <nav class="nav-wrap" aria-label="Main navigation">
-      <a class="brand brand-text-only" href="#top" aria-label="Muhammad Ahmad Amin home"><span>Muhammad Ahmad Amin</span></a> 
-      <div class="nav-links">
-        <a href="#about"><span class="en">About</span><span class="zh">关于</span></a>
-        <a href="#research"><span class="en">Research</span><span class="zh">研究</span></a>
-        <a href="#projects"><span class="en">Projects</span><span class="zh">项目</span></a>
-        <a href="#publications"><span class="en">Publications</span><span class="zh">论文</span></a>
-        <a href="#news"><span class="en">News</span><span class="zh">动态</span></a>
-        <a href="assets/docs/Resume.pdf" target="_blank" rel="noreferrer"><span class="en">Resume</span><span class="zh">简历</span></a>
-        <!-- Research statement is linked in the hero action area. -->
-      </div>
-      <div class="top-actions">
-      <button class="top-pill email-copy" id="emailCopy" data-email="muhammad8@mail.sysu.edu.cn" title="Copy email"><span class="email-label">muhammad8@mail.sysu.edu.cn</span><span class="copy-mini">COPY</span></button>
-          <div class="socials" aria-label="Social links">
-          <a href="https://twitter.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M3 3h5.1l4.6 6.4L18.3 3H21l-7 8 7.5 10H16.4l-5-6.8L5.5 21H2.8l7.3-8.4L3 3Zm3.1 2 11.3 14h1.1L7.2 5H6.1Z"/></svg></a>
-          <a href="https://github.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.55.1.75-.24.75-.53v-2c-3.05.66-3.69-1.31-3.69-1.31-.5-1.28-1.22-1.62-1.22-1.62-1-.68.08-.67.08-.67 1.1.08 1.68 1.13 1.68 1.13.98 1.68 2.58 1.2 3.2.92.1-.72.38-1.2.7-1.48-2.44-.28-5-1.22-5-5.43 0-1.2.43-2.18 1.13-2.95-.11-.28-.49-1.4.11-2.9 0 0 .92-.3 3.02 1.13a10.4 10.4 0 0 1 5.5 0c2.1-1.43 3.02-1.13 3.02-1.13.6 1.5.22 2.62.11 2.9.7.77 1.13 1.75 1.13 2.95 0 4.22-2.57 5.15-5.02 5.42.39.34.75 1.01.75 2.04v3.02c0 .29.2.64.76.53A11.2 11.2 0 0 0 12 .8Z"/></svg></a>
-          <a href="https://scholar.google.com/citations?hl=en&user=57ouxVcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar"><svg viewBox="0 0 24 24"><path d="M12 3 2 10l10 7 10-7-10-7Zm0 2.5 6.4 4.5-6.4 4.5L5.6 10 12 5.5Z"/><path d="M5.6 13.3V17c0 1.5 2.9 3.2 6.4 3.2s6.4-1.7 6.4-3.2v-3.7L12 17.8l-6.4-4.5Z"/></svg></a>
-          <a href="https://www.linkedin.com/in/7ahmadamin" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.7 3.6a2.1 2.1 0 1 1 0 4.2 2.1 2.1 0 0 1 0-4.2ZM3 9h3.4v11.5H3V9Zm5.8 0h3.3v1.6h.05c.46-.88 1.6-1.8 3.3-1.8 3.53 0 4.18 2.32 4.18 5.35v6.35h-3.43v-5.63c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.16 1.46-2.16 2.96v5.73H8.8V9Z"/></svg></a>
+    <!-- Side Dock — Social Links -->
+    <aside class="side-dock" id="sideDock" aria-label="Social links">
+        <div class="dock-links">
+            <a href="https://twitter.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="X / Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path></svg>
+            </a>
+            <a href="https://github.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+            </a>
+            <a href="https://scholar.google.com/citations?hl=en&user=57ouxVcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10l-10-6-10 6 10 6 10-6z"/>
+                    <path d="M6 12v5l6 3 6-3v-5"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/7ahmadamin" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"></path></svg>
+            </a>
         </div>
 
-        <button class="icon-btn" id="themeToggle" aria-label="Toggle light or dark mode"><svg class="sun" viewBox="0 0 24 24"><path d="M12 4V1m0 22v-3M4 12H1m22 0h-3M5.64 5.64 3.5 3.5m17 17-2.14-2.14M18.36 5.64 20.5 3.5m-17 17 2.14-2.14M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z"/></svg><svg class="moon" viewBox="0 0 24 24"><path d="M21 14.8A8.5 8.5 0 0 1 9.2 3a8 8 0 1 0 11.8 11.8Z"/></svg></button>
-        <button class="icon-btn lang-btn" id="langToggle" title="Toggle English/Chinese" aria-label="Toggle English/Chinese">中 / EN</button>
-      </div>
+        <button class="dock-toggle" id="dockToggle" aria-label="Toggle social links" aria-expanded="false">
+            <span class="toggle-label">Socials</span>
+        </button>
+    </aside>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#top" class="nav-name" id="navName">
+                <span class="nav-name-text">MUHAMMAD AHMAD AMIN</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#about"><span class="en">ABOUT</span><span class="zh">关于</span></a>
+                <a href="#research"><span class="en">RESEARCH</span><span class="zh">研究</span></a>
+                <a href="#experience"><span class="en">WORK</span><span class="zh">工作</span></a>
+                <a href="#projects"><span class="en">FUNDING</span><span class="zh">基金</span></a>
+                <a href="#publications"><span class="en">PAPERS</span><span class="zh">论文</span></a>
+                <a href="#talks"><span class="en">TALKS</span><span class="zh">报告</span></a>
+                <a href="#news"><span class="en">NEWS</span><span class="zh">动态</span></a>
+                <a href="#contact"><span class="en">CONTACT</span><span class="zh">联系</span></a>
+                <!-- RESUME link removed – now a button in nav-actions -->
+            </div>
+
+            <div class="nav-actions">
+                <!-- CV Download Button -->
+                <a href="assets/CV/Resume.pdf" class="cv-btn" download>
+                    <span class="en">CV ↓</span>
+                    <span class="zh">简历 ↓</span>
+                </a>
+                <!-- Language Toggle -->
+                <button class="lang-btn lang-btn-desktop" aria-label="Toggle language">EN / 中</button>
+                <button class="lang-btn lang-btn-mobile" aria-label="Toggle language">EN / 中</button>
+            </div>
+        </div>
     </nav>
-  </header>
-  
-  <section class="design-ledger" aria-label="OpenDesign-inspired metadata ledger">
-  <span class="status-dot"></span><b>SUN YAT-SEN UNIVERSITY (SYSU)</b>
-  <span>VOL. 02 / ISSUE № 27</span>
-  <span><b>HOME</b> / SHENZHEN / CHINA / EARTH</span>
-  <span>22.5431°N · 114.0579°E</span>
-  <span class="accent">♥ MMAXMFAXFXH</span>
-</section>
 
-  <main>
-    <section class="hero section-frame plate">
-      <div class="plate-top"><span>FIG. 01 / MUHAMMAD AHMAD AMIN</span><span>PLATE № 01</span></div>
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="line"></span><span class="en">Personal Page · № 01</span><span class="zh">开放式个人研究工作室 · № 01</span></p>
-        <!--h1><span class="name-script">Muhammad Ahmad Amin</span></h1-->
-        <h2><span class="en">Trustworthy <em>machine learning</em> for multimedia forensics.</span><span class="zh">面向多媒体取证的可信机器学习。</span></h2>
-        <p class="hero-text"><span class="en">Postdoctoral Fellow in Cybersecurity & Multimedia Forensics at <b>School of Cyber Science and Technology (SCST), Sun Yat-sen University (SYSU)</b>, Shenzhen, China. I build robust, interpretable, and privacy-aware AI systems for deepfake detection, biometric security, and real-world distribution shift.</span><span class="zh">中山大学网络安全与多媒体取证博士后，研究鲁棒、可解释、隐私保护的人工智能系统，应用于深度伪造检测、生物特征安全与真实场景分布偏移。</span></p>
-        <div class="hero-buttons">
-          <a class="btn primary" href="#publications"><span class="en">View publications</span><span class="zh">查看论文</span> ↗</a>
-          <a class="btn" href="assets/docs/Research_Statement.pdf" target="_blank" rel="noreferrer"><span class="en">Research statement</span><span class="zh">研究陈述</span> ●</a>
+    <!-- Hero -->
+    <header class="hero" id="top">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <p class="hero-label">
+                <span class="en">POSTDOCTORAL FELLOW</span><span class="zh">博士后研究员</span> ·
+                <a href="https://scst.sysu.edu.cn/teacher/356" target="_blank" rel="noopener noreferrer">
+                    <span class="en">SYSU</span><span class="zh">中山大学</span>
+                </a> · 2026
+            </p>
+            <h1 class="hero-title">
+                <span class="en">MUHAMMAD<br>AHMAD AMIN</span>
+                <span class="zh">穆罕默德<br>艾哈迈德·阿明</span>
+            </h1>
+            <p class="hero-subtitle">
+                <span class="en">Trustworthy machine learning for cybersecurity & multimedia forensics.</span>
+                <span class="zh">面向多媒体取证的可信机器学习。</span>
+            </p>
+            <div class="hero-meta">
+                <a href="#projects" class="hero-meta-link">
+                    <span class="en">4 ACTIVE PROJECTS</span><span class="zh">4个获得资助的在研项目</span>
+                </a>
+                <span class="sep">·</span>
+                <a href="#experience" class="hero-meta-link">
+                    <span class="en">10+ YEARS R&D</span><span class="zh">10年以上研发经验</span>
+                </a>
+                <span class="sep">·</span>
+                <a href="#publications" class="hero-meta-link">
+                    <span class="en">7+ PAPERS</span><span class="zh">7篇以上同行评审论文</span>
+                </a>
+                <span class="sep">·</span>
+                <a href="#patent" class="hero-meta-link">
+                    <span class="en">1 PATENT</span><span class="zh">1项授权专利</span>
+                </a>
+            </div>
+            <div class="hero-scroll">
+                <span></span>
+            </div>
         </div>
-        <div class="micro-stats">
-          <span><b>4</b> funded active projects</span><span><b>10+</b> years R&D experience</span><span><b>7+</b>                peer-reviewed papers</span><span><b>1</b> granted patent</span>
+    </header>
+
+    <!-- About -->
+    <section class="section section-white" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ 02</span>
+                <p class="eyebrow"><span class="en">ABOUT / MANIFESTO</span><span class="zh">关于 / 宣言</span></p>
+            </div>
+            <div class="about-layout">
+                <div class="about-content">
+                    <h2 class="section-heading">
+                        <span class="en">I design <em>forensic AI</em> that is useful, explainable, and deployable.</span>
+                        <span class="zh">我致力于设计有用、可解释、可部署的<em>取证人工智能</em>。</span>
+                    </h2>
+                    <div class="body-copy">
+                        <p>
+                            <span class="en">My research addresses real-world cybersecurity and AI-safety challenges at the intersection of trustworthy machine learning, computer vision, and multimedia security. I develop robust, interpretable, and fair AI systems for deepfake detection, forensics, biometric anti-spoofing, and privacy-preserving AI.</span>
+                            <span class="zh">我的研究关注可信机器学习、计算机视觉与多媒体安全交叉处的真实网络安全与 AI 安全问题，目标是构建鲁棒、可解释、公平的深度伪造检测、多媒体取证、生物特征防伪与隐私保护 AI 系统。</span>
+                        </p>
+                        <p>
+                            <span class="en">I am interested in human-centered, higher-level, human-friendly ML concepts that make model behavior understandable to researchers, investigators, engineers, and the wider public.</span>
+                            <span class="zh">我关注以人为中心、更高层次、易于理解的机器学习表达方式，使研究人员、调查人员、工程师和公众都能理解模型行为。</span>
+                        </p>
+                        <div class="tag-list">
+                            <span class="tag"><span class="en">DEEPFAKE DETECTION</span><span class="zh">深度伪造检测</span></span>
+                            <span class="tag"><span class="en">MULTIMEDIA FORENSICS</span><span class="zh">多媒体取证</span></span>
+                            <span class="tag"><span class="en">TRUSTWORTHY ML</span><span class="zh">可信机器学习</span></span>
+                            <span class="tag"><span class="en">PRIVACY-PRESERVING AI</span><span class="zh">隐私保护 AI</span></span>
+                            <span class="tag"><span class="en">BIOMETRIC SECURITY</span><span class="zh">生物特征安全</span></span>
+                            <span class="tag"><span class="en">DISTRIBUTION SHIFT</span><span class="zh">分布偏移</span></span>
+                            <span class="tag"><span class="en">VISION-LANGUAGE MODELS</span><span class="zh">视觉语言模型</span></span>
+                            <span class="tag"><span class="en">LARGE LANGUAGE MODELS</span><span class="zh">大语言模型</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-portrait">
+                    <img src="assets/picture/Ahmad.png" alt="Portrait of Muhammad Ahmad Amin" loading="lazy" />
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="hero-art">
-        <div class="art-label top">№ 07</div>
-        <img src="assets/images/portrait.png" alt="Portrait of Muhammad Ahmad Amin" />
-        <span class="sun-disc"></span><span class="gold-disc"></span><span class="cloud cloud-a"></span><span class="cloud cloud-b"></span><span class="grid-dots"></span><span class="cube-stack"></span><span class="paper-rock"></span>
-        
-      </div>
-      <div class="plate-bottom"><span class="live-dot">V1.0 / PERSONAL PAGE</span><span>POSTDOC · SCST · SYSU</span><span>22.5430° N · 114.0579° E</span></div>
-    </section>
-    
-    <section class="field-strip">
-      <span class="field-title">FROM THE FIELD</span>
-      <span><span class="en">SYSU · Shenzhen</span><span class="zh">中山大学·深圳</span></span>
-      <span><span class="en">SCUT · Guangzhou</span><span class="zh">华南理工·广州</span></span>
-      <span><span class="en">Warwick · Coventry</span><span class="zh">华威大学·考文垂</span></span>
-      <span><span class="en">Deakin · Victoria</span><span class="zh">迪肯大学·维多利亚州</span></span>
-      <span><span class="en">UNSW · Canberra</span><span class="zh">新南威尔士大学·堪培拉</span></span>
-      <span><span class="en">GRG Banking · Guangzhou</span><span class="zh">广电运通·广州</span></span>
     </section>
 
-    <section id="about" class="about section-frame two-col">
-      <div>
-        <p class="eyebrow"><span class="line"></span><span class="en">About / manifesto · № 02</span><span class="zh">关于 / 宣言 · № 02</span></p>
-        <h2 class="big-heading"><span class="en">I design <em>forensic AI</em> that is useful, explainable, and deployable.</span><span class="zh">我致力于设计有用、可解释、可部署的取证人工智能。</span></h2>
-      </div>
-      <div class="body-copy">
-        <p><span class="en">My research addresses real-world cybersecurity and AI-safety challenges at the intersection of trustworthy machine learning, computer vision, and multimedia security. I develop robust, interpretable, and fair AI systems for deepfake detection, forensics, biometric anti-spoofing, and privacy-preserving AI.</span><span class="zh">我的研究关注可信机器学习、计算机视觉与多媒体安全交叉处的真实网络安全与 AI 安全问题，目标是构建鲁棒、可解释、公平的深度伪造检测、多媒体取证、生物特征防伪与隐私保护 AI 系统。</span></p>
-        <p><span class="en">I am interested in human-centered, higher-level, human-friendly ML concepts that make model behavior understandable to researchers, investigators, engineers, and the wider public.</span><span class="zh">我关注以人为中心、更高层次、易于理解的机器学习表达方式，使研究人员、调查人员、工程师和公众都能理解模型行为。</span></p>
-        <ul class="tag-list">
-          <li><span class="en">Deepfake Detection</span><span class="zh">深度伪造检测</span></li>
-          <li><span class="en">Multimedia Forensics</span><span class="zh">多媒体取证</span></li>
-          <li><span class="en">Trustworthy ML</span><span class="zh">可信机器学习</span></li>
-          <li><span class="en">Privacy-Preserving AI</span><span class="zh">隐私保护 AI</span></li>
-          <li><span class="en">Biometric Security</span><span class="zh">生物特征安全</span></li>
-          <li><span class="en">Distribution Shift</span><span class="zh">分布偏移</span></li>
-          <li><span class="en">Vision-Language Models</span><span class="zh">视觉语言模型</span></li>
-          <li><span class="en">Large Language Models</span><span class="zh">大语言模型</span></li>
-        </ul>
-      </div>
+    <!-- Research -->
+    <section class="section section-black" id="research">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ 03</span>
+                <p class="eyebrow"><span class="en">RESEARCH AREAS</span><span class="zh">研究方向</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Four focus areas, one mission, <em>trustworthy AI</em> for the real world.</span>
+                <span class="zh">四大研究方向，同一使命，为真实世界打造<em>可信AI</em>。</span>
+            </h2>
+            <div class="cards-grid four">
+                <article class="card">
+                    <span class="card-num">01</span>
+                    <h3><span class="en">AI-driven cybersecurity & forensics</span><span class="zh">AI驱动的网络安全与取证</span></h3>
+                    <p><span class="en">AI-generated multimedia content detection, deepfake forensics, and finger vein recognition/security.</span><span class="zh">AI生成多媒体内容检测、深度伪造取证、指静脉识别与安全。</span></p>
+                </article>
+                <article class="card">
+                    <span class="card-num">02</span>
+                    <h3><span class="en">Trustworthy & privacy-preserving AI</span><span class="zh">可信与隐私保护AI</span></h3>
+                    <p><span class="en">Fairness, interpretability, adversarial robustness, secure data pipelines, and transparent forensic reasoning.</span><span class="zh">公平性、可解释性、对抗鲁棒性、安全数据管道与透明取证推理。</span></p>
+                </article>
+                <article class="card">
+                    <span class="card-num">03</span>
+                    <h3><span class="en">Learning under data distribution shift</span><span class="zh">数据分布偏移下的学习</span></h3>
+                    <p><span class="en">Unsupervised, semi-supervised, and self-supervised learning for threat environments that differ from curated datasets.</span><span class="zh">面向与精心整理的数据集不同的威胁环境的无监督、半监督与自监督学习。</span></p>
+                </article>
+                <article class="card">
+                    <span class="card-num">04</span>
+                    <h3><span class="en">Multimodal and higher-level evidence</span><span class="zh">多模态与高层级证据</span></h3>
+                    <p><span class="en">Alternative color spaces, frequency statistics, temporal coherence, audio-visual cues, VLMs, and LLM-driven workflows.</span><span class="zh">替代色彩空间、频域统计、时序一致性、音视频线索、视觉语言模型与大语言模型驱动的工作流。</span></p>
+                </article>
+            </div>
+            <div class="statement-strip">
+                <h3><span class="en">Current Research Questions</span><span class="zh">当前研究问题</span></h3>
+                <p><span class="en">Can deepfake predictions be explained in an interpretable way? Do similar detectors use different evidence? Can black-box explanations match model-specific explanations? Can temporal and audio information yield more coherent explanations? How can explanations improve models and datasets?</span><span class="zh">深度伪造检测的预测能否以可解释方式呈现？相似检测器是否使用不同证据？黑盒解释能否接近模型特定解释？时序与音频信息能否产生更一致的解释？解释性如何反向改进模型与数据集？</span></p>
+            </div>
+        </div>
     </section>
 
-    <section id="research" class="research section-frame">
-      <p class="eyebrow"><span class="line"></span><span class="en">Research areas · № 03</span><span class="zh">研究方向 · № 03</span></p>
-      <div class="cards four">
-        <article class="card"><span class="num">01</span><h3><span class="en">AI-driven cybersecurity & forensics</span><span class="zh">AI驱动的网络安全与取证</span></h3><p><span class="en">AI-generated multimedia content detection, deepfake forensics, and finger vein recognition/security.</span><span class="zh">AI生成多媒体内容检测、深度伪造取证、指静脉识别与安全。</span></p></article>
-        <article class="card"><span class="num">02</span><h3><span class="en">Trustworthy & privacy-preserving AI</span><span class="zh">可信与隐私保护AI</span></h3><p><span class="en">Fairness, interpretability, adversarial robustness, secure data pipelines, and transparent forensic reasoning.</span><span class="zh">公平性、可解释性、对抗鲁棒性、安全数据管道与透明取证推理。</span></p></article>
-        <article class="card"><span class="num">03</span><h3><span class="en">Learning under data distribution shift</span><span class="zh">数据分布偏移下的学习</span></h3><p><span class="en">Unsupervised, semi-supervised, and self-supervised learning for threat environments that differ from curated datasets.</span><span class="zh">面向与精心整理的数据集不同的威胁环境的无监督、半监督与自监督学习。</span></p></article>
-        <article class="card"><span class="num">04</span><h3><span class="en">Multimodal and higher-level evidence</span><span class="zh">多模态与高层级证据</span></h3><p><span class="en">Alternative color spaces, frequency statistics, temporal coherence, audio-visual cues, VLMs, and LLM-driven workflows.</span><span class="zh">替代色彩空间、频域统计、时序一致性、音视频线索、视觉语言模型与大语言模型驱动的工作流。</span></p></article>
-      </div>
-      <div class="statement-strip">
-        <h3><span class="en">Current Research Questions</span><span class="zh">当前研究问题</span></h3>
-        <p><span class="en">Can deepfake predictions be explained in an interpretable way? Do similar detectors use different evidence? Can black-box explanations match model-specific explanations? Can temporal and audio information yield more coherent explanations? How can explanations improve models and datasets?</span><span class="zh">深度伪造检测的预测能否以可解释方式呈现？相似检测器是否使用不同证据？黑盒解释能否接近模型特定解释？时序与音频信息能否产生更一致的解释？解释性如何反向改进模型与数据集？</span></p>
-      </div>
+    <!-- Education -->
+    <section class="section section-white" id="education">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ 04</span>
+                <p class="eyebrow"><span class="en">EDUCATION</span><span class="zh">教育</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en"><em>Academic</em> path.</span>
+                <span class="zh"><em>学术</em>路径。</span>
+            </h2>
+            <div class="timeline">
+                <div class="time-item">
+                    <div class="time-meta">
+                        <span class="time-date">2024 — PRESENT</span>
+                        <span class="time-loc"><span class="en">Shenzhen, China</span><span class="zh">中国·深圳</span></span>
+                    </div>
+                    <h3><span class="en">Postdoctoral Fellow, Cybersecurity and Multimedia Forensics</span><span class="zh">博士后研究员，可信机器学习与网络安全</span></h3>
+                    <p class="time-dept"><span class="en">School of Cyber Science and Technology</span><span class="zh">网络空间安全学院</span></p>
+                    <p class="time-uni"><span class="en">Sun Yat-sen University</span><span class="zh">中山大学</span></p>
+                    <p class="time-details"><span class="detail-label"><span class="en">Areas:</span><span class="zh">研究方向：</span></span> <span class="en">Multimedia Forensics, Trustworthy Machine Learning, VLMs, and LLMs.</span><span class="zh">多媒体取证、可信机器学习、视觉语言模型、大语言模型。</span></p>
+                </div>
+                <div class="time-item">
+                    <div class="time-meta">
+                        <span class="time-date">2018 — 2024</span>
+                        <span class="time-loc"><span class="en">Guangzhou, China</span><span class="zh">中国·广州</span></span>
+                    </div>
+                    <h3><span class="en">Ph.D./D.Eng., Information and Communication Engineering</span><span class="zh">博士，信息与通信工程</span></h3>
+                    <p class="time-dept"><span class="en">School of Electronic and Information Engineering</span><span class="zh">电子与信息学院</span></p>
+                    <p class="time-uni"><span class="en">South China University of Technology</span><span class="zh">华南理工大学</span></p>
+                    <p class="time-details"><span class="detail-label"><span class="en">Areas:</span><span class="zh">研究方向：</span></span> <span class="en">Multimedia Deepfake Forensics, Machine Learning, Privacy Preservation.</span><span class="zh">多媒体深度伪造取证、机器学习、隐私保护。</span></p>
+                    <p class="time-details"><span class="detail-label"><span class="en">Awards:</span><span class="zh">获奖：</span></span><span class="en">Excellent Graduate Student.</span><span class="zh">优秀研究生奖。</span></p>
+                    <p class="time-details"><span class="detail-label"><span class="en">Fellowships:</span><span class="zh">奖学金：</span></span> <span class="en">Chinese Government Fellowship; Guangdong Outstanding International Student.</span><span class="zh">中国政府全额奖学金、广东省来粤留学生奖学金。</span></p>
+                </div>
+                <div class="time-item">
+                    <div class="time-meta">
+                        <span class="time-date">2016 — 2018</span>
+                        <span class="time-loc"><span class="en">Guangzhou, China</span><span class="zh">中国·广州</span></span>
+                    </div>
+                    <h3><span class="en">M.Eng., Information and Communication Engineering</span><span class="zh">硕士，信息与通信工程</span></h3>
+                    <p class="time-dept"><span class="en">School of Electronic and Information Engineering</span><span class="zh">电子与信息学院</span></p>
+                    <p class="time-uni"><span class="en">South China University of Technology</span><span class="zh">华南理工大学</span></p>
+                    <p class="time-details"><span class="detail-label"><span class="en">Areas:</span><span class="zh">研究方向：</span></span><span class="en">Finger Vein Biometrics, Machine Learning, Information Security.</span><span class="zh">指静脉生物特征识别、机器学习、信息安全。</span></p>
+                    <p class="time-details"><span class="detail-label"><span class="en">Awards:</span><span class="zh">获奖：</span></span><span class="en">Excellent Graduate Student.</span><span class="zh">优秀研究生奖。</span></p>
+                    <p class="time-details"><span class="detail-label"><span class="en">Fellowships:</span><span class="zh">奖学金：</span></span><span class="en">Chinese Government Fellowship.</span><span class="zh">中国政府全额奖学金。</span></p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="profile" class="section-frame split-list">
-      <div>
-        <p class="eyebrow"><span class="line"></span><span class="en">Education · № 04</span><span class="zh">教育与经历 · № 04</span></p>
-        <h2 class="big-heading"><span class="en"><em>Academic</em> path and <em>professional</em> roles.</span><span class="zh"><em>学术</em>路径与<em>职业</em>角色。</span></h2>
-      </div>
-      <div class="timeline">
-        <div class="time-item"><span>Sept. 2024 — Present</span><h3><span class="en">Postdoctoral Fellow, Trustworthy ML and Cybersecurity</span><span class="zh">博士后研究员，可信机器学习与网络安全</span></h3><p><span class="en">School of Cyber Science and Technology, Sun Yat-sen University, Shenzhen. Areas: multimedia forensics, trustworthy ML, VLMs, and LLMs. Active core member on national/provincial funded projects.</span><span class="zh">中山大学网络空间安全学院，深圳。研究方向：多媒体取证、可信机器学习、视觉语言模型、大语言模型。国家级/省级项目核心成员。</span></p></div>
-        <div class="time-item"><span>Sept. 2018 — Jun. 2024</span><h3><span class="en">Ph.D./D.Eng., Information and Communication Engineering</span><span class="zh">博士，信息与通信工程</span></h3><p><span class="en">South China University of Technology (SCUT), Guangzhou. Areas: Multimedia deepfake forensics, ML, privacy preservation, and financial technology. Award & Scholarship: Excellent Graduate Student Award; Chinese Government Full Fellowship; Guangdong Outstanding International Student Scholarship.</span><span class="zh">华南理工大学，广州。研究方向：多媒体深度伪造取证、机器学习、隐私保护、金融科技。获奖与奖学金：优秀研究生奖、中国政府全额奖学金、广东省来粤留学生奖学金。</span></p></div>
-        <div class="time-item"><span>Sept. 2016 — Jun. 2018</span><h3><span class="en">M.Eng., Information and Communication Engineering</span><span class="zh">硕士，信息与通信工程</span></h3><p><span class="en">South China University of Technology. Areas: Finger vein biometrics, machine learning, information security, and financial technology. Award & Scholarship: Excellent Graduate Student Award; Chinese Government Full Fellowship.</span><span class="zh">华南理工大学。研究方向：指静脉生物特征识别、机器学习、信息安全、金融科技。获奖与奖学金：优秀研究生奖、中国政府全额奖学金。</span></p></div>
-      </div>
+    <!-- Experience -->
+    <section class="section section-black" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ 05</span>
+                <p class="eyebrow"><span class="en">EXPERIENCE</span><span class="zh">经验</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Research, teaching, and <em>engineering</em>.</span>
+                <span class="zh">研究、教学与<em>工程</em>。</span>
+            </h2>
+            <div class="timeline">
+                <div class="time-item">
+                    <div class="time-meta">
+                        <span class="time-date">2024 — PRESENT</span>
+                        <span class="time-loc"><span class="en">Shenzhen, China</span><span class="zh">中国·深圳</span></span>
+                    </div>
+                    <h3><span class="en">Research Mentor</span><span class="zh">教学与研究导师</span></h3>
+                    <p class="time-dept"><span class="en">School of Cyber Science and Technology</span><span class="zh">网络空间安全学院</span></p>
+                    <p class="time-uni"><span class="en">Sun Yat-sen University</span><span class="zh">中山大学</span></p>
+                    <p><span class="en">Co-supervise graduate students, contribute to research funding proposals, delivered invited cybersecurity webinar at Consulate General of Pakistan, Guangzhou 2026.</span><span class="zh">共同指导研究生，撰写科研项目申请书，2026年在巴基斯坦驻广州总领事馆做特邀网络安全意识讲座。</span></p>
+                </div>
+                <div class="time-item">
+                    <div class="time-meta">
+                        <span class="time-date">2016 — 2024</span>
+                        <span class="time-loc"><span class="en">Guangzhou, China</span><span class="zh">中国·广州</span></span>
+                    </div>
+                    <h3><span class="en">Research Mentor</span><span class="zh">教学与研究导师</span></h3>
+                    <p class="time-dept"><span class="en">School of Electronic and Information Engineering</span><span class="zh">电子与信息学院</span></p>
+                    <p class="time-uni"><span class="en">South China University of Technology</span><span class="zh">华南理工大学</span></p>
+                    <p><span class="en">Assisted graduate-level course Information Hiding and Digital Investigation, including course design, labs, grading, project guidance, article reviews, and thesis writing.</span><span class="zh">协助研究生课程《信息隐藏与数字调查》，包括课程设计、实验、评分、项目指导、论文审阅与写作。</span></p>
+                </div>
+                <div class="time-item">
+                    <div class="time-meta">
+                        <span class="time-date">2022 — 2024</span>
+                        <span class="time-loc"><span class="en">Coventry, England</span><span class="zh">英国·考文垂</span></span>
+                    </div>
+                    <h3><span class="en">Research Fellow</span><span class="zh">研究员</span></h3>
+                    <p class="time-dept"><span class="en">Department of Computer Science</span><span class="zh">计算机科学系</span></p>
+                    <p class="time-uni"><span class="en">University of Warwick</span><span class="zh">华威大学</span></p>
+                    <p><span class="en">Published work on spectral frequency-domain analysis of color channels and representative forgery learning across color spaces.</span><span class="zh">发表关于色彩通道频域分析与跨色彩空间代表性伪造学习的工作。</span></p>
+                </div>
+                <div class="time-item">
+                    <div class="time-meta">
+                        <span class="time-date">2023 — 2024</span>
+                        <span class="time-loc"><span class="en">Victoria, Australia</span><span class="zh">澳大利亚·维多利亚州</span></span>
+                    </div>
+                    <h3><span class="en">Research Fellow</span><span class="zh">研究员</span></h3>
+                    <p class="time-dept"><span class="en">School of Information Technology</span><span class="zh">信息技术学院</span></p>
+                    <p class="time-uni"><span class="en">Deakin University</span><span class="zh">迪肯大学</span></p>
+                    <p><span class="en">Developed cross-domain characteristic analysis with a multi-domain transformer for deepfake detection.</span><span class="zh">开发了面向深度伪造检测的多域Transformer跨域特征分析框架。</span></p>
+                </div>
+                <div class="time-item">
+                    <div class="time-meta">
+                        <span class="time-date">2023 — 2024</span>
+                        <span class="time-loc"><span class="en">Canberra, Australia</span><span class="zh">澳大利亚·堪培拉</span></span>
+                    </div>
+                    <h3><span class="en">Research Fellow</span><span class="zh">研究员</span></h3>
+                    <p class="time-dept"><span class="en">School of Engineering and Information Technology / Australian Defence Force Academy</span><span class="zh">工程与信息技术学院 / 澳大利亚国防军学院</span></p>
+                    <p class="time-uni"><span class="en">University of New South Wales</span><span class="zh">新南威尔士大学</span></p>
+                    <p><span class="en">Developed temporal coherence-based deepfake video detection algorithms with improved cross-dataset performance.</span><span class="zh">开发了基于时序一致性的深度伪造视频检测算法，提高了跨数据集性能。</span></p>
+                </div>
+                <div class="time-item">
+                    <div class="time-meta">
+                        <span class="time-date">2017 — 2019</span>
+                        <span class="time-loc"><span class="en">Guangzhou, China</span><span class="zh">中国·广州</span></span>
+                    </div>
+                    <h3><span class="en">Algorithm Engineer</span><span class="zh">算法工程师</span></h3>
+                    <p class="time-dept"><span class="en">R&D Institute</span><span class="zh">研发中心</span></p>
+                    <p class="time-uni"><span class="en">GRG Banking Ltd.</span><span class="zh">广电运通</span></p>
+                    <p><span class="en">Researched and deployed real-time finger vein recognition systems, fake finger vein attack identification, and cross-count systems in banking and metro hardware.</span><span class="zh">研究并部署实时指静脉识别系统、伪造指静脉攻击识别、跨计数系统，应用于银行与地铁硬件。</span></p>
+                </div>
+            </div>
+        </div>
     </section>
 
-     <section id="experience" class="section-frame split-list">
-      <div>
-        <p class="eyebrow"><span class="line"></span><span class="en">Experience · № 05</span><span class="zh">经验 · № 05</span></p>
-        <h2 class="big-heading"><span class="en">Research, teaching, and <em>Engg</em>.</span><span class="zh">研究、教学与<em>工程</em>。</span></h2>
-      </div>
-      <div class="timeline compact">
-        <div class="time-item"><span>Sept. 2024 — Present</span><h3><span class="en">Research Mentor, SYSU</span><span class="zh">教学与研究导师，中山大学</span></h3><p><span class="en">Co-supervise graduate students, contribute to research funding proposals, and delivered an invited cybersecurity awareness webinar at the Consulate General of Pakistan, Guangzhou in 2026.</span><span class="zh">共同指导研究生，撰写科研项目申请书，2026年在巴基斯坦驻广州总领事馆做特邀网络安全意识网络研讨会。</span></p></div>
-        <div class="time-item"><span>Sept. 2016 — Jul. 2024</span><h3><span class="en">Teaching and Research Mentor, SCUT</span><span class="zh">教学与研究导师，华南理工大学</span></h3><p><span class="en">Assisted graduate-level course Information Hiding and Digital Investigation, including course design, labs, grading, project guidance, article reviews, and thesis writing.</span><span class="zh">协助研究生课程《信息隐藏与数字调查》，包括课程设计、实验、评分、项目指导、论文审阅与写作。</span></p></div>
-        <div class="time-item"><span>Sept. 2016 — Jul. 2024</span><h3><span class="en">Research Assistant, SCUT</span><span class="zh">研究助理，华南理工大学</span></h3><p><span class="en">Designed deep learning algorithms for multimedia forensics, deepfake detection, and finger vein biometric systems; published peer-reviewed papers and co-invented a granted patent.</span><span class="zh">设计多媒体取证、深度伪造检测、指静脉生物特征系统的深度学习算法；发表同行评审论文，共同发明授权专利。</span></p></div>
-        <div class="time-item"><span>Sept. 2022 — Feb. 2024</span><h3><span class="en">Research Fellow, University of Warwick</span><span class="zh">研究员，华威大学</span></h3><p><span class="en">Published work on spectral frequency-domain analysis of color channels and representative forgery learning across color spaces.</span><span class="zh">发表关于色彩通道频域分析与跨色彩空间代表性伪造学习的工作。</span></p></div>
-        <div class="time-item"><span>Mar. 2023 — Feb. 2024</span><h3><span class="en">Research Fellow, Deakin University</span><span class="zh">研究员，迪肯大学</span></h3><p><span class="en">Developed cross-domain characteristic analysis with a multi-domain transformer for deepfake detection.</span><span class="zh">开发了面向深度伪造检测的多域Transformer跨域特征分析框架。</span></p></div>
-        <div class="time-item"><span>Dec. 2023 — Mar. 2024</span><h3><span class="en">Research Fellow, UNSW Canberra / ADFA</span><span class="zh">研究员，新南威尔士大学堪培拉校区/ADFA</span></h3><p><span class="en">Developed temporal coherence-based deepfake video detection algorithms with improved cross-dataset performance.</span><span class="zh">开发了基于时序一致性的深度伪造视频检测算法，提高了跨数据集性能。</span></p></div>
-        <div class="time-item"><span>Oct. 2017 — Jul. 2019</span><h3><span class="en">Algorithm Engineer, GRG Banking Ltd.</span><span class="zh">算法工程师，广电运通</span></h3><p><span class="en">Researched and deployed real-time finger vein recognition systems, fake finger vein attack identification, overhead security analysis, and cross-count systems in banking and metro hardware.</span><span class="zh">研究并部署实时指静脉识别系统、伪造指静脉攻击识别、高空安全分析与跨计数系统，应用于银行与地铁硬件。</span></p></div>
-      </div>
+    <!-- Projects / Funding -->
+    <section class="section section-white" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ 06</span>
+                <p class="eyebrow"><span class="en">FUNDING, INDUSTRY & DEPLOYMENTS</span><span class="zh">基金、产业与部署</span></p>
+            </div>
+            <div class="subsection-head">
+                <span class="subsection-num mono"></span>
+                <p class="eyebrow"><span class="en">RESEARCH FUNDING & GRANTS</span><span class="zh">科研基金</span></p>
+            </div>
+            <div class="cards-grid two">
+                <article class="card wide">
+                    <span class="card-year">2026 — 2029</span>
+                    <h3><span class="en">NSFC Surface Project</span><span class="zh">国家自然科学基金面上项目</span></h3>
+                    <p class="industrial-partner"><span class="en">Partner: Sun Yat‑sen University</span><span class="zh">合作方：中山大学</span></p>
+                    <p>
+                        <span class="en">Grant No. <span class="mono">62572500</span> · Core Research Member</span>
+                        <span class="zh">项目号 <span class="mono">62572500</span> · 核心成员</span>
+                    </p>
+                    <p>
+                        <span class="en">Intelligent Video Processing Technology in the Encrypted Domain.</span>
+                        <span class="zh">加密域智能视频处理技术研究。</span>
+                    </p>
+                </article>
+
+                <article class="card wide">
+                    <span class="card-year">2024 — 2026</span>
+                    <h3><span class="en">NSFC Joint Fund</span><span class="zh">国家自然科学基金联合基金项目</span></h3>
+                    <p class="industrial-partner"><span class="en">Partner: Sun Yat‑sen University</span><span class="zh">合作方：中山大学</span></p>
+                    <p>
+                        <span class="en">Grant Nos. <span class="mono">U23B2022</span>, <span class="mono">U22A2030</span> · Core Research Member</span>
+                        <span class="zh">项目号 <span class="mono">U23B2022</span>, <span class="mono">U22A2030</span> · 核心成员</span>
+                    </p>
+                </article>
+
+                <article class="card wide">
+                    <span class="card-year">2024 — 2026</span>
+                    <h3><span class="en">Guangdong Major Project of Basic & Applied Basic Research</span><span class="zh">广东省基础与应用基础研究重大项目</span></h3>
+                    <p class="industrial-partner"><span class="en">Partner: Sun Yat‑sen University</span><span class="zh">合作方：中山大学</span></p>
+                    <p>
+                        <span class="en">Grant No. <span class="mono">2023B0303000010</span> · Core Research Member</span>
+                        <span class="zh">项目号 <span class="mono">2023B0303000010</span> · 核心成员</span>
+                    </p>
+                </article>
+
+                <article class="card wide">
+                    <span class="card-year">2018 — 2024</span>
+                    <h3><span class="en">Huangpu Development District S&T Foundation</span><span class="zh">广州开发区科技基金</span></h3>
+                    <p class="industrial-partner"><span class="en">Partner: South China University of Technology</span><span class="zh">合作方：华南理工</span></p>
+                    <p>
+                        <span class="en">Grant No. <span class="mono">2022GH15</span> · Core Research Member</span>
+                        <span class="zh">项目号 <span class="mono">2022GH15</span> · 核心成员</span>
+                    </p>
+                </article>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-head">
+                    <span class="subsection-num mono"></span>
+                    <p class="eyebrow"><span class="en">INDUSTRIAL PARTNERSHIPS & DEPLOYMENTS</span><span class="zh">产业合作与系统部署</span></p>
+                </div>
+
+                <div class="cards-grid two">
+                    <article class="card industrial-card">
+                        <span class="card-year">2017 — 2018</span>
+                        <h3><span class="en">Fake Finger Vein Detection & Recognition</span><span class="zh">伪造指静脉检测与识别</span></h3>
+                        <p class="industrial-partner"><span class="en">Partner: GRG Banking × SCUT</span><span class="zh">合作方：广电运通 × 华南理工</span></p>
+                        <p><span class="en">Novel algorithms for detecting fake finger veins and enhancing low-quality finger-vein image recognition.</span><span class="zh">伪造指静脉检测与低质量指静脉图像增强识别算法。</span></p>
+                        <div class="deployment-tag">
+                            <span class="en">DEPLOYED — BANKING HARDWARE</span><span class="zh">已部署·银行硬件</span>
+                        </div>
+                    </article>
+
+                    <article class="card industrial-card">
+                        <span class="card-year">2018 — 2019</span>
+                        <h3><span class="en">Overhead Security Analysis & Cross-Count Systems</span><span class="zh">高空安全分析与跨计数系统</span></h3>
+                        <p class="industrial-partner"><span class="en">Partner: GRG Banking × SCUT</span><span class="zh">合作方：广电运通 × 华南理工</span></p>
+                        <p><span class="en">Collaborative product development on overhead security analysis and cross-count systems for banking and metro hardware.</span><span class="zh">合作产品开发：面向银行与地铁硬件的高空安全分析与跨计数系统。</span></p>
+                        <div class="deployment-tag">
+                            <span class="en">DEPLOYED — BANKING + METRO TRAIN HARDWARE</span><span class="zh">已部署·银行与地铁硬件</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="projects" class="section-frame projects">
-      <p class="eyebrow"><span class="line"></span><span class="en">Funding & collaborations · № 06</span><span class="zh">基金与合作 · № 06</span></p>
-            <div class="cards two">
-        <article class="card wide"><span class="num">2026–2029</span><h3><span class="en">NSFC Surface Project</span><span class="zh">国家自然科学基金面上项目</span></h3><p><span class="en">Research on Intelligent Video Processing Technology in the Encrypted Domain. Sun Yat-sen University, Project No. 62572500. Role: Core Research Member.</span><span class="zh">加密域智能视频处理技术研究。中山大学，项目号62572500。角色：核心成员。</span></p></article>
-        <article class="card wide"><span class="num">2024–2026</span><h3><span class="en">NSFC & Guangdong Major Project</span><span class="zh">国家自然科学基金 & 广东省重大项目</span></h3><p><span class="en">National Natural Science Foundation of China grant projects U23B2022 and U22A2030; Guangdong Major Project of Basic and Applied Basic Research, Grant No. 2023B0303000010. Role: Core Research Member.</span><span class="zh">国家自然科学基金项目U23B2022、U22A2030；广东省基础与应用基础研究重大项目，项目号2023B0303000010。角色：核心成员。</span></p></article>
-        <article class="card wide"><span class="num">2018–2024</span><h3><span class="en">Huangpu Development District Foundation</span><span class="zh">广州开发区科技基金</span></h3><p><span class="en">Science and Technology Foundation of Guangzhou Huangpu Development District, Grant No. 2022GH15. Role: Core Research Member.</span><span class="zh">广州开发区科技基金，项目号2022GH15。角色：核心成员。</span></p></article>
-        <article class="card wide"><span class="num">2017–2019</span><h3><span class="en">GRG Banking industrial R&D</span><span class="zh">广电运通工业研发合作</span></h3><p><span class="en">Collaborative product development on overhead security analysis, cross-count systems, fake finger vein detection, and low-quality finger vein recognition.</span><span class="zh">合作产品开发：高空安全分析、跨计数系统、伪造指静脉检测、低质量指静脉识别。</span></p></article>
-      </div>
+    <!-- Publications -->
+    <section class="section section-black" id="publications">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ 07</span>
+                <p class="eyebrow"><span class="en">PUBLICATIONS</span><span class="zh">论文</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Selected <em>papers</em>, <em>patent</em>, and <em>systems</em>.</span>
+                <span class="zh">精选<em>论文</em>、<em>专利</em>与<em>系统</em>。</span>
+            </h2>
+
+            <!-- Subsection heading for Journals & Conferences -->
+            <div class="subsection-head">
+                <span class="subsection-num mono"></span>
+                <p class="eyebrow"><span class="en">JOURNALS & CONFERENCES</span><span class="zh">期刊与会议</span></p>
+            </div>
+
+            <!-- PUBLICATION LIST (with numbers, tags, and links) -->
+            <div class="pub-list">
+                <!-- 1. IEEE TCE 2026 – J -->
+                <article class="pub">
+                    <span class="pub-meta">
+                        <span class="pub-number">[09]</span>
+                        <span class="pub-tag">J</span>
+                    </span>
+                    <div class="pub-text">
+                        <span class="venue">IEEE Transactions on Consumer Electronics · 2026</span>
+                        <h3>Trustworthy Deepfake Defense for Consumer Applications via Frequency-Preserving Resizing and Dual-Branch Forensics</h3>
+                        <p class="pub-authors">M. A. Amin, J. Ni, P. Xu, Z. Yu, D. Fu.</p>
+                        <p class="tldr"><span class="en">Conventional resizing erases deepfake cues; our two-stage framework preserves them for robust detection.</span><span class="zh">传统缩放会抹除深度伪造痕迹；我们提出的两阶段框架能保留这些痕迹，实现鲁棒检测。</span></p>
+                    </div>
+                    <a href="assets/publications/ieee_tce.html" class="pub-link" target="_blank" rel="noopener noreferrer">→</a>
+                </article>
+
+                <!-- 2. Sensors 2025 – J -->
+                <article class="pub">
+                    <span class="pub-meta">
+                        <span class="pub-number">[08]</span>
+                        <span class="pub-tag">J</span>
+                    </span>
+                    <div class="pub-text">
+                        <span class="venue">Sensors · 2025</span>
+                        <h3>Quality of Experience (QoE) in Cloud Gaming: A Comparative Analysis of Deep Learning Techniques via Facial Emotions in a Virtual Reality Environment</h3>
+                        <p class="pub-authors">A. K. Jumani, J. Shi, A. A. Laghari, M. A. Amin, et al.</p>
+                        <p class="tldr"><span class="en">A study of QoE in cloud gaming and VR using deep learning and facial emotion cues.</span><span class="zh">利用深度学习和面部情绪线索研究云游戏与VR中的体验质量。</span></p>
+                    </div>
+                    <a href="./assets/publications/qoa.html" class="pub-link" target="_blank" rel="noopener noreferrer">→</a>
+                </article>
+
+                <!-- 3. Digital Signal Processing 2024 – J -->
+                <article class="pub">
+                    <span class="pub-meta">
+                        <span class="pub-number">[07]</span>
+                        <span class="pub-tag">J</span>
+                    </span>
+                    <div class="pub-text">
+                        <span class="venue">Digital Signal Processing · 2024</span>
+                        <h3>Exploring Varying Color Spaces through Representative Forgery Learning to Improve Deepfake Detection</h3>
+                        <p class="pub-authors">M. A. Amin, Y. Hu, Y. Guan, M. Z. Amin.</p>
+                        <p class="tldr"><span class="en">Multi-color-space forgery learning framework that improves robustness and cross-dataset generalization.</span><span class="zh">一种多色彩空间伪造学习框架，提高鲁棒性和跨数据集泛化能力。</span></p>
+                    </div>
+                    <a href="assets/publications/dsp.html" class="pub-link" target="_blank" rel="noopener noreferrer">→</a>
+                </article>
+
+                <!-- 4. Alexandria Engineering Journal 2024 – J -->
+                <article class="pub">
+                    <span class="pub-meta">
+                        <span class="pub-number">[06]</span>
+                        <span class="pub-tag">J</span>
+                    </span>
+                    <div class="pub-text">
+                        <span class="venue">Alexandria Engineering Journal · 2024</span>
+                        <h3>Deepfake Detection based on Cross-Domain Local Characteristic Analysis with Multi-domain Transformer</h3>
+                        <p class="pub-authors">M. A. Amin, Y. Hu, C.-T. Li, B. Liu.</p>
+                        <p class="tldr"><span class="en">SVFT combines frequency-domain and spatial artifacts through a transformer-based framework.</span><span class="zh">SVFT通过基于Transformer的框架融合频域和空间伪影，实现鲁棒检测。</span></p>
+                    </div>
+                    <a href="assets/publications/aej.html" class="pub-link" target="_blank" rel="noopener noreferrer">→</a>
+                </article>
+
+                <!-- 5. Electronic Research Archive 2024 – J -->
+                <article class="pub">
+                    <span class="pub-meta">
+                        <span class="pub-number">[05]</span>
+                        <span class="pub-tag">J</span>
+                    </span>
+                    <div class="pub-text">
+                        <span class="venue">Electronic Research Archive · 2024</span>
+                        <h3>Analyzing Temporal Coherence for Deepfake Video Detection</h3>
+                        <p class="pub-authors">M. A. Amin, Y. Hu, J. Hu.</p>
+                        <p class="tldr"><span class="en">Bi-level temporal modeling and coherence analysis for intra- and cross-dataset deepfake detection.</span><span class="zh">一种双层时序建模与一致性分析方法，用于数据集内和跨数据集的深度伪造检测。</span></p>
+                    </div>
+                    <a href="assets/publications/era.html" class="pub-link" target="_blank" rel="noopener noreferrer">→</a>
+                </article>
+
+                <!-- 6. IEEE IWBF 2023 – C (Conference) -->
+                <article class="pub">
+                    <span class="pub-meta">
+                        <span class="pub-number">[04]</span>
+                        <span class="pub-tag">C</span>
+                    </span>
+                    <div class="pub-text">
+                        <span class="venue">IEEE IWBF · 2023</span>
+                        <h3>Exposing Deepfake Frames through Spectral Analysis of Color Channels in Frequency Domain</h3>
+                        <p class="pub-authors">M. A. Amin, Y. Hu, H. She, J. Li, Y. Guan, M. Z. Amin.</p>
+                        <p class="tldr"><span class="en">Frequency-domain color-channel statistics reveal spectral anomalies in deepfake generation.</span><span class="zh">频域色彩通道统计揭示了深度伪造生成中的频谱异常。</span></p>
+                    </div>
+                    <a href="assets/publications/ieee_iwbf.html" class="pub-link" target="_blank" rel="noopener noreferrer">→</a>
+                </article>
+
+                <!-- 7. JAIHC 2023 – J -->
+                <article class="pub more-pub">
+                    <span class="pub-meta">
+                        <span class="pub-number">[03]</span>
+                        <span class="pub-tag">J</span>
+                    </span>
+                    <div class="pub-text">
+                        <span class="venue">JAIHC · 2023</span>
+                        <h3>Notifyminer: Rule Based User Behavioral Machine Learning Approach for Context Wise Personalized Notification Services</h3>
+                        <p class="pub-authors">M. F. Khan, L. Lu, M. Toseef, A. Musyafa, M. A. Amin.</p>
+                        <p class="tldr"><span class="en">A rule-based behavioral ML approach for context-aware personalized notification services.</span><span class="zh">一种基于规则的机器学习方法，用于上下文感知的个性化通知服务。</span></p>
+                    </div>
+                    <a href="assets/publications/notifyminer.html" class="pub-link" target="_blank" rel="noopener noreferrer">→</a>
+                </article>
+
+                <!-- 8. IJIGSP 2020 – J -->
+                <article class="pub more-pub">
+                    <span class="pub-meta">
+                        <span class="pub-number">[02]</span>
+                        <span class="pub-tag">J</span>
+                    </span>
+                    <div class="pub-text">
+                        <span class="venue">IJIGSP · 2020</span>
+                        <h3>Detecting Video Inter-frame Forgeries based on Convolutional Neural Network Model</h3>
+                        <p class="pub-authors">X. H. Nguyen, Y. Hu, M. A. Amin, G. H. Khan, V. T. Le.</p>
+                        <p class="tldr"><span class="en">CNN-based detection of inter-frame forgeries using spatial-temporal relationships.</span><span class="zh">基于CNN的帧间伪造检测，利用时空关系和置信度评分。</span></p>
+                    </div>
+                    <a href="assets/publications/IJ-2020.html" class="pub-link" target="_blank" rel="noopener noreferrer">→</a>
+                </article>
+
+                <!-- 9. IJIGSP 2019 – J -->
+                <article class="pub more-pub">
+                    <span class="pub-meta">
+                        <span class="pub-number">[01]</span>
+                        <span class="pub-tag">J</span>
+                    </span>
+                    <div class="pub-text">
+                        <span class="venue">IJIGSP · 2019</span>
+                        <h3>Three-dimensional Region Forgery Detection and Localization in Videos</h3>
+                        <p class="pub-authors">X. H. Nguyen, Y. Hu, M. A. Amin, et al.</p>
+                        <p class="tldr"><span class="en">Detection and localization of 3-D region duplication forgeries in videos.</span><span class="zh">视频中三维区域复制伪造的检测与定位。</span></p>
+                    </div>
+                    <a href="assets/publications/IJ-2019.html" class="pub-link" target="_blank" rel="noopener noreferrer">→</a>
+                </article>
+            </div>
+
+            <button class="btn show-more" id="showMore"><span class="en">+ SHOW MORE PUBLICATIONS</span><span class="zh">+ 显示更多论文</span></button>
+
+            <!-- Patent as subsection -->
+            <div class="subsection">
+                <div class="subsection-head">
+                    <span class="subsection-num mono"></span>
+                    <p class="eyebrow"><span class="en">PATENTS</span><span class="zh">专利</span></p>
+                </div>
+                <div class="patent-layout">
+                    <div class="patent-item">
+                        <span class="pub-meta">
+                            <span class="pub-number">[P]</span>
+                            <span class="pub-tag">P</span>
+                        </span>
+                        <div class="patent-text">
+                            <h2 class="patent-heading">
+                                <span class="en">An Adaptive Detection Method for the Upper and Lower Edges of Low-quality Finger Vein Images</span>
+                                <span class="zh">一种低质量指静脉图像上下边缘自适应检测方法</span>
+                            </h2>
+                            <p class="patent-meta">
+                                <span class="en">Y. Hu, M. A. Amin, W. Dongxia, W. Yufei, B. Liu. CNIPA, CN 109409181 B, 2022.</span>
+                                <span class="zh">胡永健、Muhammad Ahmad Amin、万东霞、王宇飞、刘贝贝。中国国家知识产权局，CN 109409181 B，2022年。</span>
+                            </p>
+                        </div>
+                        <a href="assets/publications/patent.html" class="pub-link" target="_blank" rel="noopener noreferrer">→</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="publications" class="section-frame publications">
-      <p class="eyebrow"><span class="line"></span><span class="en">Publications · № 07</span><span class="zh">论文 · № 07</span></p>
-      <h2 class="big-heading small"><span class="en">Selected <em>papers, patent,</em> and <em>systems</em>.</span><span class="zh">精选<em>论文、专利</em>与<em>系统</em>。</span></h2>
-      <div class="pub-list">
-        <article class="pub has-img"><div class="pub-text"><span class="venue">IEEE Transactions on Consumer Electronics 2026</span><h3>Trustworthy Deepfake Defense for Consumer Applications via Frequency-Preserving Resizing and Dual-Branch Forensics</h3><p>Muhammad Ahmad Amin, Jiangqun Ni, Ping Xu, Zeqin Yu, Dahao Fu.</p><p class="tldr"><b><span class="en">TL;DR:</span><span class="zh">简而言之：</span></b> <span class="en">Conventional resizing acts as a low‑pass filter, erasing deepfake cues; our two‑stage framework preserves them for robust detection.</span><span class="zh">传统缩放操作如同低通滤波器会抹除深度伪造痕迹；我们提出的两阶段框架能保留这些痕迹，实现鲁棒检测</span></p></div><img src="assets/images/FDNet.png" alt="QOA" /></article>
-        <article class="pub has-img"><div class="pub-text"><span class="venue">Sensors 2025</span><h3>Quality of Experience (QoE) in Cloud Gaming: A comparative analysis of Deep Learning techniques via Facial Emotions in a Virtual Reality Environment</h3><p>Awais Khan Jumani, Jinglun Shi, Asif Ali Laghari, Muhammad Ahmad Amin, Aftab ul Nabi, Kamlesh Narwani, Yi Zhang.</p><p class="tldr"><b><span class="en">TL;DR:</span><span class="zh">简而言之：</span></b> <span class="en">A study of QoE in cloud gaming and VR using deep learning and facial emotion cues.</span><span class="zh">利用深度学习和面部情绪线索研究云游戏与VR中的体验质量。</span></p></div><img src="assets/images/QOA.png" alt="QOA" /></article>
-        <article class="pub has-img"><div class="pub-text"><span class="venue">Digital Signal Processing 2024</span><h3>Exploring Varying Color Spaces through Representative Forgery Learning to Improve Deepfake Detection</h3><p>Muhammad Ahmad Amin, Yongjian Hu, Yu Guan, Muhammad Zain Amin.</p><p class="tldr"><b><span class="en">TL;DR:</span><span class="zh">简而言之：</span></b> <span class="en">A multi-color-space forgery learning framework that improves robustness and cross-dataset generalization.</span><span class="zh">一种多色彩空间伪造学习框架，提高鲁棒性和跨数据集泛化能力。</span></p></div><img src="assets/images/FDN.png" alt="Representative Forgery Learning architecture" /></article>
-        <article class="pub has-img"><div class="pub-text"><span class="venue">Alexandria Engineering Journal 2024</span><h3>Deepfake Detection based on Cross-Domain Local Characteristic Analysis with Multi-domain Transformer</h3><p>Muhammad Ahmad Amin, Yongjian Hu, Chang-Tsun Li, Beibei Liu.</p><p class="tldr"><b><span class="en">TL;DR:</span><span class="zh">简而言之：</span></b> <span class="en">SVFT combines frequency-domain and spatial artifacts through a transformer-based framework for robust deepfake detection.</span><span class="zh">SVFT通过基于Transformer的框架融合频域和空间伪影，实现鲁棒的深度伪造检测。</span></p></div><img src="assets/images/SVFT1.png" alt="SVFT architecture" /></article>
-        <article class="pub has-img"><div class="pub-text"><span class="venue">Electronic Research Archive 2024</span><h3>Analyzing Temporal Coherence for Deepfake Video Detection</h3><p>Muhammad Ahmad Amin, Yongjian Hu, Jiankun Hu.</p><p class="tldr"><b><span class="en">TL;DR:</span><span class="zh">简而言之：</span></b> <span class="en">A bi-level temporal modeling and coherence analysis approach for intra- and cross-dataset deepfake detection.</span><span class="zh">一种双层时序建模与一致性分析方法，用于数据集内和跨数据集的深度伪造检测。</span></p></div><img src="assets/images/TCAN1.png" alt="Temporal coherence analysis network" /></article>
-        <article class="pub has-img"><div class="pub-text"><span class="venue">IEEE IWBF 2023</span><h3>Exposing Deepfake Frames through Spectral Analysis of Color Channels in Frequency Domain</h3><p>Muhammad Ahmad Amin, Yongjian Hu, Huimin She, Jicheng Li, Yu Guan, Muhammad Zain Amin.</p><p class="tldr"><b><span class="en">TL;DR:</span><span class="zh">简而言之：</span></b> <span class="en">Frequency-domain color-channel statistics reveal spectral anomalies in deepfake generation.</span><span class="zh">频域色彩通道统计揭示了深度伪造生成中的频谱异常。</span></p></div><img src="assets/images/FSSF.png" alt="Frequency spectrum statistical features" /></article>
-        <article class="pub has-img more-pub"><div class="pub-text"><span class="venue">JAIHC 2023</span><h3>Notifyminer: Rule based User Behavioral Machine Learning Approach for Context wise Personalized Notification Services</h3><p>Muhammad Faizan Khan, Lu Lu, Muhammad Toseef, Ahmed Musyafa, Muhammad Ahmad Amin.</p><p class="tldr"><b><span class="en">TL;DR:</span><span class="zh">简而言之：</span></b> <span class="en">A rule-based behavioral ML approach for context-aware personalized notification services.</span><span class="zh">一种基于规则的机器学习方法，用于上下文感知的个性化通知服务。</span></p></div><img src="assets/images/NotiFier.jpg" alt="Notifyminer illustration" /></article>
-        <article class="pub has-img more-pub"><div class="pub-text"><span class="venue">IJIGSP 2020</span><h3>Detecting Video Inter-frame Forgeries based on Convolutional Neural Network Model</h3><p>Xuan Hau Nguyen, Yongjian Hu, Muhammad Ahmad Amin, Gohar Hayat Khan, Van Thinh Le.</p><p class="tldr"><b><span class="en">TL;DR:</span><span class="zh">简而言之：</span></b> <span class="en">CNN-based detection of inter-frame forgeries using spatial-temporal relationships and confidence scoring.</span><span class="zh">基于CNN的帧间伪造检测，利用时空关系和置信度评分。</span></p></div><img src="assets/images/Hau2.jpg" alt="Video inter-frame forgery detection" /></article>
-        <article class="pub has-img more-pub"><div class="pub-text"><span class="venue">IJIGSP 2019</span><h3>Three-dimensional Region Forgery Detection and Localization in Videos</h3><p>Xuan Hau Nguyen, Yongjian Hu, Muhammad Ahmad Amin, Gohar Hayat Khan, Van Thinh Le, Dinh Tu Truong.</p><p class="tldr"><b><span class="en">TL;DR:</span><span class="zh">简而言之：</span></b> <span class="en">Detection and localization of 3-D region duplication forgeries in videos.</span><span class="zh">视频中三维区域复制伪造的检测与定位。</span></p></div><img src="assets/images/Hau1.jpg" alt="3-D video region forgery detection" /></article>
-      </div>
-      <button class="btn show-more" id="showMore"><span class="en">+ Show more publications</span><span class="zh">+ 显示更多论文</span></button>
+    <!-- Invited Talks & Keynotes -->
+    <section class="section section-white" id="talks">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ 08</span>
+                <p class="eyebrow"><span class="en">INVITED TALKS & KEYNOTES</span><span class="zh">特邀报告与主题演讲</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Sharing <em>forensic AI</em> with the wider public.</span>
+                <span class="zh">向公众分享<em>取证AI</em>。</span>
+            </h2>
+            <div class="talks-list">
+                <article class="talk-item">
+                    <div class="talk-meta">
+                        <span class="talk-date">03.2026</span>
+                        <span class="talk-loc"><span class="en">Guangzhou, China</span><span class="zh">中国·广州</span></span>
+                    </div>
+                    <div class="talk-body">
+                        <span class="talk-type"><span class="en">INVITED WEBINAR</span><span class="zh">特邀网络研讨会</span></span>
+                        <h3><span class="en">A Cybersecurity Awareness Session</span><span class="zh">网络安全意识讲座</span></h3>
+                        <p class="talk-host"><span class="en">Consulate General of Pakistan, Guangzhou</span><span class="zh">巴基斯坦驻广州总领事馆</span></p>
+                        <p><span class="en">Invited webinar on cybersecurity awareness for the Pakistani community in southern China, covering threat models, personal OPSEC, AI-generated content risks, and defensive practices.</span><span class="zh">面向华南巴基斯坦社区的网络安全意识特邀网络研讨会、涵盖威胁模型、个人安全防护、AI生成内容风险与防御实践。</span></p>
+                    </div>
+                    <a href="assets/talks/talk.html" class="talk-link" target="_blank" rel="noopener noreferrer">→</a>
+                </article>
+                <article class="talk-item talk-upcoming">
+                    <div class="talk-meta">
+                        <span class="talk-date"><span class="en">UPCOMING</span><span class="zh">即将公布</span></span>
+                        <span class="talk-loc"><span class="en">TBD</span><span class="zh">待定</span></span>
+                    </div>
+                    <div class="talk-body">
+                        <span class="talk-type talk-type-soft"><span class="en">MORE TALKS TO BE ANNOUNCED</span><span class="zh">更多报告即将公布</span></span>
+                        <h3><span class="en">Open to invited talks on deepfake forensics, trustworthy ML, and AI security</span><span class="zh">欢迎就深度伪造取证、可信机器学习与AI安全方向邀请报告</span></h3>
+                        <p class="talk-host"><span class="en">Universities, conferences, industry, and government</span><span class="zh">高校、会议、企业与政府机构</span></p>
+                        <p><span class="en">Topics include: deepfake detection, multimedia forensics, biometric anti-spoofing, adversarial robustness, and privacy-preserving AI systems.</span><span class="zh">话题包括：深度伪造检测、多媒体取证、生物特征防伪、对抗鲁棒性与隐私保护AI系统。</span></p>
+                    </div>
+                    <a href="#" class="talk-link" target="_blank" rel="noopener noreferrer">→</a>
+                </article>
+            </div>
+        </div>
     </section>
 
-    <section id="patent" class="section-frame patent two-col">
-      <div><p class="eyebrow"><span class="line"></span><span class="en">Patent · № 08</span><span class="zh">专利 · № 08</span></p><h2><span class="en">An Adaptive Detection Method for the Upper and Lower Edges of the Low-quality Finger Vein Images</span><span class="zh">一种低质量指静脉图像上下边缘自适应检测方法</span></h2><p><span class="en">Yongjian Hu, Muhammad Ahmad Amin, Wan Dongxia, Wang Yufei, Beibei Liu. China National Intellectual Property Administration, CN 109409181 B, 2022.</span><span class="zh">胡永健、Muhammad Ahmad Amin、万东霞、王宇飞、刘贝贝。中国国家知识产权局，CN 109409181 B，2022年。</span></p></div>
-      <img src="assets/images/P.png" alt="Patent certificate" />
+    <!-- Skills -->
+    <section class="section section-black" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ 09</span>
+                <p class="eyebrow"><span class="en">SKILLS, AWARDS & SERVICE</span><span class="zh">技能、奖项与服务</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Tooling, service, and <em>recognition</em>.</span>
+                <span class="zh">工具、服务与<em>认可</em>。</span>
+            </h2>
+
+            <!-- ===== Desktop Layout (3×3 grid with separate headings) ===== -->
+            <div class="skills-desktop">
+                <div class="skill-headers">
+                    <span><span class="en">TECHNICAL SKILLS</span><span class="zh">技术技能</span></span>
+                    <span><span class="en">ACADEMIC SERVICE</span><span class="zh">学术服务</span></span>
+                    <span><span class="en">HONORS &amp; AWARDS</span><span class="zh">荣誉与奖项</span></span>
+                </div>
+                <div class="cap-grid">
+                    <!-- Row 1 -->
+                    <div class="service-block">
+                        <p class="service-label"><span class="en">Deep Learning Frameworks</span><span class="zh">深度学习框架</span></p>
+                        <p class="service-items"><span class="en">PyTorch · TensorFlow · Keras · Hugging Face Transformers</span><span class="zh">PyTorch · TensorFlow · Keras · Hugging Face Transformers</span></p>
+                    </div>
+                    <div class="service-block">
+                        <p class="service-label"><span class="en">Peer Reviewer</span><span class="zh">审稿人</span></p>
+                        <p class="service-items"><span class="en">CVPR · AAAI · IEEE TCE · Digital Signal Processing · Entertainment Computing</span><span class="zh">CVPR · AAAI · IEEE TCE · Digital Signal Processing · Entertainment Computing</span></p>
+                    </div>
+                    <div class="honor-item">
+                        <p class="honor-date"><span class="en">2022 — 2024</span><span class="zh">2022 — 2024</span></p>
+                        <p class="honor-title"><span class="en">Guangdong Government Outstanding International Student Scholarship</span><span class="zh">广东省政府来粤留学生奖学金</span></p>
+                        <p class="honor-meta"><span class="en">Ph.D. · SCUT</span><span class="zh">博士 · 华南理工</span></p>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="service-block">
+                        <p class="service-label"><span class="en">ML &amp; Data Science</span><span class="zh">机器学习与数据科学</span></p>
+                        <p class="service-items"><span class="en">Scikit‑Learn · NumPy · Pandas · Matplotlib · OpenCV</span><span class="zh">Scikit‑Learn · NumPy · Pandas · Matplotlib · OpenCV</span></p>
+                    </div>
+                    <div class="service-block">
+                        <p class="service-label"><span class="en">Organizer</span><span class="zh">组织者</span></p>
+                        <p class="service-items"><span class="en">China Information Hiding &amp; Multimedia Security Workshop (CIHW 2018)</span><span class="zh">中国信息隐藏与多媒体安全研讨会 (CIHW 2018)</span></p>
+                    </div>
+                    <div class="honor-item">
+                        <p class="honor-date"><span class="en">2016 — 2022</span><span class="zh">2016 — 2022</span></p>
+                        <p class="honor-title"><span class="en">Chinese Government Full Scholarship (CSC)</span><span class="zh">中国政府全额奖学金 (CSC)</span></p>
+                        <p class="honor-meta"><span class="en">M.Eng. &amp; Ph.D. · SCUT</span><span class="zh">硕士与博士 · 华南理工</span></p>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="service-block">
+                        <p class="service-label"><span class="en">Programming</span><span class="zh">编程语言</span></p>
+                        <p class="service-items"><span class="en">Python (primary) · C++</span><span class="zh">Python (主要) · C++</span></p>
+                    </div>
+                    <div class="service-block">
+                        <p class="service-label"><span class="en">Volunteer</span><span class="zh">志愿者</span></p>
+                        <p class="service-items"><span class="en">Member of Scout Association, since 2007</span><span class="zh">童军协会成员、自 2007 年</span></p>
+                    </div>
+                    <div class="honor-item">
+                        <p class="honor-date"><span class="en">2016 — 2024</span><span class="zh">2016 — 2024</span></p>
+                        <p class="honor-title"><span class="en">Excellent Graduate Student Award</span><span class="zh">优秀研究生奖</span></p>
+                        <p class="honor-meta"><span class="en">M.Eng. &amp; Ph.D. · SCUT</span><span class="zh">硕士与博士 · 华南理工</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Mobile Layout (original column‑based) ===== -->
+            <div class="skills-mobile">
+                <!-- Column 1: Technical Skills -->
+                <div class="cap-col">
+                    <div class="col-label"><span class="en">TECHNICAL SKILLS</span><span class="zh">技术技能</span></div>
+                    <div class="service-block">
+                        <p class="service-label"><span class="en">Deep Learning Frameworks</span><span class="zh">深度学习框架</span></p>
+                        <p class="service-items"><span class="en">PyTorch · TensorFlow · Keras · Hugging Face Transformers</span><span class="zh">PyTorch · TensorFlow · Keras · Hugging Face Transformers</span></p>
+                    </div>
+                    <div class="service-block">
+                        <p class="service-label"><span class="en">ML &amp; Data Science</span><span class="zh">机器学习与数据科学</span></p>
+                        <p class="service-items"><span class="en">Scikit‑Learn · NumPy · Pandas · Matplotlib · OpenCV</span><span class="zh">Scikit‑Learn · NumPy · Pandas · Matplotlib · OpenCV</span></p>
+                    </div>
+                    <div class="service-block">
+                        <p class="service-label"><span class="en">Programming</span><span class="zh">编程语言</span></p>
+                        <p class="service-items"><span class="en">Python (primary) · C++</span><span class="zh">Python (主要) · C++</span></p>
+                    </div>
+                </div>
+
+                <!-- Column 2: Academic Service -->
+                <div class="cap-col">
+                    <div class="col-label"><span class="en">ACADEMIC SERVICE</span><span class="zh">学术服务</span></div>
+                    <div class="service-block">
+                        <p class="service-label"><span class="en">Peer Reviewer</span><span class="zh">审稿人</span></p>
+                        <p class="service-items"><span class="en">CVPR · AAAI · IEEE TCE · Digital Signal Processing · Entertainment Computing</span><span class="zh">CVPR · AAAI · IEEE TCE · Digital Signal Processing · Entertainment Computing</span></p>
+                    </div>
+                    <div class="service-block">
+                        <p class="service-label"><span class="en">Organizer</span><span class="zh">组织者</span></p>
+                        <p class="service-items"><span class="en">China Information Hiding &amp; Multimedia Security Workshop (CIHW 2018)</span><span class="zh">中国信息隐藏与多媒体安全研讨会 (CIHW 2018)</span></p>
+                    </div>
+                    <div class="service-block">
+                        <p class="service-label"><span class="en">Volunteer</span><span class="zh">志愿者</span></p>
+                        <p class="service-items"><span class="en">Member of Scout Association, since 2007</span><span class="zh">童军协会成员、自 2007 年</span></p>
+                    </div>
+                </div>
+
+                <!-- Column 3: Honors & Awards -->
+                <div class="cap-col">
+                    <div class="col-label"><span class="en">HONORS &amp; AWARDS</span><span class="zh">荣誉与奖项</span></div>
+                    <div class="honor-item">
+                        <p class="honor-date"><span class="en">2022 — 2024</span><span class="zh">2022 — 2024</span></p>
+                        <p class="honor-title"><span class="en">Guangdong Government Outstanding International Student Scholarship</span><span class="zh">广东省政府来粤留学生奖学金</span></p>
+                        <p class="honor-meta"><span class="en">Ph.D. · SCUT</span><span class="zh">博士 · 华南理工</span></p>
+                    </div>
+                    <div class="honor-item">
+                        <p class="honor-date"><span class="en">2016 — 2022</span><span class="zh">2016 — 2022</span></p>
+                        <p class="honor-title"><span class="en">Chinese Government Full Scholarship (CSC)</span><span class="zh">中国政府全额奖学金 (CSC)</span></p>
+                        <p class="honor-meta"><span class="en">M.Eng. &amp; Ph.D. · SCUT</span><span class="zh">硕士与博士 · 华南理工</span></p>
+                    </div>
+                    <div class="honor-item">
+                        <p class="honor-date"><span class="en">2016 — 2024</span><span class="zh">2016 — 2024</span></p>
+                        <p class="honor-title"><span class="en">Excellent Graduate Student Award</span><span class="zh">优秀研究生奖</span></p>
+                        <p class="honor-meta"><span class="en">M.Eng. &amp; Ph.D. · SCUT</span><span class="zh">硕士与博士 · 华南理工</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="skills" class="section-frame skill-matrix">
-      <p class="eyebrow"><span class="line"></span><span class="en">Skills, awards, and service · № 09</span><span class="zh">技能、系统与服务 · № 09</span></p>
-      <div class="cards four">
-        <article class="card"><h3><span class="en">AI security & forensics</span><span class="zh">AI安全与取证</span></h3><p><span class="en">Deepfake detection, biometric anti-spoofing, adversarial ML, privacy-preserving AI.</span><span class="zh">深度伪造检测、生物特征防伪、对抗机器学习、隐私保护AI。</span></p></article>
-        <article class="card"><h3><span class="en">Deep learning frameworks</span><span class="zh">深度学习框架</span></h3><p><span class="en">PyTorch, TensorFlow, Keras, Hugging Face Transformers.</span><span class="zh">PyTorch、TensorFlow、Keras、Hugging Face Transformers。</span></p></article>
-        <article class="card"><h3><span class="en">ML & data science</span><span class="zh">机器学习与数据科学</span></h3><p><span class="en">Scikit-Learn, NumPy, Pandas, Matplotlib, OpenCV.</span><span class="zh">Scikit-Learn、NumPy、Pandas、Matplotlib、OpenCV。</span></p></article>
-        <article class="card"><h3><span class="en">Programming</span><span class="zh">编程语言</span></h3><p><span class="en">Python as primary language, plus C++.</span><span class="zh">主要使用Python，以及C++。</span></p></article>
-      </div>
-      <div class="service-grid">
-        <div><h3><span class="en">Academic service</span><span class="zh">学术服务</span></h3><p><span class="en">Peer reviewer for CVPR, AAAI, IEEE TCE, Digital Signal Processing, and Entertainment Computing. Volunteer member of Scout Association since 2007. Organizer of China Information Hiding and Multimedia Security Workshop (CIHW 2018).</span><span class="zh">担任CVPR、AAAI、IEEE TCE、Digital Signal Processing、Entertainment Computing审稿人。2007年起担任童军志愿者。中国信息隐藏与多媒体安全研讨会（CIHW 2018）组织者。</span></p></div>
-        <div><h3><span class="en">Honors and awards</span><span class="zh">荣誉与奖项</span></h3><p><span class="en">Guangdong Government Outstanding International Student Scholarship (Ph.D.), Chinese Government Full Scholarship for M.Eng. and Ph.D., and Excellent Graduate Student Award throughout graduate study.</span><span class="zh">广东省政府来粤留学生奖学金（博士）、中国政府全额奖学金（硕士/博士）、研究生期间优秀研究生奖。</span></p></div>
-      </div>
+    <!-- News -->
+    <section class="section section-white" id="news">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ 10</span>
+                <p class="eyebrow"><span class="en">NEWS & UPDATES</span><span class="zh">新闻与动态</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Updates from <em>2018</em> onward.</span>
+                <span class="zh"><em>2018</em> 年以来的新闻与职业动态。</span>
+            </h2>
+            <div class="news-list">
+                <div class="news-item">
+                    <span class="news-date">06.2026</span>
+                    <p><span class="en">Paper accepted to <b><a href="#publications">IEEE Transactions on Consumer Electronics</a></b>.</span><span class="zh">一篇论文被<b><a href="#publications">IEEE Transactions on Consumer Electronics</a></b>接收。</span></p>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">03.2026</span>
+                    <p><span class="en">Invited webinar: <b><a href="#talks">A Cybersecurity Awareness Session</a></b> at Consulate General of Pakistan, Guangzhou.</span><span class="zh">在巴基斯坦驻广州总领事馆做特邀网络研讨会：<b><a href="#talks">网络安全意识讲座</a></b>。</span></p>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">01.2026</span>
+                    <p><span class="en">Joined NSFC Surface Project <b><a href="#projects">Research on Intelligent Video Processing in the Encrypted Domain</a></b>, No. <span class="mono">62572500</span>.</span><span class="zh">加入国家自然科学基金面上项目<b><a href="#projects">加密域智能视频处理技术研究</a></b>（<span class="mono">62572500</span>），担任核心成员。</span></p>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">03.2025</span>
+                    <p><span class="en">Co-authored <b><a href="#publications">QoE in Cloud Gaming</a></b> published in Sensors 2025.</span><span class="zh">合著论文<b><a href="#publications">云游戏中的体验质量</a></b>发表于Sensors 2025。</span></p>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">12.2024</span>
+                    <p><span class="en">Core member on <a href="#projects">NSFC</a> <span class="mono">U23B2022</span>, <span class="mono">U22A2030</span>, and <a href="#projects">Guangdong Major Project</a> <span class="mono">2023B0303000010</span>.</span><span class="zh">成为<a href="#projects">国家自然科学基金</a>项目<span class="mono">U23B2022</span>、<span class="mono">U22A2030</span>及<a href="#projects">广东省重大项目</a><span class="mono">2023B0303000010</span>核心成员。</span></p>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">09.2024</span>
+                    <p><span class="en">Joined Sun Yat-sen University as a Postdoctoral Fellow in Trustworthy ML for Cybersecurity.</span><span class="zh">加入中山大学，担任网络安全领域可信机器学习方向的博士后研究人员。</span></p>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">03.2024</span>
+                    <p><span class="en">Papers accepted to <b><a href="#publications">Electronic Research Archive</a></b> and <b><a href="#publications">Alexandria Engineering Journal</a></b>.</span><span class="zh">论文被<b><a href="#publications">Electronic Research Archive</a></b>与<b><a href="#publications">Alexandria Engineering Journal</a></b>接收。</span></p>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">02.2024</span>
+                    <p><span class="en">Paper accepted to <b><a href="#publications">Digital Signal Processing</a></b>.</span><span class="zh">一篇论文被<b><a href="#publications">Digital Signal Processing</a></b>接收。</span></p>
+                </div>
+                <div class="news-item more-news">
+                    <span class="news-date">11.2023</span>
+                    <p><span class="en">Attended <b>Future Trends in Multimedia Forensics</b> workshop at SCUT organized by Prof. Alex Kot, NTU.</span><span class="zh">参加华南理工大学<b>多媒体取证未来趋势</b>研讨会，由南洋理工大学Alex Kot教授组织。</span></p>
+                </div>
+                <div class="news-item more-news">
+                    <span class="news-date">04.2023</span>
+                    <p><span class="en">Paper accepted to <b><a href="#publications">11th IEEE IWBF</a></b> in Barcelona, Spain.</span><span class="zh">论文被西班牙巴塞罗那<b><a href="#publications">第11届IEEE国际生物特征与取证研讨会</a></b>接收。</span></p>
+                </div>
+                <div class="news-item more-news">
+                    <span class="news-date">09.2022</span>
+                    <p><span class="en">Received Guangdong Outstanding International Student Scholarship at SCUT.</span><span class="zh">获得广东省政府来粤留学生奖学金。</span></p>
+                </div>
+                <div class="news-item more-news">
+                    <span class="news-date">06.2022</span>
+                    <p><span class="en">Patent awarded by <b><a href="#publications">China National Intellectual Property Administration</a></b>.</span><span class="zh">一项专利获得<b><a href="#publications">中国国家知识产权局</a></b>授权。</span></p>
+                </div>
+                <div class="news-item more-news">
+                    <span class="news-date">05.2022</span>
+                    <p><span class="en">Paper accepted to <b><a href="#publications">Journal of Ambient Intelligence and Humanized Computing</a></b>.</span><span class="zh">论文被<b><a href="#publications">Journal of Ambient Intelligence and Humanized Computing</a></b>接收。</span></p>
+                </div>
+                <div class="news-item more-news">
+                    <span class="news-date">03.2020</span>
+                    <p><span class="en">Paper accepted to <b><a href="#publications">International Journal of Image, Graphics and Signal Processing</a></b>.</span><span class="zh">论文被<b><a href="#publications">International Journal of Image, Graphics and Signal Processing</a></b>接收。</span></p>
+                </div>
+                <div class="news-item more-news">
+                    <span class="news-date">10.2019</span>
+                    <p><span class="en">Paper accepted to <b><a href="#publications">International Journal of Image, Graphics and Signal Processing</a></b>.</span><span class="zh">论文被<b><a href="#publications">International Journal of Image, Graphics and Signal Processing</a></b>接收。</span></p>
+                </div>
+                <div class="news-item more-news">
+                    <span class="news-date">10.2018</span>
+                    <p><span class="en">Started collaborative projects at R&D Institute of <b><a href="#projects">GRG Banking Ltd.</a></b></span><span class="zh">在<b><a href="#projects">广电运通</a></b>研发中心启动合作项目。</span></p>
+                </div>
+                <div class="news-item more-news">
+                    <span class="news-date">09.2018</span>
+                    <p><span class="en">Joined SCUT Research Centre of Multimedia Information Security, advised by Prof. Yongjian Hu.</span><span class="zh">加入华南理工大学多媒体信息安全检测与智能处理研究中心，导师胡永健教授。</span></p>
+                </div>
+                <div class="news-item more-news">
+                    <span class="news-date">07.2018</span>
+                    <p><span class="en">Filed patent application: <b><a href="#publications">An Adaptive Detection Method for Low-quality Finger Vein Images</a></b>.</span><span class="zh">提交专利申请<b><a href="#publications">一种低质量指静脉图像上下边缘自适应检测方法</a></b>。</span></p>
+                </div>
+                <div class="news-item more-news">
+                    <span class="news-date">06.2018</span>
+                    <p><span class="en">Excellent Graduate Student Award and Best Master Dissertation Award at SCUT.</span><span class="zh">获得优秀研究生奖与工程硕士优秀学位论文奖。</span></p>
+                </div>
+                <div class="news-item more-news">
+                    <span class="news-date">05.2018</span>
+                    <p><span class="en">Defended M.Eng. thesis <b>A Study on Preprocessing of Finger Vein Recognition System</b>.</span><span class="zh">完成硕士学位论文答辩<b>指静脉识别系统预处理研究</b>。</span></p>
+                </div>
+            </div>
+            <button class="btn show-more" id="showMoreNews"><span class="en">+ SHOW MORE NEWS</span><span class="zh">+ 显示更多动态</span></button>
+        </div>
     </section>
 
-    <section id="news" class="section-frame news"> 
-      <p class="eyebrow"><span class="line"></span><span class="en">Selected media coverage / news · № 10</span><span class="zh">新闻与动态 · № 10</span></p>
-      <h2 class="big-heading small"><span class="en">Updates from <em>2018</em> onward.</span><span class="zh"><em>2018</em> 年以来的新闻与职业动态。</span></h2>
-      <div class="news-list">
-        <div><span>06. 2026</span><p><span class="en">One paper accepted to <b>IEEE Transactions on Consumer Electronics</b>.</span><span class="zh">一篇论文被<b>IEEE Transactions on Consumer Electronics</b>接收。</span></p></div>
-        <div><span>03. 2026</span><p><span class="en">Delivered invited webinar: <b>A Cybersecurity Awareness Session</b> at the Consulate General of Pakistan, Guangzhou.</span><span class="zh">在巴基斯坦驻广州总领事馆做特邀网络研讨会：<b>网络安全意识讲座</b>。</span></p></div>
-        <div><span>01. 2026</span><p><span class="en">Joined as core research member on NSFC Surface Project <b>Research on Intelligent Video Processing Technology in the Encrypted Domain</b>, Project No. 62572500.</span><span class="zh">加入国家自然科学基金面上项目<b>加密域智能视频处理技术研究</b>（项目号62572500），担任核心成员。</span></p></div>
-        <div><span>03. 2025</span><p><span class="en">Co-authored <b>Quality of Experience (QoE) in Cloud Gaming</b>, published in Sensors 2025.</span><span class="zh">合著论文<b>云游戏中的体验质量</b>，发表于Sensors 2025。</span></p></div>
-        <div><span>12. 2024</span><p><span class="en">Became core research member on NSFC projects U23B2022 and U22A2030, and Guangdong Major Project 2023B0303000010.</span><span class="zh">成为国家自然科学基金项目U23B2022、U22A2030及广东省重大项目2023B0303000010的核心成员。</span></p></div>
-        <div><span>09. 2024</span><p><span class="en">Joined Sun Yat-sen University as a Postdoctoral Fellow in Trustworthy Machine Learning and Cybersecurity.</span><span class="zh">加入中山大学，担任可信机器学习与网络安全方向博士后研究员。</span></p></div>
-        <div><span>03. 2024</span><p><span class="en">One paper accepted to <b>Electronic Research Archive</b>.</span><span class="zh">一篇论文被<b>Electronic Research Archive</b>接收。</span></p></div>
-        <div><span>03. 2024</span><p><span class="en">One paper accepted to <b>Alexandria Engineering Journal</b>.</span><span class="zh">一篇论文被<b>Alexandria Engineering Journal</b>接收。</span></p></div>
-        <div><span>02. 2024</span><p><span class="en">One paper accepted to <b>Digital Signal Processing</b>.</span><span class="zh">一篇论文被<b>Digital Signal Processing</b>接收。</span></p></div>
-        <div><span>11. 2023</span><p><span class="en">Attended a workshop on <b>Future Trends in Multimedia Forensics</b> at SCUT organized by Prof. Alex Kot, Director, ROSE Lab, Nanyang Technological University.</span><span class="zh">参加华南理工大学举办的<b>多媒体取证未来趋势</b>研讨会，由南洋理工大学ROSE Lab主任Alex Kot教授组织。</span></p></div>
-        <div><span>04. 2023</span><p><span class="en">One paper accepted to the <b>11th IEEE International Workshop on Biometrics and Forensics</b> in Barcelona, Spain.</span><span class="zh">一篇论文被西班牙巴塞罗那<b>第11届IEEE国际生物特征与取证研讨会</b>接收。</span></p></div>
-        <div><span>09. 2022</span><p><span class="en">Received Guangdong Government Outstanding International Student Scholarship during Ph.D. study at SCUT.</span><span class="zh">在华南理工大学攻读博士期间获得广东省政府来粤留学生奖学金。</span></p></div>
-        <div><span>06. 2022</span><p><span class="en">One patent awarded by <b>China National Intellectual Property Administration</b>.</span><span class="zh">一项专利获得<b>中国国家知识产权局</b>授权。</span></p></div>
-        <div><span>05. 2022</span><p><span class="en">One paper accepted to the <b>Journal of Ambient Intelligence and Humanized Computing</b> on rule-based user behavioral ML.</span><span class="zh">一篇关于基于规则的用户行为机器学习的论文被<b>Journal of Ambient Intelligence and Humanized Computing</b>接收。</span></p></div>
-        <div><span>03. 2020</span><p><span class="en">One paper accepted to the <b>International Journal of Image, Graphics and Signal Processing</b>.</span><span class="zh">一篇论文被<b>International Journal of Image, Graphics and Signal Processing</b>接收。</span></p></div>
-        <div><span>10. 2019</span><p><span class="en">One paper accepted to the <b>International Journal of Image, Graphics and Signal Processing</b>.</span><span class="zh">一篇论文被<b>International Journal of Image, Graphics and Signal Processing</b>接收。</span></p></div>
-        <div><span>10. 2018</span><p><span class="en">Started collaborative projects at the R&D Institute of <b>GRG Banking Ltd.</b></span><span class="zh">在<b>广电运通</b>研发中心启动合作项目。</span></p></div>
-        <div><span>09. 2018</span><p><span class="en">Joined the Research Centre of Multimedia Information Security Detection and Intelligent Processing at SCUT as a Ph.D. student advised by Prof. Yongjian Hu.</span><span class="zh">加入华南理工大学多媒体信息安全检测与智能处理研究中心攻读博士，导师胡永健教授。</span></p></div>
-        <div><span>07. 2018</span><p><span class="en">Filed a patent application based on the thesis <b>An Adaptive Detection Method for the Upper and Lower Edges of the Low-quality Finger Vein Images</b>.</span><span class="zh">基于硕士论文提交专利申请<b>一种低质量指静脉图像上下边缘自适应检测方法</b>。</span></p></div>
-        <div><span>06. 2018</span><p><span class="en">Won the Excellent Graduate Student Award from the School of Electronics and Information Engineering and School of International Education.</span><span class="zh">获得电子与信息学院及国际教育学院优秀研究生奖。</span></p></div>
-        <div><span>06. 2018</span><p><span class="en">Won the Best Master of Engineering Dissertation Award.</span><span class="zh">获得工程硕士优秀学位论文奖。</span></p></div>
-        <div><span>05. 2018</span><p><span class="en">Successfully defended the Master of Engineering dissertation <b>A Study on the Preprocessing of Finger Vein Recognition System</b> at SCUT.</span><span class="zh">在华南理工大学成功完成工程硕士学位论文答辩<b>指静脉识别系统预处理研究</b>。</span></p></div>
-      </div>
+    <!-- Contact -->
+    <section class="section section-black" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ 11</span>
+                <p class="eyebrow"><span class="en">CONTACT</span><span class="zh">联系</span></p>
+            </div>
+            <h2 class="section-heading contact-heading">
+                <span class="en">Let's build something <em>open</em>, trustworthy, and useful.</span>
+                <span class="zh">让我们一起构建<em>开放</em>、可信、有用的东西。</span>
+            </h2>
+            <div class="contact-card">
+                <p>
+                    <button class="email-copy" id="emailCopy" data-email="muhammad8@mail.sysu.edu.cn">
+                        muhammad8@mail.sysu.edu.cn <span class="copy-hint">COPY</span>
+                    </button>
+                </p>
+                <p class="contact-link">
+                    <a href="https://scst.sysu.edu.cn/teacher/356" target="_blank" rel="noreferrer">
+                        <span class="en">School of Cyber Science and Technology</span>
+                        <span class="zh">网络空间安全学院</span>
+                    </a>
+                </p>
+                <p class="contact-location">
+                    <span class="en">Sun Yat-sen University, Shenzhen, China</span>
+                    <span class="zh">中国·深圳·中山大学</span>
+                </p>
+                <div class="socials">
+                    <a href="https://twitter.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="X / Twitter">X</a>
+                    <a href="https://github.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="GitHub">GITHUB</a>
+                    <a href="https://scholar.google.com/citations?hl=en&user=57ouxVcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar">SCHOLAR</a>
+                    <a href="https://www.linkedin.com/in/7ahmadamin" target="_blank" rel="noreferrer" aria-label="LinkedIn">LINKEDIN</a>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="contact" class="section-frame contact">
-      <div>
-        <p class="eyebrow"><span class="line"></span><span class="en">Contact / conversation · № 11</span><span class="zh">开始交流 · № 11</span></p>
-        <h2 class="big-heading"><span class="en">Let’s build something <em>open</em>, trustworthy, and useful outside the lab.</span><span class="zh">让我们一起构建<em>开放</em>、可信、在实验室之外也有用的东西。</span></h2>
-      </div>
-      <div class="contact-card">
-        <p><button class="inline-copy" data-email="muhammad8@mail.sysu.edu.cn">muhammad8@mail.sysu.edu.cn <span>copy</span></button></p>
-        <p><a href="https://scst.sysu.edu.cn/teacher/356" target="_blank" rel="noreferrer"><span class="en">School of Cyber Science and Technology</span><span class="zh">网络空间安全学院</span></a></p>
-        <p><span class="en">Sun Yat-sen University, Shenzhen, China</span><span class="zh">中国·深圳·中山大学</span></p>
-      </div>
-    </section>
-  </main>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>
+                <span class="en">© 2026 Muhammad Ahmad Amin. All rights reserved.</span>
+                <span class="zh">© 2026 Muhammad Ahmad Amin. 保留所有权利。</span>
+            </p>
+            <a href="#top" class="back-to-top">
+                <span class="en">BACK TO TOP ↑</span>
+                <span class="zh">回到顶部 ↑</span>
+            </a>
+        </div>
+    </footer>
 
-  <footer class="footer"><span class="en">Design credit: OpenDesign-inspired personal page.</span><span class="zh">设计鸣谢：受OpenDesign启发的个人研究页面。</span><span>© Muhammad Ahmad Amin.</span><a href="#top" class="back-to-top"><span class="en">Back to top ↑</span><span class="zh">回到顶部 ↑</span></a></footer>
-  <div class="toast" id="pageToast" role="status" aria-live="polite"></div>
-  <script src="assets/js/main.js"></script>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

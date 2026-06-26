@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Color Spaces for Deepfake Detection — Muhammad Ahmad Amin</title>
+    <meta name="description" content="Exploring Varying Color Spaces through Representative Forgery Learning to Improve Deepfake Detection. Digital Signal Processing, 2024." />
+
+    <!-- Custom SVG Favicon (Baked in) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='90' fill='%2300b894'/%3E%3Cpath d='M116 103 H216 L136 219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 103 V219 M296 103 L346 149 L396 103 M396 103 V219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M116 409 L166 299 L216 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 409 L346 299 L396 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/subpages.css" />
+</head>
+<body>
+
+    <!-- Side Dock — Social Links -->
+    <aside class="side-dock" id="sideDock" aria-label="Social links">
+        <div class="dock-links">
+            <a href="https://twitter.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="X / Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path></svg>
+            </a>
+            <a href="https://github.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+            </a>
+            <a href="https://scholar.google.com/citations?hl=en&user=57ouxVcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10l-10-6-10 6 10 6 10-6z"/>
+                    <path d="M6 12v5l6 3 6-3v-5"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/7ahmadamin" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"></path></svg>
+            </a>
+        </div>
+        <button class="dock-toggle" id="dockToggle" aria-label="Toggle social links" aria-expanded="false">
+            <span class="toggle-label">Socials</span>
+        </button>
+    </aside>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../../index.html#top" class="nav-name" id="navName">
+                <span class="nav-name-text">MUHAMMAD AHMAD AMIN</span>
+            </a>
+            <div class="nav-links">
+                <a href="../../index.html#about"><span class="en">ABOUT</span><span class="zh">关于</span></a>
+                <a href="../../index.html#research"><span class="en">RESEARCH</span><span class="zh">研究</span></a>
+                <a href="../../index.html#experience"><span class="en">WORK</span><span class="zh">工作</span></a>
+                <a href="../../index.html#projects"><span class="en">FUNDING</span><span class="zh">基金</span></a>
+                <a href="../../index.html#publications"><span class="en">PAPERS</span><span class="zh">论文</span></a>
+                <a href="../../index.html#talks"><span class="en">TALKS</span><span class="zh">报告</span></a>
+                <a href="../../index.html#news"><span class="en">NEWS</span><span class="zh">动态</span></a>
+                <a href="../../index.html#contact"><span class="en">CONTACT</span><span class="zh">联系</span></a>
+            </div>
+            <div class="nav-actions">
+                <a href="../CV/Resume.pdf" class="cv-btn" download>
+                    <span class="en">CV ↓</span>
+                    <span class="zh">简历 ↓</span>
+                </a>
+                <button class="lang-btn lang-btn-desktop" aria-label="Toggle language">EN / 中</button>
+                <button class="lang-btn lang-btn-mobile" aria-label="Toggle language">EN / 中</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="subpage-hero" id="top">
+        <div class="subpage-hero-bg"></div>
+        <div class="subpage-hero-content">
+            <p class="hero-label">
+                <span class="en">PUBLICATION</span><span class="zh">论文</span> · Digital Signal Processing · 2024
+            </p>
+            <h1 class="hero-title">
+                <span class="en">Exploring Varying Color Spaces through Representative Forgery Learning to Improve Deepfake Detection</span>
+                <span class="zh">通过代表性伪造学习探索多色彩空间以提升深度伪造检测</span>
+            </h1>
+
+            <div class="author-grid">
+                <span class="author-block"><a href="../../index.html#about">M. A. Amin</a><sup>1</sup></span>
+                <span class="author-block">Y. Hu<sup>1</sup></span>
+                <span class="author-block">Y. Guan<sup>2</sup></span>
+                <span class="author-block">M. Z. Amin<sup>3</sup></span>
+            </div>
+            <div class="affiliation-list">
+                <span><sup>1</sup><span class="en">School of Electronic and Information Engineering, South China University of Technology, Guangzhou 510641, China</span><span class="zh">华南理工大学电子与信息工程学院</span></span>
+                <span><sup>2</sup><span class="en">University of Warwick, Coventry CV4 7AL, UK</span><span class="zh">华威大学</span></span>
+                <span><sup>3</sup><span class="en">Duke University, Durham, NC 27708, USA</span><span class="zh">杜克大学</span></span>
+            </div>
+
+            <div class="link-buttons">
+                <a href="https://doi.org/10.1016/j.dsp.2024.104426" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <span class="en">Paper</span><span class="zh">Paper</span>
+                </a>
+                <a href="https://www.sciencedirect.com/science/article/pii/S1051200424000514" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    <span class="en">ScienceDirect</span><span class="zh">ScienceDirect</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Abstract -->
+    <section class="section section-white" id="abstract">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P1</span>
+                <p class="eyebrow"><span class="en">ABSTRACT</span><span class="zh">摘要</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What is the <em>problem</em> and what did we do?</span>
+                <span class="zh">我们解决了什么<em>问题</em>？</span>
+            </h2>
+            <div class="abstract-block">
+                <p>
+                    <span class="en">Most existing deepfake detection methods operate exclusively in the RGB color space, where forgery artifacts are increasingly concealed due to improved generative training and post-processing. As a result, these methods struggle with generalization and robustness when facing unseen manipulations, as RGB alone lacks the discriminative power to expose subtle manipulation traces across diverse forgery types.</span>
+                    <span class="zh">现有大多数深度伪造检测方法仅在RGB色彩空间中运行，由于生成训练和后处理的改进，伪造伪影在此空间中越来越容易被掩盖。因此，这些方法在面对未见过的篡改时，泛化能力和鲁棒性存在不足，因为RGB本身缺乏暴露跨多种伪造类型细微操纵痕迹的判别能力。</span>
+                </p>
+                <p>
+                    <span class="en">We propose a two-stage framework that exploits <strong>seven alternative color spaces</strong> (YCrCb, LAB, YUV, HSL, HSV, XYZ) and their optimal combinations. Stage 1 performs <strong>representative forgery learning</strong> through a Manipulation Cue Boosting Network (MCBN), color space transformations, and a Forgery Highlighting Network (FHN). Stage 2 feeds the enriched representations into a <strong>color spaces-based Forgery Detection Network (FDN)</strong> built on convolutional vision transformers (CvT). The framework is trained end-to-end with binary cross-entropy loss and evaluated on FaceForensics++, DFDC, and Celeb-DF-v2.</span>
+                    <span class="zh">我们提出了一个两阶段框架，利用<strong>七种替代色彩空间</strong>（YCrCb、LAB、YUV、HSL、HSV、XYZ）及其最优组合。第一阶段通过操纵线索增强网络（MCBN）、色彩空间变换和伪造高亮网络（FHN）进行<strong>代表性伪造学习</strong>。第二阶段将增强后的表示输入基于卷积视觉Transformer（CvT）的<strong>色彩空间伪造检测网络（FDN）</strong>。该框架使用二元交叉熵损失进行端到端训练，并在FaceForensics++、DFDC和Celeb-DF-v2上评估。</span>
+                </p>
+                <p>
+                    <span class="en">Our FDN with optimal color space combinations achieves up to <strong>94.54% average AUC</strong> in intra- and cross-manipulation settings (HSV, trained on DF), outperforming 10 state-of-the-art methods. In cross-dataset evaluation, the XYZ + HSV combination reaches <strong>81.93% AUC on DFDC</strong> and <strong>86.56% AUC on CDF</strong>. Combined color spaces improve c40 compression robustness by 10–15% over individual spaces.</span>
+                    <span class="zh">我们的FDN在最佳色彩空间组合下，在数据集内和跨操纵设置中达到<strong>94.54%的平均AUC</strong>（HSV，DF训练），超越10种最先进方法。在跨数据集评估中，XYZ + HSV组合在DFDC上达到<strong>81.93% AUC</strong>，在CDF上达到<strong>86.56% AUC</strong>。组合色彩空间将c40压缩鲁棒性比单空间提升10–15%。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaser -->
+    <section class="section section-black" id="teaser">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P2</span>
+                <p class="eyebrow"><span class="en">FRAMEWORK OVERVIEW</span><span class="zh">框架概览</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Two stages, multiple <em>color spaces</em>, one goal.</span>
+                <span class="zh">两个阶段，多种<em>色彩空间</em>，一个目标。</span>
+            </h2>
+            <div class="figure-grid single">
+                <div class="figure-item">
+                    <img src="DSP/DSP.jpg" alt="Fig. 1 — Overall framework of the proposed color spaces-based deepfake detection approach" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 1 — Overall framework: representative forgery learning (Stage 1) + color spaces-based Forgery Detection Network (Stage 2). © 2024 Elsevier.</span>
+                        <span class="zh">图1 — 整体框架：代表性伪造学习（第一阶段）+ 基于色彩空间的伪造检测网络（第二阶段）。© 2024 Elsevier。</span>
+                    </span>
+                </div>
+            </div>
+            <p style="margin-top:24px; font-size:12px; color:var(--gray); text-align:center; line-height:1.6;">
+                <span class="en">© 2024 Elsevier Inc. Figure reproduced with permission from Digital Signal Processing. Personal use of this material is permitted.</span>
+                <span class="zh">© 2024 Elsevier Inc。经Digital Signal Processing许可转载。允许个人使用此材料。</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Method -->
+    <section class="section section-white" id="method">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P3</span>
+                <p class="eyebrow"><span class="en">METHOD</span><span class="zh">方法</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Stage 1: learn representative <em>forgery cues</em>. Stage 2: detect.</span>
+                <span class="zh">第一阶段：学习代表性<em>伪造线索</em>。第二阶段：检测。</span>
+            </h2>
+            <div class="method-steps">
+                <div class="method-step">
+                    <span class="step-num">01</span>
+                    <div class="step-content">
+                        <h4><span class="en">Manipulation Cue Boosting Network (MCBN)</span><span class="zh">操纵线索增强网络（MCBN）</span></h4>
+                        <p>
+                            <span class="en">A lightweight preprocessing module that applies a diagonal gradient operator (Prewitt) via convolution to each color channel, then element-wise sums the enhanced channels back with the original image. This amplifies blending boundary artifacts and subtle manipulation traces that are otherwise invisible to the naked eye. Wasserstein distance analysis confirms that MCBN significantly increases the distributional gap between real and fake images across all color channels, with gains of 2–6 WD points.</span>
+                            <span class="zh">一个轻量级预处理模块，通过卷积对每个色彩通道应用对角梯度算子（Prewitt），然后将增强通道与原始图像逐元素相加。这放大了融合边界伪影和肉眼不可见的细微操纵痕迹。Wasserstein距离分析证实MCBN在所有色彩通道上显著增大了真实与伪造图像间的分布差距，增益达2–6个WD点。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">02</span>
+                    <div class="step-content">
+                        <h4><span class="en">Multi-Color Space Transformation</span><span class="zh">多色彩空间变换</span></h4>
+                        <p>
+                            <span class="en">The boosted image is transformed into seven color spaces: <strong>RGB, YCrCb, LAB, YUV, HSL, HSV, XYZ</strong>. Each space decomposes the image into channels that reveal different aspects of forgery artifacts. For instance, chrominance channels (Cr, Cb) in YCrCb expose color inconsistencies at blending boundaries, while luminance channels (L in LAB) highlight texture irregularities. The framework evaluates all 21 pairwise combinations to identify the most discriminative color space pairs for each manipulation type.</span>
+                            <span class="zh">增强后的图像被变换为七种色彩空间：<strong>RGB、YCrCb、LAB、YUV、HSL、HSV、XYZ</strong>。每个空间将图像分解为揭示伪造伪影不同方面的通道。例如，YCrCb中的色度通道（Cr、Cb）暴露混合边界处的颜色不一致，而LAB中的亮度通道（L）突出纹理不规则性。该框架评估所有21对组合，以识别每种操纵类型最具判别力的色彩空间对。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">03</span>
+                    <div class="step-content">
+                        <h4><span class="en">Forgery Highlighting Network (FHN)</span><span class="zh">伪造高亮网络（FHN）</span></h4>
+                        <p>
+                            <span class="en">An auxiliary supervision module with two steps: (1) <strong>MRIN</strong> (Manipulation Region Identification Network) generates gradient-based sensitivity maps to locate potential forgery regions, and (2) <strong>FCRM</strong> (Forgery Cue Region Masking) selectively erases both high-sensitivity (NTC) and low-sensitivity texture-inconsistency (MTC) patches. This forces the detector to discover forgery cues from previously ignored facial regions, improving generalization to unseen manipulations by preventing over-reliance on dominant artifact locations.</span>
+                            <span class="zh">一个辅助监督模块，分两步进行：（1）<strong>MRIN</strong>（操纵区域识别网络）生成基于梯度的敏感度图以定位潜在伪造区域，（2）<strong>FCRM</strong>（伪造线索区域掩码）选择性擦除高敏感度（NTC）和低敏感度纹理不一致（MTC）区域。这迫使检测器从先前被忽略的面部区域发现伪造线索，通过防止对主导伪影位置的过度依赖，提升对未知操纵的泛化能力。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">04</span>
+                    <div class="step-content">
+                        <h4><span class="en">Color Spaces-Based Forgery Detection Network (FDN)</span><span class="zh">基于色彩空间的伪造检测网络（FDN）</span></h4>
+                        <p>
+                            <span class="en">A dual-encoder convolutional vision transformer (CvT) backbone that processes two color space inputs in parallel. Features from each encoder are fused via element-wise addition, followed by convolutional refinement, global average pooling, and a linear classifier. The network is initialized from ImageNet-pretrained CvT weights and fine-tuned on deepfake data with AdamW optimizer, cosine annealing scheduler, and binary cross-entropy loss. The dual-stream architecture enables complementary color space information to reinforce discriminative features.</span>
+                            <span class="zh">一个双编码器卷积视觉Transformer（CvT）骨干网络，并行处理两个色彩空间输入。来自每个编码器的特征通过逐元素加法融合，经卷积精炼、全局平均池化和线性分类器。网络从ImageNet预训练CvT权重初始化，使用AdamW优化器、余弦退火调度器和二元交叉熵损失在深度伪造数据上微调。双流架构使互补色彩空间信息能够增强判别特征。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Method figures -->
+            <div class="figure-grid" style="margin-top:64px;">
+                <div class="figure-item">
+                    <img src="DSP/DSP1.jpg" alt="Fig. 2 — MCBN pipeline" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 2 — MCBN: gradient-based cue enhancement across color channels. © 2024 Elsevier.</span>
+                        <span class="zh">图2 — MCBN：跨色彩通道的基于梯度的线索增强。© 2024 Elsevier。</span>
+                    </span>
+                </div>
+                <div class="figure-item">
+                    <img src="DSP/DSP5.jpg" alt="Fig. 3 — FHN with MRIN and FCRM" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 3 — FHN: MRIN + FCRM pipeline for forgery region highlighting. © 2024 Elsevier.</span>
+                        <span class="zh">图3 — FHN：用于伪造区域高亮的MRIN + FCRM流程。© 2024 Elsevier。</span>
+                    </span>
+                </div>
+            </div>
+            <div class="figure-grid" style="margin-top:1px;">
+                <div class="figure-item">
+                    <img src="DSP/DSP4.jpg" alt="Fig. 4 — Wasserstein distance analysis" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 4 — WD analysis: MCBN amplifies real/fake distribution gap across 15 color channels. © 2024 Elsevier.</span>
+                        <span class="zh">图4 — WD分析：MCBN在15个色彩通道上放大真实/伪造分布差距。© 2024 Elsevier。</span>
+                    </span>
+                </div>
+                <div class="figure-item">
+                    <img src="DSP/DSP7.jpg" alt="Fig. 5 — FDN encoder architecture" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 5 — FDN encoder: convolutional transformer with dual-stream feature fusion. © 2024 Elsevier.</span>
+                        <span class="zh">图5 — FDN编码器：具有双流特征融合的卷积Transformer。© 2024 Elsevier。</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="section section-black" id="results">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P4</span>
+                <p class="eyebrow"><span class="en">RESULTS</span><span class="zh">结果</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Strong <em>cross-manipulation</em> and <em>cross-dataset</em> generalization.</span>
+                <span class="zh">强大的<em>跨操纵</em>和<em>跨数据集</em>泛化能力。</span>
+            </h2>
+
+            <div class="statement-strip" style="margin-top:0; border-top:none; padding-top:0;">
+                <h3><span class="en">Intra- and Cross-Manipulation (FF++)</span><span class="zh">数据集内与跨操纵评估（FF++）</span></h3>
+                <p>
+                    <span class="en">Trained on individual FF++ manipulations (DeepFakes, FaceSwap, Face2Face, NeuralTextures) and tested both intra-domain and cross-domain. The HSV color space achieves the highest average AUC of <strong>94.54%</strong> when trained on DeepFakes, with strong cross-manipulation performance: <strong>96.42%</strong> on DF→DF, <strong>92.77%</strong> on DF→FS, <strong>90.61%</strong> on DF→F2F, and <strong>98.36%</strong> on DF→NT. Combined color spaces (XYZ + HSV, LAB + HSV) consistently outperform single spaces by 3–8% AUC across all manipulation types.</span>
+                    <span class="zh">在FF++的单个操纵（DeepFakes、FaceSwap、Face2Face、NeuralTextures）上训练，并在数据集内和跨域上测试。HSV色彩空间在DeepFakes训练时达到最高平均AUC <strong>94.54%</strong>，具有强大的跨操纵性能：DF→DF为<strong>96.42%</strong>，DF→FS为<strong>92.77%</strong>，DF→F2F为<strong>90.61%</strong>，DF→NT为<strong>98.36%</strong>。组合色彩空间（XYZ + HSV、LAB + HSV）在所有操纵类型上持续超越单空间3–8% AUC。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Cross-Dataset Generalization</span><span class="zh">跨数据集泛化</span></h3>
+                <p>
+                    <span class="en">Trained on FF++ (all manipulations) and tested without fine-tuning on DFDC and Celeb-DF-v2. The XYZ + HSV combination achieves <strong>81.93% AUC on DFDC</strong> and <strong>86.56% AUC on CDF</strong>, outperforming RGB-only baselines by 5–10%. The LAB + XYZ combination also shows strong generalization with <strong>80.27% on DFDC</strong> and <strong>85.12% on CDF</strong>. These results confirm that multi-color-space analysis captures domain-invariant forensic cues that RGB alone misses.</span>
+                    <span class="zh">在FF++（所有操纵）上训练，在DFDC和Celeb-DF-v2上无微调测试。XYZ + HSV组合在DFDC上达到<strong>81.93% AUC</strong>，在CDF上达到<strong>86.56% AUC</strong>，超越仅RGB基线5–10%。LAB + XYZ组合也展示了强大的泛化能力，在DFDC上为<strong>80.27%</strong>，在CDF上为<strong>85.12%</strong>。这些结果证实多色彩空间分析捕获了RGB单独遗漏的域不变取证线索。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Compression Robustness (c40)</span><span class="zh">压缩鲁棒性（c40）</span></h3>
+                <p>
+                    <span class="en">Evaluated on heavily compressed FF++ videos (c40). Combined color spaces improve c40 compression robustness by <strong>10–15%</strong> over individual spaces. The XYZ + HSV combination maintains <strong>78.50% average AUC</strong> on c40, while single spaces like RGB drop to 65–70%. This resilience stems from the fact that different color spaces encode compression artifacts in complementary ways, allowing the fused detector to recover forensic signals even when individual channels are degraded.</span>
+                    <span class="zh">在重度压缩的FF++视频（c40）上评估。组合色彩空间将c40压缩鲁棒性比单空间提升<strong>10–15%</strong>。XYZ + HSV组合在c40上保持<strong>78.50%平均AUC</strong>，而RGB等单空间降至65–70%。这种韧性源于不同色彩空间以互补方式编码压缩伪影，使融合检测器即使在单个通道退化时也能恢复取证信号。</span>
+                </p>
+            </div>
+
+            <div class="figure-grid" style="margin-top:64px;">
+                <div class="figure-item">
+                    <img src="DSP/DSP8.jpg" alt="Fig. 6 — Intra- and cross-manipulation evaluation" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 6 — Intra- & cross-manipulation AUC (%) across color spaces on FF++. © 2024 Elsevier.</span>
+                        <span class="zh">图6 — FF++上跨色彩空间的数据集内与跨操纵AUC（%）。© 2024 Elsevier。</span>
+                    </span>
+                </div>
+                <div class="figure-item">
+                    <img src="DSP/DSP9.jpg" alt="Fig. 7 — Cross-dataset evaluation" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 7 — Cross-dataset AUC (%) on DFDC and CDF. Combined spaces outperform RGB. © 2024 Elsevier.</span>
+                        <span class="zh">图7 — DFDC和CDF上的跨数据集AUC（%）。组合空间超越RGB。© 2024 Elsevier。</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Limitations -->
+    <section class="section section-white" id="limitations">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P5</span>
+                <p class="eyebrow"><span class="en">LIMITATIONS & FUTURE WORK</span><span class="zh">局限性与未来工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What we <em>could not</em> solve yet.</span>
+                <span class="zh">我们<em>尚未</em>解决的问题。</span>
+            </h2>
+            <div class="limitations-box">
+                <p>
+                    <span class="en"><strong>Heavy compression (c40).</strong> Lossy compression discards high-frequency texture details that carry forgery artifacts, degrading performance at c40. While combined color spaces mitigate this by 10–15%, the gap to c0 performance remains significant. Future work could explore compression-aware pre-training or artifact restoration modules.</span>
+                    <span class="zh"><strong>重度压缩（c40）。</strong>有损压缩丢弃了携带伪造伪影的高频纹理细节，导致c40性能下降。虽然组合色彩空间缓解了10–15%，但与c0性能的差距仍然显著。未来工作可探索压缩感知预训练或伪影恢复模块。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Spatial domain only.</strong> The current framework operates on individual frames. Temporal inconsistencies across video frames—such as flickering artifacts, inconsistent eye blinking, or frame-to-frame coherence violations—are not explicitly modeled. Extending to bi-level temporal coherence analysis could further improve detection of sophisticated forgeries that are spatially consistent but temporally inconsistent.</span>
+                    <span class="zh"><strong>仅限空间域。</strong>当前框架在单帧上操作。视频帧间的时序不一致性——如闪烁伪影、不一致眨眼或帧间一致性违反——未被显式建模。扩展到双层时序一致性分析可进一步提升对空间一致但时间不一致的高级伪造的检测能力。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Adaptive color space selection.</strong> The optimal color space combination varies across manipulation types and datasets. An adaptive selection mechanism that automatically identifies the best color spaces for a given input remains an open problem. A lightweight gating network or attention-based selection module could dynamically weight color spaces based on input characteristics.</span>
+                    <span class="zh"><strong>自适应色彩空间选择。</strong>最佳色彩空间组合因操纵类型和数据集而异。能自动为给定输入识别最佳色彩空间的自适应选择机制仍是一个开放问题。轻量级门控网络或基于注意力的选择模块可根据输入特征动态加权色彩空间。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BibTeX -->
+    <section class="section section-black" id="bibtex">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P6</span>
+                <p class="eyebrow"><span class="en">BIBTEX</span><span class="zh">引用</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Cite this <em>paper</em>.</span>
+                <span class="zh">引用此<em>论文</em>。</span>
+            </h2>
+            <div class="bibtex-block" id="bibtexBlock">
+                <pre><code id="bibtexCode">@article{AMIN2024104426,
+  author    = {Muhammad Ahmad Amin and Yongjian Hu and Yu Guan and Muhammad Zain Amin},
+  title     = {Exploring varying color spaces through representative forgery learning to improve deepfake detection},
+  journal   = {Digital Signal Processing},
+  volume    = {147},
+  pages     = {104426},
+  year      = {2024},
+  issn      = {1051-2004},
+  doi       = {10.1016/j.dsp.2024.104426},
+  publisher = {Elsevier}
+}</code></pre>
+                <button class="btn bibtex-copy" id="bibtexCopy" aria-label="Copy BibTeX citation">
+                    <span class="en">COPY CITATION</span><span class="zh">复制引用</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Copyright Notice -->
+    <section class="section section-white" id="copyright">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P7</span>
+                <p class="eyebrow"><span class="en">COPYRIGHT NOTICE</span><span class="zh">版权声明</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Elsevier <em>Copyright</em> & Usage.</span>
+                <span class="zh">Elsevier <em>版权</em>与使用。</span>
+            </h2>
+            <div class="abstract-block">
+                <p style="font-size:14px; color:var(--gray-dark);">
+                    <span class="en">© 2024 Elsevier Inc. Personal use of this material is permitted. Permission from Elsevier must be obtained for all other uses, including reprinting/republishing this material for advertising or promotional purposes, creating new collective works, for resale or redistribution to servers or lists, or reuse of any copyrighted component of this work in other works.</span>
+                    <span class="zh">© 2024 Elsevier Inc。允许个人使用此材料。所有其他用途必须获得Elsevier许可，包括重印/再版此材料用于广告或促销目的、创建新的集体作品、转售或重新分发到服务器或列表，或在其他作品中重用此作品的任何受版权保护的组件。</span>
+                </p>
+                <p style="font-size:14px; color:var(--gray-dark); margin-top:12px;">
+                    <span class="en">This page is a personal academic landing page. The full paper is available via ScienceDirect. Figures are reproduced with permission from Digital Signal Processing.</span>
+                    <span class="zh">本页面为个人学术着陆页。完整论文可通过ScienceDirect获取。图表经Digital Signal Processing许可转载。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related -->
+    <section class="section section-black" id="related">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P8</span>
+                <p class="eyebrow"><span class="en">RELATED WORK</span><span class="zh">相关工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">More from our <em>group</em>.</span>
+                <span class="zh">来自我们<em>团队</em>的更多工作。</span>
+            </h2>
+            <div class="related-grid">
+                <a href="ieee_tce.html" class="related-item">
+                    <span class="related-venue">IEEE Transactions on Consumer Electronics · 2026</span>
+                    <h4><span class="en">Trustworthy Deepfake Defense via Frequency‑Preserving Resizing and Dual‑Branch Forensics</span><span class="zh">基于频域保持缩放与双分支取证的可信深度伪造防御</span></h4>
+                    <p><span class="en">Two-stage framework preserving spectral artifacts for consumer-device deepfake detection.</span><span class="zh">保留频谱伪影的两阶段消费级设备深度伪造检测框架。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="aej.html" class="related-item">
+                    <span class="related-venue">Alexandria Engineering Journal · 2024</span>
+                    <h4><span class="en">Cross‑Domain Local Characteristic Analysis with Multi‑Domain Transformer</span><span class="zh">基于多域Transformer的跨域局部特征分析</span></h4>
+                    <p><span class="en">SVFT: spatial + frequency transformer for deepfake detection.</span><span class="zh">SVFT：空间与频域Transformer融合的深度伪造检测。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="era.html" class="related-item">
+                    <span class="related-venue">Electronic Research Archive · 2024</span>
+                    <h4><span class="en">Analyzing Temporal Coherence for Deepfake Video Detection</span><span class="zh">基于时序一致性的深度伪造视频检测</span></h4>
+                    <p><span class="en">Bi-level temporal modeling for video forensics.</span><span class="zh">面向视频取证的双层时序建模。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer section-white">
+        <div class="container">
+            <p>
+                <span class="en">© 2026 Muhammad Ahmad Amin. All rights reserved.</span>
+                <span class="zh">© 2026 Muhammad Ahmad Amin. 保留所有权利。</span>
+            </p>
+            <div class="footer-links">
+                <a href="#top" class="back-to-top">
+                    <span class="en">BACK TO TOP ↑</span>
+                    <span class="zh">回到顶部 ↑</span>
+                </a>
+                <a href="../../index.html#top" class="back-to-top">
+                    <span class="en">BACK TO HOME ↑</span>
+                    <span class="zh">返回首页 ↑</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="../js/main.js"></script>
+    <script>
+      // BibTeX copy handler (self-contained for template portability)
+      (function() {
+        const bibtexCopy = document.getElementById('bibtexCopy');
+        const bibtexCode = document.getElementById('bibtexCode');
+        const toast = document.getElementById('toast');
+        if (!bibtexCopy || !bibtexCode) return;
+
+        function showToast(msg) {
+          toast.textContent = msg;
+          toast.classList.add('show');
+          setTimeout(() => { toast.classList.remove('show'); }, 2500);
+        }
+
+        bibtexCopy.addEventListener('click', () => {
+          const text = bibtexCode.textContent;
+          navigator.clipboard.writeText(text).then(() => {
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          });
+        });
+      })();
+    </script>
+</body>
+</html>

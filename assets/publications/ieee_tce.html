@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trustworthy Deepfake Defense — Muhammad Ahmad Amin</title>
+    <meta name="description" content="Trustworthy Deepfake Defense for Consumer Applications via Frequency-Preserving Resizing and Dual-Branch Forensics. IEEE TCE 2026." />
+
+    <!-- Custom SVG Favicon (Baked in) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='90' fill='%2300b894'/%3E%3Cpath d='M116 103 H216 L136 219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 103 V219 M296 103 L346 149 L396 103 M396 103 V219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M116 409 L166 299 L216 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 409 L346 299 L396 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/subpages.css" />
+</head>
+<body>
+
+    <!-- Side Dock — Social Links -->
+    <aside class="side-dock" id="sideDock" aria-label="Social links">
+        <div class="dock-links">
+            <a href="https://twitter.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="X / Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path></svg>
+            </a>
+            <a href="https://github.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+            </a>
+            <a href="https://scholar.google.com/citations?hl=en&user=57ouxVcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10l-10-6-10 6 10 6 10-6z"/>
+                    <path d="M6 12v5l6 3 6-3v-5"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/7ahmadamin" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"></path></svg>
+            </a>
+        </div>
+        <button class="dock-toggle" id="dockToggle" aria-label="Toggle social links" aria-expanded="false">
+            <span class="toggle-label">Socials</span>
+        </button>
+    </aside>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../../index.html#top" class="nav-name" id="navName">
+                <span class="nav-name-text">MUHAMMAD AHMAD AMIN</span>
+            </a>
+            <div class="nav-links">
+                <a href="../../index.html#about"><span class="en">ABOUT</span><span class="zh">关于</span></a>
+                <a href="../../index.html#research"><span class="en">RESEARCH</span><span class="zh">研究</span></a>
+                <a href="../../index.html#experience"><span class="en">WORK</span><span class="zh">工作</span></a>
+                <a href="../../index.html#projects"><span class="en">FUNDING</span><span class="zh">基金</span></a>
+                <a href="../../index.html#publications"><span class="en">PAPERS</span><span class="zh">论文</span></a>
+                <a href="../../index.html#talks"><span class="en">TALKS</span><span class="zh">报告</span></a>
+                <a href="../../index.html#news"><span class="en">NEWS</span><span class="zh">动态</span></a>
+                <a href="../../index.html#contact"><span class="en">CONTACT</span><span class="zh">联系</span></a>
+            </div>
+            <div class="nav-actions">
+                <a href="../CV/Resume.pdf" class="cv-btn" download>
+                    <span class="en">CV ↓</span>
+                    <span class="zh">简历 ↓</span>
+                </a>
+                <button class="lang-btn lang-btn-desktop" aria-label="Toggle language">EN / 中</button>
+                <button class="lang-btn lang-btn-mobile" aria-label="Toggle language">EN / 中</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="subpage-hero" id="top">
+        <div class="hero-bg"></div>
+        <div class="subpage-hero-content">
+            <p class="hero-label">
+                <span class="en">PUBLICATION</span><span class="zh">论文</span> · IEEE TCE · 2026
+            </p>
+            <h1 class="hero-title">
+                <span class="en">Trustworthy Deepfake Defense for Consumer Applications via Frequency‑Preserving Resizing and Dual‑Branch Forensics</span>
+                <span class="zh">基于频域保持缩放与双分支取证的面向消费级应用的可信深度伪造防御</span>
+            </h1>
+
+            <div class="author-grid">
+                <span class="author-block"><a href="../../index.html#about">M. A. Amin</a><sup>1</sup></span>
+                <span class="author-block">J. Ni<sup>1</sup></span>
+                <span class="author-block">P. Xu<sup>1</sup></span>
+                <span class="author-block">Z. Yu<sup>1</sup></span>
+                <span class="author-block">D. Fu<sup>1</sup></span>
+            </div>
+            <div class="affiliation-list">
+                <span><sup>1</sup><span class="en">School of Cyber Science and Technology, Sun Yat-sen University</span><span class="zh">中山大学网络空间安全学院</span></span>
+            </div>
+
+            <div class="link-buttons">
+                <a href="https://ieeexplore.ieee.org/abstract/document/11550162" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <span class="en">Paper</span><span class="zh">Paper</span>
+                </a>
+                <!--a href="#" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    <span class="en">arXiv</span><span class="zh">预印本</span>
+                </a>
+                <a href="#" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    <span class="en">Code</span><span class="zh">代码</span>
+                </a>
+                <a href="#" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    <span class="en">Model</span><span class="zh">模型</span>
+                </a-->
+            </div>
+        </div>
+    </header>
+
+    <!-- Abstract -->
+    <section class="section section-white" id="abstract">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P1</span>
+                <p class="eyebrow"><span class="en">ABSTRACT</span><span class="zh">摘要</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What is the <em>problem</em> and what did we do?</span>
+                <span class="zh">我们解决了什么<em>问题</em>？</span>
+            </h2>
+            <div class="abstract-block">
+                <p>
+                    <span class="en">Deepfakes pose a growing threat to consumer security and trust, enabling identity theft, financial fraud, and misinformation across social and mobile platforms. Reliable detection pipelines are essential for trustworthy consumer applications, yet many current systems rely on conventional resizing operators, such as bilinear and bicubic interpolation, that behave as low-pass filters and systematically attenuate manipulation-relevant high-frequency (HF) forensic cues during preprocessing.</span>
+                    <span class="zh">深度伪造对消费级安全与信任构成日益严重的威胁，导致身份盗窃、金融欺诈和社交媒体上的虚假信息。可靠的检测流程对可信消费应用至关重要，但许多现有系统依赖常规缩放操作（如双线性和双三次插值），这些操作作为低通滤波器，在预处理过程中系统性地衰减了与操纵相关的高频取证线索。</span>
+                </p>
+                <p>
+                    <span class="en">We propose a proactive two-stage forensic defense framework. The first stage, the <strong>Frequency-Aware Information Preserving Network (FA-IPNet)</strong>, is the first rescaling module designed with an explicit forensic objective, retaining manipulation-sensitive HF cues rather than maximizing perceptual reconstruction quality, at only <strong>0.304K parameters</strong> and <strong>2.91M FLOPs</strong>. The second stage, the <strong>Adaptive Frequency-Enhanced Forgery Detection Network (AFE-FDNet)</strong>, is a dual-branch detector whose spatial branch employs retentive vision transformers with distance-decayed dual-axis attention, and whose frequency branch applies learnable multi-scale spectral band decomposition with per-band windowed attention enhancement and temperature-scaled pyramid cross-band aggregation.</span>
+                    <span class="zh">我们提出了一个主动式两阶段取证防御框架。第一阶段，<strong>频域感知信息保持网络（FA-IPNet）</strong>，是首个以明确取证目标设计的缩放模块，保留操纵敏感的高频线索而非最大化感知重建质量，仅使用<strong>0.304K参数</strong>和<strong>2.91M FLOPs</strong>。第二阶段，<strong>自适应频域增强伪造检测网络（AFE-FDNet）</strong>，是一个双分支检测器，其空间分支采用具有距离衰减双轴注意力的保留视觉Transformer，其频域分支应用可学习的多尺度频谱带分解，配合每带窗口注意力增强和温度缩放金字塔跨带聚合。</span>
+                </p>
+                <p>
+                    <span class="en">Evaluations on FaceForensics++, Celeb-DF-V2, DFDC, and the diffusion-based DF40 dataset demonstrate that FA-IPNet better preserves forensic signals than interpolation-based resizing, and that AFE-FDNet achieves robust generalization including on diffusion-era forgeries under a zero-shot protocol. Together, they establish a robust and trustworthy defense for consumer-facing applications against deepfake-driven security and privacy risks.</span>
+                    <span class="zh">在FaceForensics++、Celeb-DF-V2、DFDC和基于扩散的DF40数据集上的评估表明，FA-IPNet比基于插值的缩放更好地保留取证信号，AFE-FDNet实现了稳健的泛化，包括在零样本协议下的扩散时代伪造。两者共同为面向消费者的应用建立了针对深度伪造驱动的安全和隐私风险的稳健可信防御。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaser -->
+    <section class="section section-black" id="teaser">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P2</span>
+                <p class="eyebrow"><span class="en">FRAMEWORK OVERVIEW</span><span class="zh">框架概览</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Two stages, one <em>pipeline</em>: preserve then detect.</span>
+                <span class="zh">两个阶段，一个<em>流程</em>：先保留再检测。</span>
+            </h2>
+            <div class="figure-grid single">
+                <div class="figure-item">
+                    <img src="IEEE_TCE/IEEE_TCE_2026_FAIPNet_FDNet.png" alt="Fig. 1 — Two-stage framework overview" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 1 — Overview of the proposed two-stage deepfake defense framework. Stage 1 (FA-IPNet) preserves forensic HF cues. Stage 2 (AFE-FDNet) extracts complementary evidence through spatial (RVT) and frequency (FET) branches.</span>
+                        <span class="zh">图1 — 所提出的两阶段深度伪造防御框架概览。阶段1（FA-IPNet）保留取证高频线索。阶段2（AFE-FDNet）通过空间（RVT）和频域（FET）分支提取互补证据。</span>
+                    </span>
+                </div>
+            </div>
+            <p style="margin-top:24px; font-size:12px; color:var(--gray); text-align:center; line-height:1.6;">
+                <span class="en">© 2026 IEEE. Figure reproduced with permission from IEEE Transactions on Consumer Electronics. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses.</span>
+                <span class="zh">© 2026 IEEE。经IEEE Transactions on Consumer Electronics许可转载。允许个人使用此材料。所有其他用途必须获得IEEE许可。</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Method -->
+    <section class="section section-white" id="method">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P3</span>
+                <p class="eyebrow"><span class="en">METHOD</span><span class="zh">方法</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Stage I preserves evidence; Stage II <em>exploits</em> it.</span>
+                <span class="zh">阶段I保留证据；阶段II<em>利用</em>证据。</span>
+            </h2>
+            <div class="method-steps">
+                <div class="method-step">
+                    <span class="step-num">01</span>
+                    <div class="step-content">
+                        <h4><span class="en">FA-IPNet: Frequency-Aware Information Preserving Network</span><span class="zh">FA-IPNet：频域感知信息保持网络</span></h4>
+                        <p>
+                            <span class="en">FA-IPNet decomposes the input into three directional Haar sub-bands (Horizontal, Vertical, Diagonal) via fixed stride-2 convolutions—zero learnable parameters at decomposition. Bilinear interpolation provides the low-frequency path. Multi-Spectral Channel Attention (MSCA) uses rFFT2 spectral statistics with bounded affine recalibration (α ∈ (−1,1), β ∈ [−1,1]) to selectively emphasize forensically informative channels. Attention-Aware Channel Reduction (AACR) performs joint selection-and-projection from 3C → C channels before fusing with the low-frequency path to produce the HF-preserved output x<sub>out</sub>. Only <strong>0.304K parameters</strong> and <strong>2.91M FLOPs</strong>.</span>
+                            <span class="zh">FA-IPNet通过固定步长为2的卷积将输入分解为三个方向性Haar子带（水平、垂直、对角线）——分解步骤零可学习参数。双线性插值提供低频路径。多光谱通道注意力（MSCA）使用rFFT2频谱统计量和有界仿射重校准（α ∈ (−1,1), β ∈ [−1,1]）选择性地强调取证信息丰富的通道。注意力感知通道降维（AACR）执行联合选择与投影，从3C → C通道，然后与低频路径融合，产生高频保持输出x<sub>out</sub>。仅<strong>0.304K参数</strong>和<strong>2.91M FLOPs</strong>。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">02</span>
+                    <div class="step-content">
+                        <h4><span class="en">AFE-FDNet: Spatial Branch (RVT)</span><span class="zh">AFE-FDNet：空间分支（RVT）</span></h4>
+                        <p>
+                            <span class="en">The spatial branch uses a Retentive Vision Transformer with <strong>distance-decayed dual-axis attention</strong>—distinct from Swin's binary window masks and standard retentive networks' fixed decay. Head-specific log-decay masks (δ<sub>m</sub> = log(1 − 2<sup>−(α+β·m/h)</sup>)) provide a principled locality bias, enabling simultaneous modeling of near-neighbor forensic artifacts (blending seams) and long-range dependencies (global identity consistency) in a single forward pass.</span>
+                            <span class="zh">空间分支使用具有<strong>距离衰减双轴注意力</strong>的保留视觉Transformer——与Swin的二进制窗口掩码和标准保留网络的固定衰减不同。头特定对数衰减掩码（δ<sub>m</sub> = log(1 − 2<sup>−(α+β·m/h)</sup>)）提供了原则性的局部性偏置，能够在单次前向传播中同时建模邻近取证伪影（混合接缝）和长程依赖（全局身份一致性）。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">03</span>
+                    <div class="step-content">
+                        <h4><span class="en">AFE-FDNet: Frequency Branch (FET)</span><span class="zh">AFE-FDNet：频域分支（FET）</span></h4>
+                        <p>
+                            <span class="en">The frequency branch decomposes the signal into three learnable spectral bands (Low, Mid, High) via strided convolutions with residual upsampling. Each band is independently enhanced by Multi-Dconv Head Transposed Attention (MDTA) and Gated Depthwise Feedforward Network (GDFN). Cross-band pyramid aggregation (FAM) uses a learnable temperature τ = exp(tmp) to adaptively weight which frequency scales carry the most manipulation-specific information—enabling the same architecture to handle both GAN checkerboard artifacts and diffusion mid-frequency noise.</span>
+                            <span class="zh">频域分支通过带残差上采样的步长卷积将信号分解为三个可学习频谱带（低、中、高）。每个带通过多深度卷积头转置注意力（MDTA）和门控深度前馈网络（GDFN）独立增强。跨带金字塔聚合（FAM）使用可学习温度τ = exp(tmp)自适应加权哪些频率尺度携带最多的操纵特定信息——使同一架构能够处理GAN棋盘格伪影和扩散中频噪声。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">04</span>
+                    <div class="step-content">
+                        <h4><span class="en">Feature Fusion & Classification</span><span class="zh">特征融合与分类</span></h4>
+                        <p>
+                            <span class="en">Spatial (128-D) and frequency (128-D) embeddings are concatenated into a 256-D fused vector, passed through a two-layer MLP with ReLU and dropout 0.3, and classified via label-smoothing cross-entropy (ε = 0.05). The entire pipeline is trained end-to-end with AdamW, cosine annealing, and EMA (decay 0.999). AFE-FDNet totals <strong>13.5M parameters</strong> and <strong>6.68 GFLOPs</strong>; inference time is ≈<strong>17ms per image</strong> on a single RTX 3090.</span>
+                            <span class="zh">空间（128维）和频域（128维）嵌入被拼接为256维融合向量，通过带ReLU和dropout 0.3的两层MLP，并通过标签平滑交叉熵（ε = 0.05）分类。整个流程使用AdamW、余弦退火和EMA（衰减0.999）进行端到端训练。AFE-FDNet总计<strong>13.5M参数</strong>和<strong>6.68 GFLOPs</strong>；在单张RTX 3090上推理时间约为<strong>17ms/图像</strong>。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Method figure -->
+            <div class="figure-grid single" style="margin-top:64px;">
+                <div class="figure-item">
+                    <img src="IEEE_TCE/HF_HVD_plot.png" alt="Fig. 2 — HF preservation analysis" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 2 — HF–HVD diagnostic: bilinear loses 89.5% more directional HF signal than FA-IPNet at eye contours and lip boundaries. © 2026 IEEE.</span>
+                        <span class="zh">图2 — HF–HVD诊断：双线性在眼部轮廓和唇部边界处比FA-IPNet多损失89.5%的方向性高频信号。© 2026 IEEE。</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="section section-black" id="results">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P4</span>
+                <p class="eyebrow"><span class="en">RESULTS</span><span class="zh">结果</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Best average cross-dataset AUC among all <em>evaluated</em> methods.</span>
+                <span class="zh">在所有<em>评估</em>方法中平均跨数据集AUC最佳。</span>
+            </h2>
+
+            <div class="statement-strip" style="margin-top:0; border-top:none; padding-top:0;">
+                <h3><span class="en">Cross-Dataset Generalization (Table II)</span><span class="zh">跨数据集泛化（表II）</span></h3>
+                <p>
+                    <span class="en">Trained on FF++ (HQ) at 224×224, tested without fine-tuning on CDF-V2, DFDC, and zero-shot on DF40 (diffusion-era). AFE-FDNet achieves <strong>99.76% AUC</strong> on FF++ HQ, <strong>84.17%</strong> on CDF-V2, <strong>78.45%</strong> on DFDC, and <strong>78.94%</strong> on DF40—outperforming 11 SOTA baselines including FCG (CVPR'25), TCLF (TPRIVS'25), and DiffusionFacial (MM'24). Average cross-dataset AUC: <strong>85.33%</strong>.</span>
+                    <span class="zh">在FF++ (HQ) 224×224上训练，在CDF-V2、DFDC上无微调测试，在DF40（扩散时代）上零样本测试。AFE-FDNet在FF++ HQ上达到<strong>99.76% AUC</strong>，CDF-V2上<strong>84.17%</strong>，DFDC上<strong>78.45%</strong>，DF40上<strong>78.94%</strong>——超越11个SOTA基线，包括FCG (CVPR'25)、TCLF (TPRIVS'25)和DiffusionFacial (MM'24)。平均跨数据集AUC：<strong>85.33%</strong>。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Resizer Comparison (Table I)</span><span class="zh">缩放器比较（表I）</span></h3>
+                <p>
+                    <span class="en">At 512×512, FA-IPNet achieves <strong>72.32% AUC</strong> on CDF-V2 and <strong>67.43%</strong> on DF40 (zero-shot), outperforming bilinear (+2.6% / +5.9%), bicubic (+5.8% / +7.6%), LRI (+2.3% / +4.3%), LIIF (+5.1% / +7.2%), and LSAID (+1.9% / +3.7%). Learned perceptual resizers (LRI, LIIF, LSAID) do <em>not</em> outperform classical interpolation on forensic tasks—confirming that perceptual quality and forensic-signal preservation are distinct objectives.</span>
+                    <span class="zh">在512×512下，FA-IPNet在CDF-V2上达到<strong>72.32% AUC</strong>，在DF40（零样本）上达到<strong>67.43%</strong>，超越双线性（+2.6% / +5.9%）、双三次（+5.8% / +7.6%）、LRI（+2.3% / +4.3%）、LIIF（+5.1% / +7.2%）和LSAID（+1.9% / +3.7%）。学习感知缩放器（LRI、LIIF、LSAID）在取证任务上<em>并未</em>超越经典插值——证实感知质量与取证信号保持是不同的目标。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Cross-Backbone Validation (Table IV)</span><span class="zh">跨骨干验证（表IV）</span></h3>
+                <p>
+                    <span class="en">FA-IPNet improves all downstream backbones under LQ compression: Xception (+6–12% AUC), EfficientNet-B4 (+2–4%), ViT-B/16 (+2–3%). On DF40 zero-shot, consistent +3–4% gains across all architectures. This confirms FA-IPNet is detector-agnostic.</span>
+                    <span class="zh">FA-IPNet在所有下游骨干网络下于LQ压缩中均有提升：Xception（+6–12% AUC）、EfficientNet-B4（+2–4%）、ViT-B/16（+2–3%）。在DF40零样本上，所有架构一致提升+3–4%。这证实FA-IPNet是与检测器无关的。</span>
+                </p>
+            </div>
+
+            <div class="figure-grid" style="margin-top:64px;">
+                <div class="figure-item">
+                    <img src="IEEE_TCE/radar_plot_comparison_optimized.png" alt="Fig. 4 — Resizing impact radar charts" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 4 — Conventional bilinear resizing erodes forensic HF cues. Downscaling to 128×128 causes severe AUC collapse (FF++: 99.62% → 95.45%). © 2026 IEEE.</span>
+                        <span class="zh">图4 — 常规双线性缩放侵蚀取证高频线索。下采样至128×128导致严重的AUC崩溃（FF++: 99.62% → 95.45%）。© 2026 IEEE。</span>
+                    </span>
+                </div>
+                <div class="figure-item">
+                    <img src="IEEE_TCE/all_categories_visualization.png" alt="Fig. 5 — RVT vs FET interpretability" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 5 — RVT concentrates on geometric inconsistencies (eyes, mouth); FET highlights spectral anomalies (compression banding, periodic noise). © 2026 IEEE.</span>
+                        <span class="zh">图5 — RVT集中于几何不一致性（眼睛、嘴巴）；FET突出频谱异常（压缩带状、周期性噪声）。© 2026 IEEE。</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Limitations -->
+    <section class="section section-white" id="limitations">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P5</span>
+                <p class="eyebrow"><span class="en">LIMITATIONS & FUTURE WORK</span><span class="zh">局限性与未来工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What we <em>could not</em> solve yet.</span>
+                <span class="zh">我们<em>尚未</em>解决的问题。</span>
+            </h2>
+            <div class="limitations-box">
+                <p>
+                    <span class="en"><strong>Resolution scaling extremes.</strong> FA-IPNet is trained on fixed input resolutions (224×224). Extreme upsampling (>4×) may reintroduce artifacts that bypass the detector. The HF–HVD diagnostic is most reliable at moderate scale changes.</span>
+                    <span class="zh"><strong>分辨率缩放极端情况。</strong>FA-IPNet在固定输入分辨率（224×224）上训练。极端上采样（>4×）可能重新引入绕过检测器的伪影。HF–HVD诊断在中等尺度变化下最可靠。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Video temporal coherence.</strong> This work focuses on single-frame detection. Temporal inconsistencies across video frames are not explicitly modeled, though the framework architecture could be extended with a third temporal branch.</span>
+                    <span class="zh"><strong>视频时序一致性。</strong>本工作专注于单帧检测。视频帧间的时间不一致性未被显式建模，但框架架构可通过第三时序分支扩展。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Generative model evolution.</strong> As diffusion-based face synthesis improves, artifact signatures shift to lower frequencies. The current spectral priors may need periodic retraining to remain effective against next-generation synthesis methods.</span>
+                    <span class="zh"><strong>生成模型演进。</strong>随着基于扩散的人脸合成技术改进，伪影特征向低频转移。当前的频谱先验可能需要定期重新训练，以对抗下一代合成方法。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Ethical considerations.</strong> Deepfake detection models carry dual-use risk; responsible release and controlled weight sharing are essential. Consumer-facing applications should ensure transparency and informed disclosure when content is flagged. Given the asymmetric harm of false positives in identity-sensitive contexts, our framework is intended as one component in a multi-stage review pipeline rather than a sole decision authority.</span>
+                    <span class="zh"><strong>伦理考量。</strong>深度伪造检测模型具有双重用途风险；负责任的发布和受控的权重共享至关重要。面向消费者的应用应确保在标记内容时的透明度和知情披露。鉴于身份敏感环境中假阳性的不对称危害，我们的框架旨在作为多阶段审查流程的一个组件，而非唯一决策权威。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BibTeX -->
+    <section class="section section-black" id="bibtex">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P6</span>
+                <p class="eyebrow"><span class="en">BIBTEX</span><span class="zh">引用</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Cite this <em>paper</em>.</span>
+                <span class="zh">引用此<em>论文</em>。</span>
+            </h2>
+            <div class="bibtex-block" id="bibtexBlock">
+                <pre><code id="bibtexCode">@article{amin2026trustworthy,
+  author    = {Amin, Muhammad Ahmad and Ni, Jiangqun and Xu, Ping and Yu, Zeqin and Fu, Dahao},
+  title     = {Trustworthy Deepfake Defense for Consumer Applications via Frequency-Preserving Resizing and Dual-Branch Forensics},
+  journal   = {IEEE Transactions on Consumer Electronics},
+  year      = {2026},
+  volume    = {xx},
+  number    = {xx},
+  pages     = {xx--xx},
+  publisher = {IEEE},
+  doi       = doi={10.1109/TCE.2026.3699978}
+}</code></pre>
+                <button class="btn bibtex-copy" id="bibtexCopy" aria-label="Copy BibTeX citation">
+                    <span class="en">COPY CITATION</span><span class="zh">复制引用</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- IEEE Copyright Disclaimer -->
+    <section class="section section-white" id="copyright">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P7</span>
+                <p class="eyebrow"><span class="en">COPYRIGHT NOTICE</span><span class="zh">版权声明</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">IEEE <em>Copyright</em> & Usage.</span>
+                <span class="zh">IEEE <em>版权</em>与使用。</span>
+            </h2>
+            <div class="abstract-block">
+                <p style="font-size:14px; color:var(--gray-dark);">
+                    <span class="en">© 2026 IEEE. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses, in any current or future media, including reprinting/republishing this material for advertising or promotional purposes, creating new collective works, for resale or redistribution to servers or lists, or reuse of any copyrighted component of this work in other works.</span>
+                    <span class="zh">© 2026 IEEE。允许个人使用此材料。所有其他用途必须获得IEEE许可，包括在任何当前或未来媒体中重印/再版此材料用于广告或促销目的、创建新的集体作品、转售或重新分发到服务器或列表，或在其他作品中重用此作品的任何受版权保护的组件。</span>
+                </p>
+                <p style="font-size:14px; color:var(--gray-dark); margin-top:12px;">
+                    <span class="en">This page is a personal academic landing page. The full paper is available via IEEE Xplore. Figures are reproduced with permission from IEEE Transactions on Consumer Electronics.</span>
+                    <span class="zh">本页面为个人学术着陆页。完整论文可通过IEEE Xplore获取。图表经IEEE Transactions on Consumer Electronics许可转载。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related -->
+    <section class="section section-black" id="related">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P8</span>
+                <p class="eyebrow"><span class="en">RELATED WORK</span><span class="zh">相关工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">More from our <em>group</em>.</span>
+                <span class="zh">来自我们<em>团队</em>的更多工作。</span>
+            </h2>
+            <div class="related-grid">
+                <a href="dsp.html" class="related-item">
+                    <span class="related-venue">Digital Signal Processing · 2024</span>
+                    <h4><span class="en">Exploring Varying Color Spaces through Representative Forgery Learning</span><span class="zh">通过代表性伪造学习探索多色彩空间</span></h4>
+                    <p><span class="en">Multi-color-space framework for deepfake detection.</span><span class="zh">面向深度伪造检测的多色彩空间框架。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="aej.html" class="related-item">
+                    <span class="related-venue">Alexandria Engineering Journal · 2024</span>
+                    <h4><span class="en">Cross-Domain Local Characteristic Analysis with Multi-domain Transformer</span><span class="zh">基于多域Transformer的跨域局部特征分析</span></h4>
+                    <p><span class="en">SVFT: spatial + frequency transformer for deepfake detection.</span><span class="zh">SVFT：空间与频域Transformer融合的深度伪造检测。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="era.html" class="related-item">
+                    <span class="related-venue">Electronic Research Archive · 2024</span>
+                    <h4><span class="en">Analyzing Temporal Coherence for Deepfake Video Detection</span><span class="zh">基于时序一致性的深度伪造视频检测</span></h4>
+                    <p><span class="en">Bi-level temporal modeling for video forensics.</span><span class="zh">面向视频取证的双层时序建模。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer section-white">
+        <div class="container">
+            <p>
+                <span class="en">© 2026 Muhammad Ahmad Amin. All rights reserved.</span>
+                <span class="zh">© 2026 Muhammad Ahmad Amin. 保留所有权利。</span>
+            </p>
+            <div class="footer-links">
+                <a href="#top" class="back-to-top">
+                    <span class="en">BACK TO TOP ↑</span>
+                    <span class="zh">回到顶部 ↑</span>
+                </a>
+                <a href="../../index.html#top" class="back-to-top">
+                    <span class="en">BACK TO HOME ↑</span>
+                    <span class="zh">返回首页 ↑</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="../js/main.js"></script>
+    <script>
+      // BibTeX copy handler (self-contained for template portability)
+      (function() {
+        const bibtexCopy = document.getElementById('bibtexCopy');
+        const bibtexCode = document.getElementById('bibtexCode');
+        const toast = document.getElementById('toast');
+        if (!bibtexCopy || !bibtexCode) return;
+
+        function showToast(msg) {
+          toast.textContent = msg;
+          toast.classList.add('show');
+          setTimeout(() => { toast.classList.remove('show'); }, 2500);
+        }
+
+        bibtexCopy.addEventListener('click', () => {
+          const text = bibtexCode.textContent;
+          navigator.clipboard.writeText(text).then(() => {
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          });
+        });
+      })();
+    </script>
+</body>
+</html>

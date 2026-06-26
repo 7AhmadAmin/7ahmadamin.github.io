@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Three-dimensional Region Forgery Detection and Localization in Videos — Muhammad Ahmad Amin</title>
+    <meta name="description" content="Three-dimensional Region Forgery Detection and Localization in Videos. IJIGSP 2019." />
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='90' fill='%2300b894'/%3E%3Cpath d='M116 103 H216 L136 219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 103 V219 M296 103 L346 149 L396 103 M396 103 V219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M116 409 L166 299 L216 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 409 L346 299 L396 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/subpages.css" />
+</head>
+<body>
+
+    <aside class="side-dock" id="sideDock" aria-label="Social links">
+        <div class="dock-links">
+            <a href="https://twitter.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="X / Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path></svg>
+            </a>
+            <a href="https://github.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+            </a>
+            <a href="https://scholar.google.com/citations?hl=en&user=57ouxVcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10l-10-6-10 6 10 6 10-6z"/>
+                    <path d="M6 12v5l6 3 6-3v-5"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/7ahmadamin" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"></path></svg>
+            </a>
+        </div>
+        <button class="dock-toggle" id="dockToggle" aria-label="Toggle social links" aria-expanded="false">
+            <span class="toggle-label">Socials</span>
+        </button>
+    </aside>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../../index.html#top" class="nav-name" id="navName">
+                <span class="nav-name-text">MUHAMMAD AHMAD AMIN</span>
+            </a>
+            <div class="nav-links">
+                <a href="../../index.html#about"><span class="en">ABOUT</span><span class="zh">关于</span></a>
+                <a href="../../index.html#research"><span class="en">RESEARCH</span><span class="zh">研究</span></a>
+                <a href="../../index.html#experience"><span class="en">WORK</span><span class="zh">工作</span></a>
+                <a href="../../index.html#projects"><span class="en">FUNDING</span><span class="zh">基金</span></a>
+                <a href="../../index.html#publications"><span class="en">PAPERS</span><span class="zh">论文</span></a>
+                <a href="../../index.html#talks"><span class="en">TALKS</span><span class="zh">报告</span></a>
+                <a href="../../index.html#news"><span class="en">NEWS</span><span class="zh">动态</span></a>
+                <a href="../../index.html#contact"><span class="en">CONTACT</span><span class="zh">联系</span></a>
+            </div>
+            <div class="nav-actions">
+                <a href="../CV/Resume.pdf" class="cv-btn" download>
+                    <span class="en">CV ↓</span>
+                    <span class="zh">简历 ↓</span>
+                </a>
+                <button class="lang-btn lang-btn-desktop" aria-label="Toggle language">EN / 中</button>
+                <button class="lang-btn lang-btn-mobile" aria-label="Toggle language">EN / 中</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="subpage-hero" id="top">
+        <div class="hero-bg"></div>
+        <div class="subpage-hero-content">
+            <p class="hero-label">
+                <span class="en">PUBLICATION</span><span class="zh">论文</span> · IJIGSP · 2019
+            </p>
+            <h1 class="hero-title">
+                <span class="en">Three-dimensional Region Forgery Detection and Localization in Videos</span>
+                <span class="zh">视频中三维区域伪造检测与定位</span>
+            </h1>
+
+            <div class="author-grid">
+                <span class="author-block">X. H. Nguyen<sup>1,2</sup></span>
+                <span class="author-block">Y. Hu<sup>1</sup></span>
+                <span class="author-block"><a href="../../index.html#about">M. A. Amin</a><sup>1</sup></span>
+                <span class="author-block">K. G. Hayat<sup>1</sup></span>
+                <span class="author-block">V. T. Le<sup>2</sup></span>
+                <span class="author-block">D. T. Truong<sup>3</sup></span>
+            </div>
+            <div class="affiliation-list">
+                <span><sup>1</sup><span class="en">Research Centre of Multimedia Information Security Detection and Intelligent Processing, School of Electronics and Information Engineering, South China University of Technology, Guangzhou 510640, P.R. China</span><span class="zh">华南理工大学电子信息学院多媒体信息安全检测与智能处理研究中心，广州 510640，中国</span></span>
+                <span><sup>2</sup><span class="en">Faculty of Electronics and Informatics Engineering, Mien Trung Industrial and Trade College, Phu Yen 620000, Vietnam</span><span class="zh">越南富安省中越工业贸易学院电子与信息工程系</span></span>
+                <span><sup>3</sup><span class="en">Faculty of Information Technology, Ton Duc Thang University, Ho Chi Minh 700000, Vietnam</span><span class="zh">越南胡志明市孙德胜大学信息技术学院</span></span>
+            </div>
+
+            <div class="link-buttons">
+                <a href="https://www.mecs-press.org/ijigsp/ijigsp-v11-n12/IJIGSP-V11-N12-1.pdf" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <span class="en">Paper</span><span class="zh">Paper</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="section section-white" id="abstract">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P1</span>
+                <p class="eyebrow"><span class="en">ABSTRACT</span><span class="zh">摘要</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What is the <em>problem</em> and what did we do?</span>
+                <span class="zh">我们解决了什么<em>问题</em>？</span>
+            </h2>
+            <div class="abstract-block">
+                <p>
+                    <span class="en">With the extensive use of cameras and rapidly developing video editing software, millions of videos are uploaded daily and forgery has become easier than ever. While detecting forged videos has gained research attention, very limited studies address the detection of videos with duplicated three-dimensional (3-D) regions, a popular tampering method used to hide or duplicate objects and actions across consecutive frames.</span>
+                    <span class="zh">随着摄像头的广泛使用和视频编辑软件的快速发展，每天有数百万视频上传，伪造变得比以往任何时候都更容易。虽然检测伪造视频已引起研究关注，但针对复制三维（3-D）区域视频检测的研究非常有限——这是一种用于隐藏或复制连续帧中对象和动作的流行篡改方法。</span>
+                </p>
+                <p>
+                    <span class="en">We propose a new method for detecting and locating 3-D duplicated regions in videos based on <strong>phase-correlation of 3-D frame residuals</strong>. The algorithm uses frame difference residuals to eliminate linear effects (e.g., brightness changes), then applies Fourier transformation and phase-correlation between 3-D regions to identify duplicated content. A two-threshold decision mechanism (Max_Threshold ≥ 0.55, Min_Threshold = 0.3) with expanded-area verification handles ambiguous cases, followed by block-level correlation for precise localization.</span>
+                    <span class="zh">我们提出了一种基于<strong>三维帧残差相位相关</strong>的视频中三维复制区域检测与定位新方法。该算法使用帧差残差消除线性效应（如亮度变化），然后对三维区域应用傅里叶变换和相位相关来识别复制内容。双阈值决策机制（最大阈值≥0.55，最小阈值=0.3）配合扩展区域验证处理模糊情况，随后通过块级相关实现精确定位。</span>
+                </p>
+                <p>
+                    <span class="en">Evaluations on two realistic datasets, <strong>VFDD-3D</strong> (high-resolution, 100 videos, 10 cameras) and <strong>REWIND-3D</strong> (low-resolution, 40 videos), demonstrate the method is efficient and robust for detecting both small 3-D region duplication and full frame sequence duplication, with localization accuracy exceeding <strong>99%</strong> on both datasets.</span>
+                    <span class="zh">在两个真实数据集，<strong>VFDD-3D</strong>（高分辨率，100个视频，10个摄像头）和<strong>REWIND-3D</strong>（低分辨率，40个视频），上的评估表明，该方法对检测小型三维区域复制和完整帧序列复制均高效鲁棒，在两个数据集上的定位准确率均超过<strong>99%</strong>。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-black" id="method">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P2</span>
+                <p class="eyebrow"><span class="en">METHOD</span><span class="zh">方法</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Phase-correlation of 3-D residuals for <em>detection</em> and <em>localization</em>.</span>
+                <span class="zh">三维残差相位相关用于<em>检测</em>与<em>定位</em>。</span>
+            </h2>
+            <div class="method-steps">
+                <div class="method-step">
+                    <span class="step-num">01</span>
+                    <div class="step-content">
+                        <h4><span class="en">Residual Computation & 3-D Region Division</span><span class="zh">残差计算与三维区域划分</span></h4>
+                        <p>
+                            <span class="en">The video is converted to grayscale and frame residuals R are computed as the pixel-wise difference between adjacent frames: R = v<sub>t+1</sub> − v<sub>t</sub>. Using residuals instead of raw frames eliminates linear effects such as brightness changes and enhances pixel-to-pixel differences for Fourier analysis. The residual video is then divided into overlapping 3-D regions of size H × W × T (e.g., 80 × 128 × 30 for small-region detection, or full-frame × 30 for sequence duplication).</span>
+                            <span class="zh">视频转换为灰度图，帧残差R计算为相邻帧之间的像素级差值：R = v<sub>t+1</sub> − v<sub>t</sub>。使用残差而非原始帧可消除亮度变化等线性效应，并增强傅里叶分析的像素差异。残差视频随后被划分为重叠的三维区域，大小为H × W × T（例如，小型区域检测为80 × 128 × 30，序列复制为全帧 × 30）。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">02</span>
+                    <div class="step-content">
+                        <h4><span class="en">Phase-Correlation & Dual-Threshold Detection</span><span class="zh">相位相关与双阈值检测</span></h4>
+                        <p>
+                            <span class="en">For each pair of 3-D regions B<sub>n</sub> and B<sub>m</sub>, the maximum phase-correlation K is computed via inverse FFT of the normalized cross-power spectrum. A dual-threshold decision is applied: if K > Max_Threshold (0.55), the regions are suspected duplicates; if K ≤ Min_Threshold (0.3), they are not. For ambiguous cases (0.3 < K ≤ 0.55), phase-correlation is recomputed on expanded areas (striding 3 pixels, extended by half the region size), and confirmed if Max(K) > Max_Threshold or Max(K)/Average_All(K) > C_Ratio (20).</span>
+                            <span class="zh">对于每对三维区域B<sub>n</sub>和B<sub>m</sub>，通过归一化互功率谱的逆FFT计算最大相位相关K。应用双阈值决策：若K > 最大阈值（0.55），则区域为疑似复制；若K ≤ 最小阈值（0.3），则不是。对于模糊情况（0.3 < K ≤ 0.55），在扩展区域（步长3像素，扩展半区域大小）上重新计算相位相关，若Max(K) > 最大阈值或Max(K)/Average_All(K) > C_Ratio（20）则确认。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">03</span>
+                    <div class="step-content">
+                        <h4><span class="en">Block-Level Localization</span><span class="zh">块级定位</span></h4>
+                        <p>
+                            <span class="en">Each suspected duplicate pair is tiled into 8 × 8 × 10 overlapping blocks. Correlation coefficients between corresponding block pairs are computed; blocks with correlation > 0.9 are marked as duplicated. Four-connectivity is applied to remove isolated false positives, yielding precise localization of the forged 3-D region. This achieves <strong>99.95%</strong> accuracy on VFDD-3D and <strong>99.29%</strong> on REWIND-3D for small-region duplication.</span>
+                            <span class="zh">每对疑似复制区域被划分为8 × 8 × 10的重叠块。计算对应块对之间的相关系数；相关系数>0.9的块标记为复制。应用四连通性去除孤立假阳性，实现伪造三维区域的精确定位。这在VFDD-3D上达到<strong>99.95%</strong>准确率，在REWIND-3D小型区域复制上达到<strong>99.29%</strong>。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-white" id="results">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P3</span>
+                <p class="eyebrow"><span class="en">RESULTS</span><span class="zh">结果</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">High accuracy across <em>resolutions</em> and <em>forgery types</em>.</span>
+                <span class="zh">跨<em>分辨率</em>和<em>伪造类型</em>的高准确率。</span>
+            </h2>
+
+            <div class="statement-strip" style="margin-top:0; border-top:none; padding-top:0;">
+                <h3><span class="en">Small 3-D Region Duplication (VFDD-3D)</span><span class="zh">小型三维区域复制（VFDD-3D）</span></h3>
+                <p>
+                    <span class="en">On the high-resolution VFDD-3D dataset (404×720 to 1080×1920, 10 cameras, MP4 format), the optimal 3-D region size of <strong>80 × 128 × 30</strong> achieves the highest AUC of <strong>0.928</strong>, outperforming Wang & Farid [6], Singh & Singh [8], and Bestagini et al. [2]. Region size selection is critical: too small increases false positives, too large increases false negatives.</span>
+                    <span class="zh">在高分辨率VFDD-3D数据集（404×720至1080×1920，10个摄像头，MP4格式）上，最优三维区域大小<strong>80 × 128 × 30</strong>达到最高AUC <strong>0.928</strong>，超越Wang & Farid [6]、Singh & Singh [8]和Bestagini et al. [2]。区域大小选择至关重要：过小增加假阳性，过大增加假阴性。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Frame Sequence Duplication (VFDD-3D)</span><span class="zh">帧序列复制（VFDD-3D）</span></h3>
+                <p>
+                    <span class="en">For full-frame sequence duplication, larger spatial regions perform better. Using <strong>frame size × 30</strong> achieves <strong>AUC 0.975</strong>, surpassing methods based on correlation coefficients of gray values [5], spatial-temporal correlation [6], and DCT mean correlation [8]. The phase-correlation approach robustly handles the larger temporal extent of frame-sequence forgeries.</span>
+                    <span class="zh">对于完整帧序列复制，更大的空间区域表现更好。使用<strong>帧大小 × 30</strong>达到<strong>AUC 0.975</strong>，超越基于灰度值相关系数[5]、时空相关[6]和DCT均值相关[8]的方法。相位相关方法对帧序列伪造的更大时间范围具有鲁棒性。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Low-Resolution Robustness (REWIND-3D)</span><span class="zh">低分辨率鲁棒性（REWIND-3D）</span></h3>
+                <p>
+                    <span class="en">On the low-resolution REWIND-3D dataset (320×240, 3 cameras), the optimal size <strong>48 × 64 × 30</strong> achieves <strong>AUC 0.995</strong> for small-region duplication and <strong>AUC 0.995</strong> for frame-sequence duplication. The method maintains high accuracy even with significantly lower video quality, demonstrating strong cross-resolution generalization.</span>
+                    <span class="zh">在低分辨率REWIND-3D数据集（320×240，3个摄像头）上，最优大小<strong>48 × 64 × 30</strong>对小型区域复制达到<strong>AUC 0.995</strong>，对帧序列复制达到<strong>AUC 0.995</strong>。即使在显著较低的视频质量下，该方法仍保持高准确率，展示了强跨分辨率泛化能力。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Forgery Localization</span><span class="zh">伪造定位</span></h3>
+                <p>
+                    <span class="en">Localization accuracy is <strong>99.95%</strong> on VFDD-3D (small regions), <strong>99.35%</strong> on VFDD-3D (frame sequences), <strong>99.29%</strong> on REWIND-3D (small regions), and <strong>99.56%</strong> on REWIND-3D (frame sequences). The block-level correlation with connectivity filtering precisely identifies duplicated voxels, enabling pixel-accurate forgery maps.</span>
+                    <span class="zh">定位准确率在VFDD-3D（小型区域）上为<strong>99.95%</strong>，VFDD-3D（帧序列）上<strong>99.35%</strong>，REWIND-3D（小型区域）上<strong>99.29%</strong>，REWIND-3D（帧序列）上<strong>99.56%</strong>。带连通性滤波的块级相关精确定位复制体素，实现像素级精确的伪造图。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-black" id="bibtex">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P4</span>
+                <p class="eyebrow"><span class="en">BIBTEX</span><span class="zh">引用</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Cite this <em>paper</em>.</span>
+                <span class="zh">引用此<em>论文</em>。</span>
+            </h2>
+            <div class="bibtex-block" id="bibtexBlock">
+                <pre><code id="bibtexCode">@article{nguyen2019three,
+  author    = {Nguyen, Xuan Hau and Hu, Yongjian and Amin, Muhammad Ahmad and Hayat, Khan Gohar and Le, Van Thinh and Truong, Dinh Tu},
+  title     = {Three-dimensional Region Forgery Detection and Localization in Videos},
+  journal   = {International Journal of Image, Graphics and Signal Processing},
+  year      = {2019},
+  volume    = {11},
+  number    = {12},
+  pages     = {1--13},
+  publisher = {MECS Press},
+  doi       = {10.5815/ijigsp.2019.12.01}
+}</code></pre>
+                <button class="btn bibtex-copy" id="bibtexCopy" aria-label="Copy BibTeX citation">
+                    <span class="en">COPY CITATION</span><span class="zh">复制引用</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-white" id="copyright">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P5</span>
+                <p class="eyebrow"><span class="en">COPYRIGHT NOTICE</span><span class="zh">版权声明</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">MECS Press <em>Copyright</em> & Usage.</span>
+                <span class="zh">MECS Press <em>版权</em>与使用。</span>
+            </h2>
+            <div class="abstract-block">
+                <p style="font-size:14px; color:var(--gray-dark);">
+                    <span class="en">© 2019 MECS Press. Personal use of this material is permitted. The full paper is available via MECS Press. This page is a personal academic landing page.</span>
+                    <span class="zh">© 2019 MECS Press。允许个人使用此材料。完整论文可通过MECS Press获取。本页面为个人学术着陆页。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-black" id="related">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P6</span>
+                <p class="eyebrow"><span class="en">RELATED WORK</span><span class="zh">相关工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">More from our <em>group</em>.</span>
+                <span class="zh">来自我们<em>团队</em>的更多工作。</span>
+            </h2>
+            <div class="related-grid">
+                <a href="ieee_tce.html" class="related-item">
+                    <span class="related-venue">IEEE TCE · 2026</span>
+                    <h4><span class="en">Trustworthy Deepfake Defense for Consumer Applications</span><span class="zh">面向消费级应用的可信深度伪造防御</span></h4>
+                    <p><span class="en">Frequency-preserving resizing and dual-branch forensics.</span><span class="zh">频域保持缩放与双分支取证。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="era.html" class="related-item">
+                    <span class="related-venue">ERA · 2024</span>
+                    <h4><span class="en">Analyzing Temporal Coherence for Deepfake Video Detection</span><span class="zh">基于时序一致性的深度伪造视频检测</span></h4>
+                    <p><span class="en">Bi-level temporal modeling for video forensics.</span><span class="zh">面向视频取证的双层时序建模。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="ieee_iwbf.html" class="related-item">
+                    <span class="related-venue">IEEE IWBF · 2023</span>
+                    <h4><span class="en">Exposing Deepfake Frames through Spectral Analysis</span><span class="zh">基于频谱分析的深度伪造帧检测</span></h4>
+                    <p><span class="en">Color channel frequency domain forensics.</span><span class="zh">颜色通道频域取证。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer section-white">
+        <div class="container">
+            <p>
+                <span class="en">© 2026 Muhammad Ahmad Amin. All rights reserved.</span>
+                <span class="zh">© 2026 Muhammad Ahmad Amin. 保留所有权利。</span>
+            </p>
+            <div class="footer-links">
+                <a href="#top" class="back-to-top">
+                    <span class="en">BACK TO TOP ↑</span>
+                    <span class="zh">回到顶部 ↑</span>
+                </a>
+                <a href="../../index.html#top" class="back-to-top">
+                    <span class="en">BACK TO HOME ↑</span>
+                    <span class="zh">返回首页 ↑</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="../js/main.js"></script>
+    <script>
+      (function() {
+        const bibtexCopy = document.getElementById('bibtexCopy');
+        const bibtexCode = document.getElementById('bibtexCode');
+        const toast = document.getElementById('toast');
+        if (!bibtexCopy || !bibtexCode) return;
+
+        function showToast(msg) {
+          toast.textContent = msg;
+          toast.classList.add('show');
+          setTimeout(() => { toast.classList.remove('show'); }, 2500);
+        }
+
+        bibtexCopy.addEventListener('click', () => {
+          const text = bibtexCode.textContent;
+          navigator.clipboard.writeText(text).then(() => {
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          });
+        });
+      })();
+    </script>
+</body>
+</html>

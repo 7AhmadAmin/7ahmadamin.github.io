@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deepfake Detection via Cross-Domain Multi-Domain Transformer — Muhammad Ahmad Amin</title>
+    <meta name="description" content="Deepfake detection based on cross-domain local characteristic analysis with multi-domain transformer. Alexandria Engineering Journal 2024." />
+
+    <!-- Custom SVG Favicon (Baked in) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='90' fill='%2300b894'/%3E%3Cpath d='M116 103 H216 L136 219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 103 V219 M296 103 L346 149 L396 103 M396 103 V219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M116 409 L166 299 L216 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 409 L346 299 L396 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/subpages.css" />
+</head>
+<body>
+
+    <!-- Side Dock — Social Links -->
+    <aside class="side-dock" id="sideDock" aria-label="Social links">
+        <div class="dock-links">
+            <a href="https://twitter.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="X / Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path></svg>
+            </a>
+            <a href="https://github.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+            </a>
+            <a href="https://scholar.google.com/citations?hl=en&user=57ouxVcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10l-10-6-10 6 10 6 10-6z"/>
+                    <path d="M6 12v5l6 3 6-3v-5"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/7ahmadamin" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"></path></svg>
+            </a>
+        </div>
+        <button class="dock-toggle" id="dockToggle" aria-label="Toggle social links" aria-expanded="false">
+            <span class="toggle-label">Socials</span>
+        </button>
+    </aside>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../../index.html#top" class="nav-name" id="navName">
+                <span class="nav-name-text">MUHAMMAD AHMAD AMIN</span>
+            </a>
+            <div class="nav-links">
+                <a href="../../index.html#about"><span class="en">ABOUT</span><span class="zh">关于</span></a>
+                <a href="../../index.html#research"><span class="en">RESEARCH</span><span class="zh">研究</span></a>
+                <a href="../../index.html#experience"><span class="en">WORK</span><span class="zh">工作</span></a>
+                <a href="../../index.html#projects"><span class="en">FUNDING</span><span class="zh">基金</span></a>
+                <a href="../../index.html#publications"><span class="en">PAPERS</span><span class="zh">论文</span></a>
+                <a href="../../index.html#talks"><span class="en">TALKS</span><span class="zh">报告</span></a>
+                <a href="../../index.html#news"><span class="en">NEWS</span><span class="zh">动态</span></a>
+                <a href="../../index.html#contact"><span class="en">CONTACT</span><span class="zh">联系</span></a>
+            </div>
+            <div class="nav-actions">
+                <a href="../CV/Resume.pdf" class="cv-btn" download>
+                    <span class="en">CV ↓</span>
+                    <span class="zh">简历 ↓</span>
+                </a>
+                <button class="lang-btn lang-btn-desktop" aria-label="Toggle language">EN / 中</button>
+                <button class="lang-btn lang-btn-mobile" aria-label="Toggle language">EN / 中</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="subpage-hero" id="top">
+        <div class="hero-bg"></div>
+        <div class="subpage-hero-content">
+            <p class="hero-label">
+                <span class="en">PUBLICATION</span><span class="zh">论文</span> · Alexandria Engineering Journal · 2024
+            </p>
+            <h1 class="hero-title">
+                <span class="en">Deepfake Detection Based on Cross‑Domain Local Characteristic Analysis with Multi‑Domain Transformer</span>
+                <span class="zh">基于跨域局部特征分析与多域Transformer的深度伪造检测</span>
+            </h1>
+
+            <div class="author-grid">
+                <span class="author-block"><a href="../../index.html#about">M. A. Amin</a><sup>1,*</sup></span>
+                <span class="author-block">Y. Hu<sup>1</sup></span>
+                <span class="author-block">C.-T. Li<sup>2</sup></span>
+                <span class="author-block">B. Liu<sup>1</sup></span>
+            </div>
+            <div class="affiliation-list">
+                <span><sup>1</sup><span class="en">School of Electronic and Information Engineering, South China University of Technology, Guangzhou 510641, China</span><span class="zh">华南理工大学电子与信息工程学院</span></span>
+                <span><sup>2</sup><span class="en">School of Information Technology, Deakin University, Geelong Waurn Ponds, VIC 3216, Australia</span><span class="zh">迪肯大学信息技术学院</span></span>
+            </div>
+
+            <div class="link-buttons">
+                <a href="https://www.sciencedirect.com/science/article/pii/S1110016824001753" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <span class="en">Paper</span><span class="zh">Paper</span>
+                </a>
+                <a href="https://doi.org/10.1016/j.aej.2024.02.035" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    <span class="en">DOI</span><span class="zh">DOI</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Abstract -->
+    <section class="section section-white" id="abstract">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P1</span>
+                <p class="eyebrow"><span class="en">ABSTRACT</span><span class="zh">摘要</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What is the <em>problem</em> and what did we do?</span>
+                <span class="zh">我们解决了什么<em>问题</em>？</span>
+            </h2>
+            <div class="abstract-block">
+                <p>
+                    <span class="en">Deepfake videos present a significant challenge in the current media landscape. While existing detection methods demonstrate satisfactory performance within known training distributions, they tend to overfit to specific forgery patterns and suffer severe degradation when confronted with unseen manipulations, cross-dataset evaluations, and real-world perturbations such as compression and image degradation. The lack of generalization remains a critical bottleneck, as pure spatial-domain detectors often overlook the spectral anomalies introduced by generative upsampling operations.</span>
+                    <span class="zh">深度伪造视频对当前媒体环境构成重大挑战。现有检测方法在已知训练分布内表现良好，但倾向于过拟合特定伪造模式，在面对未知操纵、跨数据集评估和压缩及图像退化等真实世界扰动时性能严重下降。泛化能力不足仍然是一个关键瓶颈，因为纯空间域检测器往往忽视了生成式上采样操作引入的频谱异常。</span>
+                </p>
+                <p>
+                    <span class="en">We propose the <strong>SpectraVisionFusion Transformer (SVFT)</strong>, a novel multi-modal deepfake detection framework that jointly analyzes spatial visual cues and frequency-domain statistical artifacts. The framework comprises two specialized encoders: a <strong>Convolutional Transformer Encoder (CTE)</strong> based on CvT-13 that captures local spatial patterns and high-level visual features, and a <strong>Language Transformer Encoder (LTE)</strong> based on DistilBERT that models contextual relationships within spectral statistical features extracted via 2D-DFT. A weighted feature embedding fusion mechanism (α = 0.7, β = 0.3) integrates these complementary modalities, followed by a common cross-attention transformer decoder and classification head. The entire model totals <strong>86.58M parameters</strong> with <strong>25.89 GFLOPs</strong> complexity.</span>
+                    <span class="zh">我们提出了<strong>SpectraVisionFusion Transformer（SVFT）</strong>，一种新颖的多模态深度伪造检测框架，联合分析空间视觉线索和频域统计伪影。该框架包含两个专用编码器：基于CvT-13的<strong>卷积Transformer编码器（CTE）</strong>捕获局部空间模式和高级视觉特征，基于DistilBERT的<strong>语言Transformer编码器（LTE）</strong>对通过2D-DFT提取的频谱统计特征内的上下文关系进行建模。加权特征嵌入融合机制（α = 0.7，β = 0.3）整合这些互补模态，随后通过公共交叉注意力Transformer解码器和分类头。整个模型总计<strong>86.58M参数</strong>，复杂度为<strong>25.89 GFLOPs</strong>。</span>
+                </p>
+                <p>
+                    <span class="en">Evaluations on FaceForensics++ (FF++), DFDC, Celeb-DF-v2, and DeeperForensics-1.0 demonstrate strong generalization. SVFT achieves <strong>92.57% average AUC</strong> in cross-manipulation evaluation on FF++ and <strong>80.63% average AUC</strong> in cross-dataset evaluation, surpassing Xception, Face X-ray, SPSL, RECCE, CPT, and SFDG. The model also exhibits robustness against compression (c23 / c40) and four unseen perturbations, with an average AUC of <strong>91.17%</strong> across brightness change, contrast change, random block occlusion, and Gaussian blur.</span>
+                    <span class="zh">在FaceForensics++（FF++）、DFDC、Celeb-DF-v2和DeeperForensics-1.0上的评估展示了强大的泛化能力。SVFT在FF++跨操纵评估中达到<strong>92.57%平均AUC</strong>，在跨数据集评估中达到<strong>80.63%平均AUC</strong>，超越了Xception、Face X-ray、SPSL、RECCE、CPT和SFDG。该模型还对压缩（c23/c40）和四种未知扰动表现出鲁棒性，在亮度变化、对比度变化、随机块遮挡和高斯模糊上的平均AUC为<strong>91.17%</strong>。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaser -->
+    <section class="section section-black" id="teaser">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P2</span>
+                <p class="eyebrow"><span class="en">FRAMEWORK OVERVIEW</span><span class="zh">框架概览</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Spatial vision meets spectral <em>language</em>: a dual-branch transformer.</span>
+                <span class="zh">空间视觉与频谱<em>语言</em>相遇：双分支Transformer。</span>
+            </h2>
+            <div class="figure-grid single">
+                <div class="figure-item">
+                    <img src="AEJ/AEJ1.jpg" alt="Fig. 1 — SVFT model pipeline" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 1 — Overview of the SVFT model pipeline. The Convolutional Transformer Encoder (CTE) processes RGB video frames for spatial cues, while the Language Transformer Encoder (LTE) processes spectral statistical features for frequency cues. A weighted fusion layer and common cross-attention decoder enable joint analysis. © 2024 Elsevier.</span>
+                        <span class="zh">图1 — SVFT模型流程概览。卷积Transformer编码器（CTE）处理RGB视频帧以提取空间线索，语言Transformer编码器（LTE）处理频谱统计特征以提取频域线索。加权融合层和公共交叉注意力解码器实现联合分析。© 2024 Elsevier。</span>
+                    </span>
+                </div>
+            </div>
+            <p style="margin-top:24px; font-size:12px; color:var(--gray); text-align:center; line-height:1.6;">
+                <span class="en">© 2024 THE AUTHORS. Published by Elsevier BV on behalf of Faculty of Engineering, Alexandria University. This is an open access article under the CC BY-NC-ND license.</span>
+                <span class="zh">© 2024 作者。由Elsevier BV代表亚历山大大学工程学院出版。本文根据CC BY-NC-ND许可进行开放获取。</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Method -->
+    <section class="section section-white" id="method">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P3</span>
+                <p class="eyebrow"><span class="en">METHOD</span><span class="zh">方法</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Cross-domain analysis: decompose, encode, <em>fuse</em>, and detect.</span>
+                <span class="zh">跨域分析：分解、编码、<em>融合</em>与检测。</span>
+            </h2>
+            <div class="method-steps">
+                <div class="method-step">
+                    <span class="step-num">01</span>
+                    <div class="step-content">
+                        <h4><span class="en">Frequency Domain Decomposition & Spectral Feature Extraction</span><span class="zh">频域分解与频谱特征提取</span></h4>
+                        <p>
+                            <span class="en">We apply 2D-DFT to each RGB channel of video frames to expose spectral anomalies caused by generative upsampling. Nine statistical features are extracted: <strong>MeanRG, MeanRB, MeanGB, MeanAvg, MinAvg, MaxAvg</strong> (average spectrum differences between color channels), and <strong>CorrRG, CorrRB, CorrGB</strong> (Pearson correlation coefficients between channel spectra). Deepfakes exhibit lower inter-channel correlation because generative models fail to enforce natural correlation constraints during synthesis, leaving detectable statistical fingerprints.</span>
+                            <span class="zh">我们对视频帧的每个RGB通道应用2D-DFT，以揭示生成式上采样引起的频谱异常。提取九个统计特征：<strong>MeanRG、MeanRB、MeanGB、MeanAvg、MinAvg、MaxAvg</strong>（颜色通道间平均频谱差异），以及<strong>CorrRG、CorrRB、CorrGB</strong>（通道频谱间的皮尔逊相关系数）。深度伪造表现出较低的通道间相关性，因为生成模型在合成过程中未能强制自然相关性约束，留下可检测的统计指纹。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">02</span>
+                    <div class="step-content">
+                        <h4><span class="en">Spatial Branch — Convolutional Transformer Encoder (CTE)</span><span class="zh">空间分支 — 卷积Transformer编码器（CTE）</span></h4>
+                        <p>
+                            <span class="en">The CTE is built on the CvT-13 architecture (<strong>19.98M parameters</strong>) and processes raw RGB face frames resized to 224×224. It introduces convolutional token embedding and convolutional projection into the vision transformer paradigm, enabling hierarchical local spatial context modeling. Three stages (56×56, 28×28, 14×14) progressively downsample while increasing feature dimension. Multi-Head Self-Attention (MHSA) and MLP blocks capture both low-level edges and high-level semantic visual patterns indicative of facial manipulation.</span>
+                            <span class="zh">CTE基于CvT-13架构（<strong>19.98M参数</strong>），处理调整大小为224×224的原始RGB人脸帧。它在视觉Transformer范式中引入卷积token嵌入和卷积投影，实现分层局部空间上下文建模。三个阶段（56×56、28×28、14×14）逐步下采样同时增加特征维度。多头自注意力（MHSA）和MLP模块捕获指示面部操纵的低级边缘和高级语义视觉模式。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">03</span>
+                    <div class="step-content">
+                        <h4><span class="en">Frequency Branch — Language Transformer Encoder (LTE)</span><span class="zh">频域分支 — 语言Transformer编码器（LTE）</span></h4>
+                        <p>
+                            <span class="en">The LTE is derived from DistilBERT (<strong>66M parameters</strong>) and treats spectral statistical features as a token sequence. Using WordPiece tokenization (vocabulary 30,522), the model embeds numerical spectral statistics into a 512-dimensional hidden space. Six transformer blocks with 12 attention heads and bi-directional language modeling capture contextual relationships and semantic meaning within the frequency-domain feature sequence. This allows the model to reason about spectral anomalies as structured linguistic patterns rather than isolated numerical values.</span>
+                            <span class="zh">LTE源自DistilBERT（<strong>66M参数</strong>），将频谱统计特征视为token序列。使用WordPiece分词（词表30,522），模型将数值频谱统计量嵌入到512维隐藏空间。六个Transformer块配备12个注意力头，通过双向语言建模捕获频域特征序列内的上下文关系和语义含义。这使模型能够将频谱异常作为结构化语言模式而非孤立数值进行推理。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">04</span>
+                    <div class="step-content">
+                        <h4><span class="en">Weighted Fusion, Cross-Attention Decoder & Classification</span><span class="zh">加权融合、交叉注意力解码器与分类</span></h4>
+                        <p>
+                            <span class="en">A weighted fusion layer combines CTE and LTE embeddings with <strong>α = 0.7</strong> (spatial) and <strong>β = 0.3</strong> (frequency), emphasizing spatial cues while preserving spectral regularization. The fused features pass through a 2-layer transformer decoder with masked multi-head attention and feed-forward networks for cross-modal reasoning. The classification head applies GELU activation, dropout (p = 0.25), and a linear projection to produce binary logits. The model is trained with a structured strategy—alternating real and fake sequences—which reduces EER from 0.1471 to 0.0796. Mixed-precision (bf16) training cuts time by <strong>24–35%</strong> with no AUC loss.</span>
+                            <span class="zh">加权融合层以<strong>α = 0.7</strong>（空间）和<strong>β = 0.3</strong>（频域）组合CTE和LTE嵌入，强调空间线索同时保留频谱正则化。融合特征通过配备掩码多头注意力和前馈网络的两层Transformer解码器进行跨模态推理。分类头应用GELU激活、dropout（p = 0.25）和线性投影生成二元logits。模型采用结构化策略训练——交替真实和伪造序列——将EER从0.1471降至0.0796。混合精度（bf16）训练将时间减少<strong>24–35%</strong>且AUC无损失。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Method figures -->
+            <div class="figure-grid" style="margin-top:64px;">
+                <div class="figure-item">
+                    <img src="AEJ/AEJ3.jpg" alt="Fig. 3 — Statistical feature distributions" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 3 — Distributions of spectral statistical features (Mean, Min, Max, Correlation) for real (blue) and deepfake (orange) frames. Clear separability validates the forensic value of frequency-domain statistics. © 2024 Elsevier.</span>
+                        <span class="zh">图3 — 真实（蓝色）和深度伪造（橙色）帧的频谱统计特征（均值、最小值、最大值、相关性）分布。明显的可分离性验证了频域统计量的取证价值。© 2024 Elsevier。</span>
+                    </span>
+                </div>
+                <div class="figure-item">
+                    <img src="AEJ/AEJ4.jpg" alt="Fig. 4 — t-SNE feature distributions" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 4 — t-SNE visualizations of learned LTE embeddings across eight datasets/manipulations. Real and fake clusters are more compact and separable than single-domain baselines. © 2024 Elsevier.</span>
+                        <span class="zh">图4 — 跨八个数据集/操纵的学习LTE嵌入t-SNE可视化。真实和伪造簇比单域基线更紧凑且可分离。© 2024 Elsevier。</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="section section-black" id="results">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P4</span>
+                <p class="eyebrow"><span class="en">RESULTS</span><span class="zh">结果</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Superior generalization across manipulations, datasets, and <em>perturbations</em>.</span>
+                <span class="zh">在操纵、数据集和<em>扰动</em>上的卓越泛化能力。</span>
+            </h2>
+
+            <div class="statement-strip" style="margin-top:0; border-top:none; padding-top:0;">
+                <h3><span class="en">Cross-Manipulation Generalization (Table 5)</span><span class="zh">跨操纵泛化（表5）</span></h3>
+                <p>
+                    <span class="en">Trained on one FF++ manipulation and tested on the other three without fine-tuning. SVFT achieves an average cross-manipulation AUC of <strong>92.57%</strong>. Notable gains include <strong>+17.43%</strong> (DF → FaceSwap), <strong>+5.25%</strong> (DF → Face2Face), and <strong>+12.86%</strong> (DF → NeuralTextures) over competing methods. The coordinated spatial-frequency analysis prevents overfitting to specific forgery textures, enabling robust detection of unseen synthesis pipelines.</span>
+                    <span class="zh">在FF++的一种操纵上训练，在其余三种上无微调测试。SVFT实现平均跨操纵AUC<strong>92.57%</strong>。显著增益包括<strong>+17.43%</strong>（DF → FaceSwap）、<strong>+5.25%</strong>（DF → Face2Face）和<strong>+12.86%</strong>（DF → NeuralTextures）。协调的空间-频域分析防止对特定伪造纹理的过拟合，实现对未知合成管道的鲁棒检测。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Cross-Dataset Generalization (Table 6)</span><span class="zh">跨数据集泛化（表6）</span></h3>
+                <p>
+                    <span class="en">Trained on FF++ (raw) and evaluated on DFDC, Celeb-DF-v2, and DeeperForensics-1.0. SVFT achieves <strong>83.50%</strong> AUC on DFDC, <strong>78.12%</strong> on CDF, and <strong>80.27%</strong> on Deeper, yielding an average cross-dataset AUC of <strong>80.63%</strong>. This outperforms Xception, Face X-ray, SPSL, MultiAtt, RECCE, CPT, and SFDG—confirming that spectral statistical cues provide domain-invariant forensic evidence.</span>
+                    <span class="zh">在FF++（raw）上训练，在DFDC、Celeb-DF-v2和DeeperForensics-1.0上评估。SVFT在DFDC上达到<strong>83.50%</strong> AUC，CDF上<strong>78.12%</strong>，Deeper上<strong>80.27%</strong>，平均跨数据集AUC为<strong>80.63%</strong>。这超越了Xception、Face X-ray、SPSL、MultiAtt、RECCE、CPT和SFDG——证实频谱统计线索提供了域不变的取证证据。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Compression Robustness (Fig. 13)</span><span class="zh">压缩鲁棒性（图13）</span></h3>
+                <p>
+                    <span class="en">Evaluated on heavily compressed FF++ videos (c23 and c40). SVFT achieves an average AUC of <strong>85.09%</strong> on c23 and <strong>78.50%</strong> on c40. The frequency-domain branch provides inherent resilience because spectral statistical features are less sensitive to compression artifacts than raw pixel textures. On FaceSwap c23, SVFT reaches <strong>92.77%</strong>, outperforming the compression-specialized FTSC method by <strong>6.02%</strong>.</span>
+                    <span class="zh">在重度压缩的FF++视频（c23和c40）上评估。SVFT在c23上达到平均AUC<strong>85.09%</strong>，c40上<strong>78.50%</strong>。频域分支提供固有韧性，因为频谱统计特征对压缩伪影的敏感度低于原始像素纹理。在FaceSwap c23上，SVFT达到<strong>92.77%</strong>，超越专门面向压缩的FTSC方法<strong>6.02%</strong>。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Unseen Perturbation Robustness (Table 8 & Fig. 15)</span><span class="zh">未知扰动鲁棒性（表8和图15）</span></h3>
+                <p>
+                    <span class="en">Tested on four unseen perturbations at five intensity levels: Brightness Change, Contrast Change, Random Block Occlusion, and Gaussian Blur. SVFT achieves an average AUC of <strong>91.17%</strong> across all degradations. It excels on Brightness Change (94.42%) and Block Occlusion (99.25%), where the interplay between spatial and spectral modalities compensates for localized distortions. The model remains competitive on Contrast Change and Gaussian Blur, though high-level blur degrades frequency statistics.</span>
+                    <span class="zh">在五种强度水平的四种未知扰动上测试：亮度变化、对比度变化、随机块遮挡和高斯模糊。SVFT在所有退化上的平均AUC为<strong>91.17%</strong>。它在亮度变化（94.42%）和块遮挡（99.25%）上表现优异，空间与频谱模态的相互作用补偿了局部失真。模型在对比度变化和高斯模糊上保持竞争力，尽管高级模糊会退化频率统计量。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Ablation Studies</span><span class="zh">消融研究</span></h3>
+                <p>
+                    <span class="en">(1) <strong>Fusion weights:</strong> α=0.7 / β=0.3 is optimal, yielding 83.50% AUC on DFDC; deviating from this ratio degrades performance by up to 5.61%. (2) <strong>LTE branch:</strong> Removing the frequency branch drops average cross-manipulation AUC by 5–12%, confirming that spectral statistics are essential for generalization. (3) <strong>Structured training:</strong> Alternating real/fake sequences reduces EER from 0.1471 to 0.0796. (4) <strong>Mixed precision:</strong> bf16-mixed cuts training time by ~35% (CTE) and ~24% (SVFT) with zero AUC penalty.</span>
+                    <span class="zh">(1) <strong>融合权重：</strong>α=0.7 / β=0.3是最优的，在DFDC上产生83.50% AUC；偏离此比例会使性能下降多达5.61%。(2) <strong>LTE分支：</strong>移除频域分支使平均跨操纵AUC下降5–12%，证实频谱统计对泛化至关重要。(3) <strong>结构化训练：</strong>交替真实/伪造序列将EER从0.1471降至0.0796。(4) <strong>混合精度：</strong>bf16-mixed将训练时间减少约35%（CTE）和约24%（SVFT），AUC惩罚为零。</span>
+                </p>
+            </div>
+
+            <div class="figure-grid" style="margin-top:64px;">
+                <div class="figure-item">
+                    <img src="AEJ/13.jpg" alt="Fig. 13 — Compression evaluation on FF++ c23 and c40" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 13 — Cross-compression evaluation on FF++ (c23 and c40). SVFT maintains leading AUC across all four manipulations under both mild and heavy compression. © 2024 Elsevier.</span>
+                        <span class="zh">图13 — FF++跨压缩评估（c23和c40）。SVFT在轻度和重度压缩下对所有四种操纵保持领先AUC。© 2024 Elsevier。</span>
+                    </span>
+                </div>
+                <div class="figure-item">
+                    <img src="AEJ/15.jpg" alt="Fig. 15 — Perturbation robustness evaluation" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="figure-caption">
+                        <span class="en">Fig. 15 — Robustness against four unseen perturbations (Brightness, Contrast, Block Occlusion, Gaussian Blur) over five intensity levels. SVFT outperforms texture-based methods on brightness and occlusion. © 2024 Elsevier.</span>
+                        <span class="zh">图15 — 对四种未知扰动（亮度、对比度、块遮挡、高斯模糊）在五种强度水平上的鲁棒性。SVFT在亮度和遮挡上超越基于纹理的方法。© 2024 Elsevier。</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="figure-grid single" style="margin-top:32px;">
+                <div class="figure-item">
+                    <img src="AEJ/16.jpg" alt="Fig. 16 — Mixed-precision training evaluation" loading="lazy" />
+                    <span class="figure-caption">
+                        <span class="en">Fig. 16 — Mixed-precision (bf16-mixed) vs. 32-bit true precision. Training time and computation cost are significantly reduced while AUC remains at 100% on intra-evaluation. © 2024 Elsevier.</span>
+                        <span class="zh">图16 — 混合精度（bf16-mixed）与32位真精度对比。训练时间和计算成本显著降低，同时内部评估AUC保持100%。© 2024 Elsevier。</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Limitations -->
+    <section class="section section-white" id="limitations">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P5</span>
+                <p class="eyebrow"><span class="en">LIMITATIONS & FUTURE WORK</span><span class="zh">局限性与未来工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What we <em>could not</em> solve yet.</span>
+                <span class="zh">我们<em>尚未</em>解决的问题。</span>
+            </h2>
+            <div class="limitations-box">
+                <p>
+                    <span class="en"><strong>Heavy compression and blur.</strong> While SVFT outperforms competitors on c40 compression, absolute AUC still degrades compared to raw video. Similarly, Gaussian blur at higher intensity levels destroys high-frequency spectral statistics, causing performance drops. Future work will explore compression-aware and de-blurring pre-processing to mitigate these artifacts.</span>
+                    <span class="zh"><strong>重度压缩与模糊。</strong>虽然SVFT在c40压缩上超越竞争对手，但绝对AUC相比原始视频仍下降。类似地，高强度水平的高斯模糊破坏高频频谱统计，导致性能下降。未来工作将探索压缩感知和去模糊预处理以减轻这些伪影。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>DeeperForensics gap.</strong> On the Deeper dataset, SVFT (80.27%) underperforms relative to SFDG (92.10%). Deeper employs advanced real-world tampering with diverse lighting and identities that challenge the current spectral priors. Expanding the diversity of training spectral statistics and incorporating adversarial augmentation may close this gap.</span>
+                    <span class="zh"><strong>DeeperForensics差距。</strong>在Deeper数据集上，SVFT（80.27%）相对于SFDG（92.10%）表现不足。Deeper采用具有多样光照和身份的高级真实世界篡改，对当前频谱先验构成挑战。扩展训练频谱统计的多样性并纳入对抗增强可能缩小这一差距。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Model complexity.</strong> With 86.58M parameters and 25.89 GFLOPs, SVFT is computationally demanding for real-time deployment. Network pruning, knowledge distillation, or lightweight transformer variants should be investigated to reduce inference latency without sacrificing generalization.</span>
+                    <span class="zh"><strong>模型复杂度。</strong>具有86.58M参数和25.89 GFLOPs，SVFT对实时部署而言计算需求较高。应研究网络剪枝、知识蒸馏或轻量级Transformer变体，以减少推理延迟而不牺牲泛化能力。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Temporal modeling.</strong> SVFT currently operates on single-frame or short video-clip inputs. Explicit temporal modeling across frame sequences—such as bi-level temporal coherence or 3D convolutional extensions—could further improve detection of temporally inconsistent deepfake videos.</span>
+                    <span class="zh"><strong>时序建模。</strong>SVFT目前基于单帧或短视频片段输入。跨帧序列的显式时序建模——如双层时序一致性或3D卷积扩展——可进一步改进对时序不一致深度伪造视频的检测。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BibTeX -->
+    <section class="section section-black" id="bibtex">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P6</span>
+                <p class="eyebrow"><span class="en">BIBTEX</span><span class="zh">引用</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Cite this <em>paper</em>.</span>
+                <span class="zh">引用此<em>论文</em>。</span>
+            </h2>
+            <div class="bibtex-block" id="bibtexBlock">
+                <pre><code id="bibtexCode">@article{AMIN2024592,
+  title = {Deepfake detection based on cross-domain local characteristic analysis with multi-domain transformer},
+  journal = {Alexandria Engineering Journal},
+  volume = {91},
+  pages = {592-609},
+  year = {2024},
+  issn = {1110-0168},
+  doi = {https://doi.org/10.1016/j.aej.2024.02.035},
+  url = {https://www.sciencedirect.com/science/article/pii/S1110016824001753},
+  author = {Muhammad Ahmad Amin and Yongjian Hu and Chang-Tsun Li and Beibei Liu},
+  keywords = {Deepfake detection, Multi-domain transformer, Generalization performance, Spectral anomalies, Spatial-frequency domains}
+}</code></pre>
+                <button class="btn bibtex-copy" id="bibtexCopy" aria-label="Copy BibTeX citation">
+                    <span class="en">COPY CITATION</span><span class="zh">复制引用</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elsevier Copyright Disclaimer -->
+    <section class="section section-white" id="copyright">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P7</span>
+                <p class="eyebrow"><span class="en">COPYRIGHT NOTICE</span><span class="zh">版权声明</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Elsevier <em>Open Access</em> & Usage.</span>
+                <span class="zh">Elsevier <em>开放获取</em>与使用。</span>
+            </h2>
+            <div class="abstract-block">
+                <p style="font-size:14px; color:var(--gray-dark);">
+                    <span class="en">© 2024 THE AUTHORS. Published by Elsevier BV on behalf of Faculty of Engineering, Alexandria University. This is an open access article under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-nc-nd/4.0/).</span>
+                    <span class="zh">© 2024 作者。由Elsevier BV代表亚历山大大学工程学院出版。本文根据CC BY-NC-ND许可进行开放获取。</span>
+                </p>
+                <p style="font-size:14px; color:var(--gray-dark); margin-top:12px;">
+                    <span class="en">This page is a personal academic landing page. The full paper is available via ScienceDirect. Figures are reproduced with permission from Alexandria Engineering Journal.</span>
+                    <span class="zh">本页面为个人学术着陆页。完整论文可通过ScienceDirect获取。图表经Alexandria Engineering Journal许可转载。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related -->
+    <section class="section section-black" id="related">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P8</span>
+                <p class="eyebrow"><span class="en">RELATED WORK</span><span class="zh">相关工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">More from our <em>group</em>.</span>
+                <span class="zh">来自我们<em>团队</em>的更多工作。</span>
+            </h2>
+            <div class="related-grid">
+                <a href="ieee_tce.html" class="related-item">
+                    <span class="related-venue">IEEE Transactions on Consumer Electronics · 2026</span>
+                    <h4><span class="en">Trustworthy Deepfake Defense for Consumer Applications via Frequency‑Preserving Resizing and Dual‑Branch Forensics</span><span class="zh">基于频域保持缩放与双分支取证的面向消费级应用的可信深度伪造防御</span></h4>
+                    <p><span class="en">Proactive two-stage forensic defense framework with FA-IPNet and AFE-FDNet.</span><span class="zh">具有FA-IPNet和AFE-FDNet的主动式两阶段取证防御框架。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="qoa.html" class="related-item">
+                    <span class="related-venue">Sensors · 2025</span>
+                    <h4><span class="en">Quality of Experience (QoE) in Cloud Gaming: A Comparative Analysis of Deep Learning Techniques via Facial Emotions</span><span class="zh">云游戏中体验质量（QoE）的深度学习技术对比分析</span></h4>
+                    <p><span class="en">EmotionNET: real-time facial emotion recognition for QoE assessment in VR cloud gaming.</span><span class="zh">EmotionNET：用于VR云游戏中QoE评估的实时面部表情识别。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="dsp.html" class="related-item">
+                    <span class="related-venue">Digital Signal Processing · 2024</span>
+                    <h4><span class="en">Exploring Varying Color Spaces through Representative Forgery Learning</span><span class="zh">通过代表性伪造学习探索多色彩空间</span></h4>
+                    <p><span class="en">Multi-color-space framework for deepfake detection.</span><span class="zh">面向深度伪造检测的多色彩空间框架。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer section-white">
+        <div class="container">
+            <p>
+                <span class="en">© 2026 Muhammad Ahmad Amin. All rights reserved.</span>
+                <span class="zh">© 2026 Muhammad Ahmad Amin. 保留所有权利。</span>
+            </p>
+            <div class="footer-links">
+                <a href="#top" class="back-to-top">
+                    <span class="en">BACK TO TOP ↑</span>
+                    <span class="zh">回到顶部 ↑</span>
+                </a>
+                <a href="../../index.html#top" class="back-to-top">
+                    <span class="en">BACK TO HOME ↑</span>
+                    <span class="zh">返回首页 ↑</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="../js/main.js"></script>
+    <script>
+      // BibTeX copy handler (self-contained for template portability)
+      (function() {
+        const bibtexCopy = document.getElementById('bibtexCopy');
+        const bibtexCode = document.getElementById('bibtexCode');
+        const toast = document.getElementById('toast');
+        if (!bibtexCopy || !bibtexCode) return;
+
+        function showToast(msg) {
+          toast.textContent = msg;
+          toast.classList.add('show');
+          setTimeout(() => { toast.classList.remove('show'); }, 2500);
+        }
+
+        bibtexCopy.addEventListener('click', () => {
+          const text = bibtexCode.textContent;
+          navigator.clipboard.writeText(text).then(() => {
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          });
+        });
+      })();
+    </script>
+</body>
+</html>

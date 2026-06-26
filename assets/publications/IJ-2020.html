@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detecting Video Inter-Frame Forgeries Based on CNN — IJIGSP 2020</title>
+    <meta name="description" content="Detecting Video Inter-Frame Forgeries Based on Convolutional Neural Network Model. IJIGSP 2020." />
+
+    <!-- Custom SVG Favicon (Baked in) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='90' fill='%2300b894'/%3E%3Cpath d='M116 103 H216 L136 219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 103 V219 M296 103 L346 149 L396 103 M396 103 V219' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M116 409 L166 299 L216 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M296 409 L346 299 L396 409' fill='none' stroke='%23000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/subpages.css" />
+</head>
+<body>
+
+    <!-- Side Dock — Social Links -->
+    <aside class="side-dock" id="sideDock" aria-label="Social links">
+        <div class="dock-links">
+            <a href="https://twitter.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="X / Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path></svg>
+            </a>
+            <a href="https://github.com/7AhmadAmin" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+            </a>
+            <a href="https://scholar.google.com/citations?hl=en&user=57ouxVcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10l-10-6-10 6 10 6 10-6z"/>
+                    <path d="M6 12v5l6 3 6-3v-5"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/7ahmadamin" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"></path></svg>
+            </a>
+        </div>
+        <button class="dock-toggle" id="dockToggle" aria-label="Toggle social links" aria-expanded="false">
+            <span class="toggle-label">Socials</span>
+        </button>
+    </aside>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../../index.html#top" class="nav-name" id="navName">
+                <span class="nav-name-text">MUHAMMAD AHMAD AMIN</span>
+            </a>
+            <div class="nav-links">
+                <a href="../../index.html#about"><span class="en">ABOUT</span><span class="zh">关于</span></a>
+                <a href="../../index.html#research"><span class="en">RESEARCH</span><span class="zh">研究</span></a>
+                <a href="../../index.html#experience"><span class="en">WORK</span><span class="zh">工作</span></a>
+                <a href="../../index.html#projects"><span class="en">FUNDING</span><span class="zh">基金</span></a>
+                <a href="../../index.html#publications"><span class="en">PAPERS</span><span class="zh">论文</span></a>
+                <a href="../../index.html#talks"><span class="en">TALKS</span><span class="zh">报告</span></a>
+                <a href="../../index.html#news"><span class="en">NEWS</span><span class="zh">动态</span></a>
+                <a href="../../index.html#contact"><span class="en">CONTACT</span><span class="zh">联系</span></a>
+            </div>
+            <div class="nav-actions">
+                <a href="../CV/Resume.pdf" class="cv-btn" download>
+                    <span class="en">CV ↓</span>
+                    <span class="zh">简历 ↓</span>
+                </a>
+                <button class="lang-btn lang-btn-desktop" aria-label="Toggle language">EN / 中</button>
+                <button class="lang-btn lang-btn-mobile" aria-label="Toggle language">EN / 中</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="subpage-hero" id="top">
+        <div class="hero-bg"></div>
+        <div class="subpage-hero-content">
+            <p class="hero-label">
+                <span class="en">PUBLICATION</span><span class="zh">论文</span> · IJIGSP · 2020
+            </p>
+            <h1 class="hero-title">
+                <span class="en">Detecting Video Inter-Frame Forgeries Based on Convolutional Neural Network Model</span>
+                <span class="zh">基于卷积神经网络模型的视频帧间伪造检测</span>
+            </h1>
+
+            <div class="author-grid">
+                <span class="author-block">X. H. Nguyen<sup>1,2</sup></span>
+                <span class="author-block">Y. Hu<sup>1</sup></span>
+                <span class="author-block"><a href="../../index.html#about">M. A. Amin</a><sup>1</sup></span>
+                <span class="author-block">K. G. Hayat<sup>1</sup></span>
+                <span class="author-block">V. T. Le<sup>2</sup></span>
+                <span class="author-block">D.-T. Truong<sup>3</sup></span>
+            </div>
+            <div class="affiliation-list">
+                <span><sup>1</sup><span class="en">Research Centre of Multimedia Information Security Detection and Intelligent Processing, School of Electronics and Information Engineering, South China University of Technology, Guangzhou, P.R. China</span><span class="zh">华南理工大学电子与信息工程学院多媒体信息安全检测与智能处理研究中心，中国广州</span></span>
+                <span><sup>2</sup><span class="en">Faculty of Electronics and Informatics Engineering, Mien Trung Industrial and Trade College, Phu Yen, Vietnam</span><span class="zh">越南富安省中原工业贸易学院电子与信息工程系</span></span>
+                <span><sup>3</sup><span class="en">Natural Language Processing and Knowledge Discovery Laboratory, Faculty of Information Technology, Ton Duc Thang University, Ho Chi Minh City, Vietnam</span><span class="zh">越南胡志明市 Ton Duc Thang University 信息技术学院自然语言处理与知识发现实验室</span></span>
+            </div>
+
+            <div class="link-buttons">
+                <a href="https://doi.org/10.5815/ijigsp.2020.03.01" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <span class="en">Paper</span><span class="zh">Paper</span>
+                </a>
+                <a href="https://www.mecs-press.org/ijigsp/ijigsp-v12-n3/IJIGSP-V12-N3-1.pdf" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    <span class="en">PDF</span><span class="zh">PDF</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Abstract -->
+    <section class="section section-white" id="abstract">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P1</span>
+                <p class="eyebrow"><span class="en">ABSTRACT</span><span class="zh">摘要</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What is the <em>problem</em> and what did we do?</span>
+                <span class="zh">我们解决了什么<em>问题</em>？</span>
+            </h2>
+            <div class="abstract-block">
+                <p>
+                    <span class="en">In the era of information explosion today, videos are easily captured and made viral in a short time, and video tampering has become easier due to editing software. Therefore, the authenticity of videos has become increasingly essential. Video inter-frame forgeries are the most common type of video forgery, which are difficult to detect with the naked eye. Until now, some algorithms have been suggested for detecting inter-frame forgeries based on handicraft features, but the accuracy and processing speed of those algorithms remain challenging.</span>
+                    <span class="zh">在当今信息爆炸的时代，视频易于拍摄并在短时间内病毒式传播，而视频编辑软件的普及使得视频篡改变得更加容易。因此，视频的真实性变得愈发重要。视频帧间伪造是最常见的视频伪造类型，肉眼难以检测。迄今为止，一些基于手工特征的帧间伪造检测算法已被提出，但其准确率和处理速度仍具挑战性。</span>
+                </p>
+                <p>
+                    <span class="en">In this paper, we propose a video forgery detection method for detecting video inter-frame forgeries based on convolutional neural network (CNN) models by retraining available CNN models pre-trained on the ImageNet dataset. The proposed method exploits state-of-the-art CNN models retrained to capture spatial-temporal relationships in video to robustly detect inter-frame forgeries. We also propose a confidence score instead of the raw output score to increase the accuracy of the proposed method.</span>
+                    <span class="zh">本文提出了一种基于卷积神经网络（CNN）模型的视频帧间伪造检测方法，通过对在ImageNet数据集上预训练的CNN模型进行重训练来实现。所提出的方法利用重训练的最先进CNN模型捕获视频中的时空关系，以稳健地检测帧间伪造。此外，我们还提出了一种置信度分数来替代原始输出分数，以提高所提方法的准确率。</span>
+                </p>
+                <p>
+                    <span class="en">Through experiments, the detection accuracy of the proposed method reaches 99.17% when combining residual and optical flow features. This result demonstrates that the proposed method has significantly higher efficiency and accuracy than other recent methods.</span>
+                    <span class="zh">实验结果表明，当结合残差和光流特征时，所提方法的检测准确率达到99.17%。这一结果证明，所提方法比近期其他方法具有显著更高的效率和准确率。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaser -->
+    <section class="section section-black" id="teaser">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P2</span>
+                <p class="eyebrow"><span class="en">FRAMEWORK OVERVIEW</span><span class="zh">框架概览</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Retraining and testing pipeline for inter-frame forgery detection.</span>
+                <span class="zh">面向帧间伪造检测的重训练与测试流程。</span>
+            </h2>
+            <p style="text-align:center; color:var(--gray); max-width:800px; margin:32px auto 0; line-height:1.7;">
+                <span class="en">The proposed framework consists of a retraining stage and a testing stage. In retraining, state-of-the-art CNN models pre-trained on ImageNet are fine-tuned on forensic datasets built from residuals and optical flow. In testing, input videos are decomposed into frame-difference samples, classified by the retrained network, and aggregated via a temporal confidence score to reach a final authenticity verdict.</span>
+                <span class="zh">所提出的框架包含重训练阶段和测试阶段。在重训练中，在ImageNet上预训练的最先进CNN模型在由残差和光流构建的取证数据集上进行微调。在测试中，输入视频被分解为帧差样本，由重训练网络分类，并通过时序置信度分数聚合以得出最终真实性判决。</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Method -->
+    <section class="section section-white" id="method">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P3</span>
+                <p class="eyebrow"><span class="en">METHOD</span><span class="zh">方法</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Dataset construction, retraining, and <em>confidence scoring</em>.</span>
+                <span class="zh">数据集构建、重训练与<em>置信度评分</em>。</span>
+            </h2>
+            <div class="method-steps">
+                <div class="method-step">
+                    <span class="step-num">01</span>
+                    <div class="step-content">
+                        <h4><span class="en">Training Dataset Construction from Residuals and Optical Flow</span><span class="zh">基于残差与光流的训练数据集构建</span></h4>
+                        <p>
+                            <span class="en">We propose four methods to construct training datasets from original videos. Negative samples are built from adjacent frames (residuals or optical flow), which exhibit natural temporal consistency. Positive samples are built from non-adjacent frames separated by at least 15 frames, which exhibit inconsistency. Dataset_1 uses two-frame residuals; Dataset_2 uses three grey-value residuals from four frames; Dataset_3 uses two-frame optical flow; Dataset_4 uses three optical-flow magnitudes from four frames.</span>
+                            <span class="zh">我们提出了四种从原始视频构建训练数据集的方法。负样本由相邻帧（残差或光流）构建，表现出自然时序一致性；正样本由间隔至少15帧的非相邻帧构建，表现出不一致性。Dataset_1使用两帧残差；Dataset_2使用四帧的三个灰度残差；Dataset_3使用两帧光流；Dataset_4使用四帧的三个光流幅度。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">02</span>
+                    <div class="step-content">
+                        <h4><span class="en">Transfer Learning and Fine-Tuning</span><span class="zh">迁移学习与微调</span></h4>
+                        <p>
+                            <span class="en">We fine-tune state-of-the-art CNN models—GoogleNet, ResNet, DenseNet, InceptionV3, InceptionResNetV2, MobileNetV2, and NasNet—pre-trained on ImageNet by replacing the last three layers with a fully connected layer, a softmax layer, and a classification output layer. Training uses SGD with momentum 0.9, initial learning rate 0.001, mini-batch size 10, max epochs 20, and L2 regularization 0.0001.</span>
+                            <span class="zh">我们对在ImageNet上预训练的最先进CNN模型——GoogleNet、ResNet、DenseNet、InceptionV3、InceptionResNetV2、MobileNetV2和NasNet——进行微调，将最后三层替换为全连接层、Softmax层和分类输出层。训练采用动量0.9的SGD优化器，初始学习率0.001，批次大小10，最大轮数20，L2正则化0.0001。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">03</span>
+                    <div class="step-content">
+                        <h4><span class="en">Confidence Score Transformation</span><span class="zh">置信度分数转换</span></h4>
+                        <p>
+                            <span class="en">Instead of using raw CNN output scores, we define a confidence score f_con(i) that incorporates temporal context from neighboring samples. A video is declared original if max(f_con(i)) &lt; 0.5; otherwise it is forged. This temporal aggregation reduces isolated misclassifications and boosts overall accuracy.</span>
+                            <span class="zh">我们定义了置信度分数f_con(i)来替代原始CNN输出分数，该分数融合了邻近样本的时序上下文。若max(f_con(i)) &lt; 0.5则判定为原始视频，否则为伪造视频。这种时序聚合减少了孤立误分类，提升了整体准确率。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="method-step">
+                    <span class="step-num">04</span>
+                    <div class="step-content">
+                        <h4><span class="en">Testing and Decision</span><span class="zh">测试与决策</span></h4>
+                        <p>
+                            <span class="en">During testing, each video is decomposed into samples following the negative-sample construction strategy. Each sample is classified by the retrained model, producing output scores that are transformed into confidence scores. The final decision is based on the maximum confidence score across all samples in the video.</span>
+                            <span class="zh">在测试阶段，每个视频按照负样本构建策略被分解为样本。每个样本由重训练模型分类，产生输出分数并转换为置信度分数。最终决策基于视频中所有样本的最大置信度分数。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="section section-black" id="results">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P4</span>
+                <p class="eyebrow"><span class="en">RESULTS</span><span class="zh">结果</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Best detection accuracy among all <em>evaluated</em> methods.</span>
+                <span class="zh">在所有<em>评估</em>方法中达到最佳检测精度。</span>
+            </h2>
+
+            <div class="statement-strip" style="margin-top:0; border-top:none; padding-top:0;">
+                <h3><span class="en">Cross-Model Comparison (Table III)</span><span class="zh">跨模型比较（表III）</span></h3>
+                <p>
+                    <span class="en">On Dataset_1, ResNet18, DenseNet201, InceptionV3, and ResNet50 all achieve 97.5% detection accuracy. MobileNetV2 achieves 96.67% with only 3.5M parameters, offering the best accuracy-to-parameter trade-off. SqueezeNet reaches 94.17% with merely 1.24M parameters.</span>
+                    <span class="zh">在Dataset_1上，ResNet18、DenseNet201、InceptionV3和ResNet50均达到97.5%的检测准确率。MobileNetV2以仅3.5M参数达到96.67%，在准确率与参数数量间取得了最佳平衡。SqueezeNet以仅1.24M参数达到94.17%。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Feature Fusion Analysis (Table IV)</span><span class="zh">特征融合分析（表IV）</span></h3>
+                <p>
+                    <span class="en">Individually, Dataset_1 (two-frame residual) achieves 96.67% and Dataset_4 (optical-flow magnitudes) achieves 95.0%. Combining Dataset_1 and Dataset_4 yields 99.17% accuracy with 3.33% FPR and 100% TPR, significantly outperforming single-feature approaches.</span>
+                    <span class="zh">单独使用时，Dataset_1（两帧残差）达到96.67%，Dataset_4（光流幅度）达到95.0%。将Dataset_1与Dataset_4结合后，准确率达到99.17%，假阳性率3.33%，真阳性率100%，显著优于单特征方法。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Transfer Learning vs. Training from Scratch (Table V)</span><span class="zh">迁移学习与从头训练对比（表V）</span></h3>
+                <p>
+                    <span class="en">Transfer learning from ImageNet is crucial: MobileNetV2 improves from 84.17% (scratch) to 96.67% (transfer), and ResNet18 improves from 93.33% to 97.5%. This confirms that pre-trained visual features generalize effectively to forensic tasks despite domain differences.</span>
+                    <span class="zh">来自ImageNet的迁移学习至关重要：MobileNetV2从从头训练的84.17%提升至迁移学习的96.67%，ResNet18从93.33%提升至97.5%。这证实预训练视觉特征能够有效泛化到取证任务，尽管领域存在差异。</span>
+                </p>
+            </div>
+
+            <div class="statement-strip" style="margin-top:48px;">
+                <h3><span class="en">Comparison with Recent Methods (Table VI)</span><span class="zh">与近期方法对比（表VI）</span></h3>
+                <p>
+                    <span class="en">The proposed method achieves 99.17% accuracy, outperforming optical-flow consistency [18] at 91.12%, spatial-temporal correlation [17] at 86.67%, DCT mean correlation [3] at 93.34%, and grey-value correlation [4] at 88.89%. It detects copy-move, insertion, and deletion forgeries within a unified framework.</span>
+                    <span class="zh">所提方法达到99.17%的准确率，优于光流一致性[18]的91.12%、时空相关性[17]的86.67%、DCT均值相关性[3]的93.34%和灰度值相关性[4]的88.89%。该方法能在统一框架内检测复制-移动、插入和删除伪造。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Limitations -->
+    <section class="section section-white" id="limitations">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P5</span>
+                <p class="eyebrow"><span class="en">LIMITATIONS & FUTURE WORK</span><span class="zh">局限性与未来工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">What we <em>could not</em> solve yet.</span>
+                <span class="zh">我们<em>尚未</em>解决的问题。</span>
+            </h2>
+            <div class="limitations-box">
+                <p>
+                    <span class="en"><strong>Forgery-type classification.</strong> The method detects inter-frame forgeries but does not explicitly classify the specific manipulation type (insertion, deletion, or duplication). Future work will extend the framework to classify forgery types.</span>
+                    <span class="zh"><strong>伪造类型分类。</strong>该方法能够检测帧间伪造，但尚未明确分类具体的篡改类型（插入、删除或复制）。未来工作将扩展框架以实现伪造类型分类。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Dataset scale.</strong> The training set comprises 270 original videos from five surveillance cameras. Larger and more diverse datasets may further improve generalization across different capture conditions.</span>
+                    <span class="zh"><strong>数据集规模。</strong>训练集包含来自五台监控摄像头的270个原始视频。更大更多样的数据集可能进一步提升不同拍摄条件下的泛化能力。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Computational cost of optical flow.</strong> Optical flow extraction increases computational cost compared to residual-only methods. Future architectures may integrate learnable motion estimation to reduce this overhead.</span>
+                    <span class="zh"><strong>光流计算成本。</strong>相比仅使用残差的方法，光流提取增加了计算成本。未来架构可能集成可学习的运动估计以降低这一开销。</span>
+                </p>
+                <p>
+                    <span class="en"><strong>Lightweight forensic architectures.</strong> Future work includes designing lightweight CNN architectures specialized for video forensic tasks, balancing detection accuracy with real-time processing requirements.</span>
+                    <span class="zh"><strong>轻量级取证架构。</strong>未来工作包括设计面向视频取证任务的轻量级CNN架构，在检测准确率与实时处理需求之间取得平衡。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BibTeX -->
+    <section class="section section-black" id="bibtex">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P6</span>
+                <p class="eyebrow"><span class="en">BIBTEX</span><span class="zh">引用</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">Cite this <em>paper</em>.</span>
+                <span class="zh">引用此<em>论文</em>。</span>
+            </h2>
+            <div class="bibtex-block" id="bibtexBlock">
+                <pre><code id="bibtexCode">@article{nguyen2020detecting,
+  author    = {Nguyen, Xuan Hau and Hu, Yongjian and Amin, Muhammad Ahmad and Hayat, Khan Gohar and Le, Van Thinh and Truong, Dinh-Tu},
+  title     = {Detecting Video Inter-Frame Forgeries Based on Convolutional Neural Network Model},
+  journal   = {International Journal of Image, Graphics and Signal Processing},
+  year      = {2020},
+  volume    = {12},
+  number    = {3},
+  pages     = {1--12},
+  publisher = {MECS Press},
+  doi       = {10.5815/ijigsp.2020.03.01}
+}</code></pre>
+                <button class="btn bibtex-copy" id="bibtexCopy" aria-label="Copy BibTeX citation">
+                    <span class="en">COPY CITATION</span><span class="zh">复制引用</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Copyright -->
+    <section class="section section-white" id="copyright">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P7</span>
+                <p class="eyebrow"><span class="en">COPYRIGHT NOTICE</span><span class="zh">版权声明</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">MECS Press <em>Copyright</em> & Usage.</span>
+                <span class="zh">MECS Press <em>版权</em>与使用。</span>
+            </h2>
+            <div class="abstract-block">
+                <p style="font-size:14px; color:var(--gray-dark);">
+                    <span class="en">© 2020 MECS Press. Personal use of this material is permitted. Permission from MECS Press must be obtained for all other uses, in any current or future media, including reprinting/republishing this material for advertising or promotional purposes, creating new collective works, for resale or redistribution to servers or lists, or reuse of any copyrighted component of this work in other works.</span>
+                    <span class="zh">© 2020 MECS Press。允许个人使用此材料。所有其他用途必须获得MECS Press许可，包括在任何当前或未来媒体中重印/再版此材料用于广告或促销目的、创建新的集体作品、转售或重新分发到服务器或列表，或在其他作品中重用此作品的任何受版权保护的组件。</span>
+                </p>
+                <p style="font-size:14px; color:var(--gray-dark); margin-top:12px;">
+                    <span class="en">This page is a personal academic landing page. The full paper is available via MECS Press. The dataset is published online at Mendeley Data (VIFFD).</span>
+                    <span class="zh">本页面为个人学术着陆页。完整论文可通过MECS Press获取。数据集已在Mendeley Data（VIFFD）上发布。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related -->
+    <section class="section section-black" id="related">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">№ P8</span>
+                <p class="eyebrow"><span class="en">RELATED WORK</span><span class="zh">相关工作</span></p>
+            </div>
+            <h2 class="section-heading">
+                <span class="en">More from our <em>group</em>.</span>
+                <span class="zh">来自我们<em>团队</em>的更多工作。</span>
+            </h2>
+            <div class="related-grid">
+                <a href="dsp.html" class="related-item">
+                    <span class="related-venue">Digital Signal Processing · 2024</span>
+                    <h4><span class="en">Exploring Varying Color Spaces through Representative Forgery Learning</span><span class="zh">通过代表性伪造学习探索多色彩空间</span></h4>
+                    <p><span class="en">Multi-color-space framework for deepfake detection.</span><span class="zh">面向深度伪造检测的多色彩空间框架。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="aej.html" class="related-item">
+                    <span class="related-venue">Alexandria Engineering Journal · 2024</span>
+                    <h4><span class="en">Cross-Domain Local Characteristic Analysis with Multi-domain Transformer</span><span class="zh">基于多域Transformer的跨域局部特征分析</span></h4>
+                    <p><span class="en">SVFT: spatial + frequency transformer for deepfake detection.</span><span class="zh">SVFT：空间与频域Transformer融合的深度伪造检测。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+                <a href="era.html" class="related-item">
+                    <span class="related-venue">Electronic Research Archive · 2024</span>
+                    <h4><span class="en">Analyzing Temporal Coherence for Deepfake Video Detection</span><span class="zh">基于时序一致性的深度伪造视频检测</span></h4>
+                    <p><span class="en">Bi-level temporal modeling for video forensics.</span><span class="zh">面向视频取证的双层时序建模。</span></p>
+                    <span class="related-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer section-white">
+        <div class="container">
+            <p>
+                <span class="en">© 2026 Muhammad Ahmad Amin. All rights reserved.</span>
+                <span class="zh">© 2026 Muhammad Ahmad Amin. 保留所有权利。</span>
+            </p>
+            <div class="footer-links">
+                <a href="#top" class="back-to-top">
+                    <span class="en">BACK TO TOP ↑</span>
+                    <span class="zh">回到顶部 ↑</span>
+                </a>
+                <a href="../../index.html#top" class="back-to-top">
+                    <span class="en">BACK TO HOME ↑</span>
+                    <span class="zh">返回首页 ↑</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="../js/main.js"></script>
+    <script>
+      // BibTeX copy handler (self-contained for template portability)
+      (function() {
+        const bibtexCopy = document.getElementById('bibtexCopy');
+        const bibtexCode = document.getElementById('bibtexCode');
+        const toast = document.getElementById('toast');
+        if (!bibtexCopy || !bibtexCode) return;
+
+        function showToast(msg) {
+          toast.textContent = msg;
+          toast.classList.add('show');
+          setTimeout(() => { toast.classList.remove('show'); }, 2500);
+        }
+
+        bibtexCopy.addEventListener('click', () => {
+          const text = bibtexCode.textContent;
+          navigator.clipboard.writeText(text).then(() => {
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            const isZh = document.body.classList.contains('lang-zh');
+            showToast(isZh ? '已复制引用' : 'CITATION COPIED');
+          });
+        });
+      })();
+    </script>
+</body>
+</html>
