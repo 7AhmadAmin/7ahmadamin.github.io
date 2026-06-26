@@ -38,6 +38,15 @@ body {
   overflow-x: hidden;
 }
 
+::selection {
+  background: rgba(0, 212, 160, 0.35);  /* soft teal tint */
+  color: inherit;                        /* keeps original text color */
+}
+::-moz-selection {
+  background: rgba(0, 212, 160, 0.35);
+  color: inherit;
+}
+
 /* Language toggle */
 .zh { display: none; }
 body.lang-zh .en { display: none; }
@@ -76,15 +85,23 @@ body.lang-zh .zh { display: inline; }
   text-decoration: none;
   transition: color 0.3s ease;
   position: relative;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .dock-links a::after {
   display: none;
 }
 
-.dock-links a:hover {
+.dock-links a:active {
   color: var(--orange);
   background: transparent;
+}
+
+@media (hover: hover) {
+  .dock-links a:hover {
+    color: var(--orange);
+    background: transparent;
+  }
 }
 
 .dock-links a svg {
@@ -110,10 +127,24 @@ body.lang-zh .zh { display: inline; }
   text-transform: uppercase;
   letter-spacing: 0.1em;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.dock-toggle:hover {
+/* Press feedback while finger is down */
+.dock-toggle:active {
   color: var(--orange);
+}
+
+/* Orange when dock is expanded (toggled open) */
+.side-dock.expanded .dock-toggle {
+  color: var(--orange);
+}
+
+/* Desktop-only hover (prevents sticky hover on iPhone) */
+@media (hover: hover) {
+  .dock-toggle:hover {
+    color: var(--orange);
+  }
 }
 
 .dock-toggle .toggle-icon {
@@ -754,7 +785,7 @@ body.lang-zh .cv-btn .zh {
   letter-spacing: 0.08em;
   color: var(--gray);
   text-transform: uppercase;
-  padding: 5px 8px 1px;
+  padding: 5px 8px 1.5px;
   border: 1px solid var(--border);
   border-radius: 1px;
   align-self: flex-start;
@@ -1912,4 +1943,36 @@ body.lang-zh .cv-btn .zh {
   .dock-toggle .toggle-label {
     font-size: 6px;
   }
+  .hero-meta {
+    font-size: 10px;          /* shrink from 11 px */
+    letter-spacing: 0.08em;  /* tighten spacing */
+    gap: 6px;                /* reduce gap between items */
+    line-height: 1.4;
+  }
+
+  .hero-meta .sep {
+    font-size: 10px;          /* keep separators proportional */
+  }
+
+  /* Optional: if you need the text to wrap more gracefully */
+  .hero-meta-link {
+    white-space: nowrap;
+  }
+  .hero-scroll {
+  position: absolute;
+  bottom: 21px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+  }
+  .time-item .time-details {
+  font-size: 12px;
+  line-height: 1.2;
+ }
 }
