@@ -785,10 +785,17 @@ body.lang-zh .cv-btn .zh {
   letter-spacing: 0.08em;
   color: var(--gray);
   text-transform: uppercase;
-  padding: 5px 8px 1.5px;
   border: 1px solid var(--border);
   border-radius: 1px;
   align-self: flex-start;
+}
+
+.time-loc {
+  padding: 5px 8px 2px 8px;   /* default (English) */
+}
+
+body.lang-zh .time-loc {
+  padding: 5px 8px 0px 8px;     /* Chinese: more bottom padding */
 }
 
 .section-white .time-loc {
@@ -1267,10 +1274,17 @@ body.lang-zh .cv-btn .zh {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--teal-dark);
-  padding: 3px 8px;
   border: 1px solid var(--teal-dark);
   border-radius: 2px;
   margin-bottom: 12px;
+}
+
+.talk-type {
+  padding: 5px 8px 2px 8px;   /* default (English) */
+}
+
+body.lang-zh .talk-type {
+  padding: 5px 8px 0.5px 8px;     /* Chinese: more bottom padding */
 }
 
 .talk-type-soft {
@@ -1959,17 +1973,11 @@ body.lang-zh .cv-btn .zh {
     white-space: nowrap;
   }
   .hero-scroll {
-  position: absolute;
-  bottom: 21px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 24px;
-  height: 40px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  display: flex;
-  justify-content: center;
-  padding-top: 8px;
+    bottom: 21px;   /* English */
+  }
+  
+  body.lang-zh .hero-scroll {
+    bottom: 40px;   /* Chinese */
   }
   .time-item .time-details {
   font-size: 12px;
