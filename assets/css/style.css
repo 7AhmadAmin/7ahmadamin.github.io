@@ -791,11 +791,11 @@ body.lang-zh .cv-btn .zh {
 }
 
 .time-loc {
-  padding: 5px 8px 2px 8px;   /* default (English) */
+  padding: 5px 8px 3px 8px;   /* default (English) */
 }
 
 body.lang-zh .time-loc {
-  padding: 5px 8px 0px 8px;     /* Chinese: more bottom padding */
+  padding: 5px 8px 1px 8px;     /* Chinese: more bottom padding */
 }
 
 .section-white .time-loc {
@@ -1280,11 +1280,11 @@ body.lang-zh .time-loc {
 }
 
 .talk-type {
-  padding: 5px 8px 2px 8px;   /* default (English) */
+  padding: 5px 8px 3px 8px;   /* default (English) */
 }
 
 body.lang-zh .talk-type {
-  padding: 5px 8px 0.5px 8px;     /* Chinese: more bottom padding */
+  padding: 5px 8px 1.5px 8px;     /* Chinese: more bottom padding */
 }
 
 .talk-type-soft {
