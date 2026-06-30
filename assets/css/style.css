@@ -791,7 +791,7 @@ body.lang-zh .cv-btn .zh {
 }
 
 .time-loc {
-  padding: 5px 8px 3px 8px;   /* default (English) */
+  padding: 5px 8px 2px 8px;   /* default (English) */
 }
 
 body.lang-zh .time-loc {
@@ -1280,7 +1280,7 @@ body.lang-zh .time-loc {
 }
 
 .talk-type {
-  padding: 5px 8px 3px 8px;   /* default (English) */
+  padding: 5px 8px 2.5px 8px;   /* default (English) */
 }
 
 body.lang-zh .talk-type {
